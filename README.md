@@ -20,7 +20,7 @@ Web_Hell
 
 ## Proposed Features :
 
--All the Eaasy Features as mentioned in the Problem Statement
+-All the Easy Features as mentioned in the Problem Statement
 
 -Some Advanced Features whichever time frame allows mentioned in the Problem Statement
 
@@ -30,7 +30,7 @@ Web_Hell
 
 
 ```bash
--We will try to Keep our Website Accordingn to the Theme of the Problem Statement if time allows
+-We will try to Keep our Website According to the Theme of the Problem Statement if time allows
 ```
 
 
