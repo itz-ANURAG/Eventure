@@ -12,6 +12,7 @@ import goals from "../images/goals.png";
 
 // library imported to create the effect of autowrite
 import { useTypewriter, Cursor } from "react-simple-typewriter";
+import {Link } from 'react-router-dom'
 export default function HomePage() {
 
   // this is the logic of autowrite function
@@ -30,7 +31,7 @@ export default function HomePage() {
             <li>contact us</li>
             <li>Blogs</li>
             <li>About</li>
-            <li>Sign In</li>
+            <li><Link to={'/Signin'}>Sign in</Link></li>
             <li>
               <img className="bell" src={notificationBell} alt="notification" />
             </li>
