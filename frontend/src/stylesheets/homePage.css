@@ -11,7 +11,9 @@
     display: flex;
     background-color: rgb(57, 57, 57);
     color: white;
-    justify-content: space-between;
+    /* justify-content: space-between;
+     */
+     justify-content:space-between;
     height: 80px;
     width:100%;
   }
@@ -27,7 +29,14 @@
     cursor:pointer;
     
   }
-  .leftBar > li:hover{
+  .leftBar > li > Link {
+    margin: 20px;
+    list-style: none;
+    font-size: 1.1rem;
+    cursor:pointer;
+    
+  }
+  .leftBar > li > Link:hover{
     color: rgb(228, 220, 220);
   }
   .projectName {

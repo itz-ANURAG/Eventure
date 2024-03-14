@@ -3,15 +3,61 @@ import React from "react";
 import "../stylesheets/signUpLogin.css";
 import {useState} from "react";
 import google from "../images/google.png";
+import axios from 'axios'
+// import navigate from 'navigate'
+import { Link, useNavigate } from 'react-router-dom';
+
 
 function SignUpLogin() {
   // using useState hook for creating desired logIn signUp effect.
   const [action,setAction] = useState("Sign Up");
+
+
+  const url='/users/register'
+
+
+  const [formData, setFormData] = useState({
+    email: '',
+    username: '',
+    fullName: '',
+    password: '',
+  });
   
   // writing rquired js for the handling onClick event.
-  const handleClick=()=>{
-    (action==="Sign Up")?setAction("Log In"):setAction("Sign Up");
-  }
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    // Handle form field changes
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  axios.defaults.withCredentials=true;
+  const navigate = useNavigate();
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    console.log(formData);
+    try {
+      console.log(formData)
+      const response = await axios.post(url, formData);
+      console.log("created");
+      console.log(response.data.path);
+      navigate(response.data.path, {state:{ data : response.data.data}})
+    } catch (error) {
+      alert("something went wrong")
+    }
+
+    // Add your form submission logic here
+
+  };
+
+
+  const handleClick = () => {
+      (action==="Sign Up")?setAction("Log In"):setAction("Sign Up");
+    }
+
   return (
     <>
        <div className="sbox">
@@ -22,15 +68,23 @@ function SignUpLogin() {
         </div>
         
         {action==="Sign Up"?<div className="sinput">
-          <input type="text" className="sinput_style" placeholder="username" />
-        </div>:<></>} 
+          <input type="text" name="username" className="sinput_style" placeholder="username"  value={formData.username} onChange={handleChange}/>
+        </div>
+        :<></>}
+        {action==="Sign Up"?<div className="sinput">
+          <input type="text" name="fullName" className="sinput_style" placeholder="Full Name"  value={formData.fullName} onChange={handleChange}/>
+        </div>
+        :<></>}
+
+
          {/* we can add few icons of email password and user but i removed because i was unable to get the desired look in it. */}
         
+        
         <div className="sinput">
-          <input type="email" className="sinput_style"placeholder="email" />
+          <input type="email" name="email" className="sinput_style"placeholder="email" value={formData.email} onChange={handleChange}/>
         </div>
         <div className="sinput">
-          <input type="password" className="sinput_style" placeholder="password" />
+          <input type="password" name="password" className="sinput_style" placeholder="password" value={formData.password} onChange={handleChange}/>
           {action==="Sign Up"?<></>:<div className="lostpassword">
           {" "}
           Lost Password?<span>{" "}clickhere</span>
@@ -38,7 +92,7 @@ function SignUpLogin() {
           
         </div>
         {/* embedding js in jsx for the desired layout. */}
-        <button className={action==="Sign Up"?"signSubmit":"logSubmit"}>submit</button>
+        <button className={action==="Sign Up"?"signSubmit":"logSubmit"} onClick={handleSubmit} >submit</button>
         <h3 className="pseudoClass">
         <span className="or">or</span>
         </h3>
@@ -49,7 +103,7 @@ function SignUpLogin() {
              </a>
              </div>:<></>}
 
-        <div className="haveAccount">{action==="Sign Up"?"Already":"don\'t"} have an account?<span onClick={handleClick}>{" "}{ action==="Sign Up"?"Log In":"Sign Up"}</span></div>
+        <div className="haveAccount">{action==="Sign Up"?"Already":"don\'t"} have an account?<span onClick={handleClick} >{" "}{ action==="Sign Up"?"Log In":"Sign Up"}</span></div>
       </div>
       </div>
     </>
