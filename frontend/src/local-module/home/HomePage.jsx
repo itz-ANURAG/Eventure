@@ -1,3 +1,9 @@
+// i have not made any changes for now before this  version push but we need to seperate navbar and footer form the 
+// rest of homepage component from rest of jsx plz note. 
+
+
+
+
 // to import files and images in our landing pages from different component and folders.
 import "../stylesheets/homePage.css";
 import profile from "../images/profile.jpg";

@@ -1,0 +1,1 @@
+// this is the content ares for the footer all hyperlinks and stuffs related to end of page will be given which is treated as component from home page now on
