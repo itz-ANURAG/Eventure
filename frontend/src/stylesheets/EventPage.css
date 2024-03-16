@@ -1,0 +1,92 @@
+.quidditch{
+  position:relative;
+  display:inline-flex;
+  margin-bottom: 100px;
+}
+.quidditchButton{
+  position:absolute;
+  top:100%;
+  left:68.5%;
+  font-family: MedievalSharp;
+  font-size: larger;
+  background-color: #686557;
+}
+.logoquidditch{
+  padding-left: 555px;
+  height: 350px;
+  width:1000px;
+  margin-right:50px;
+}
+.EventRows{
+  display: flex;
+  flex-direction: column; 
+}
+.ConcertEvent{
+  height:400px;
+}
+.row2Events{
+  display: flex;
+  flex-direction: row;
+  column-gap: 50px;
+  justify-content: space-around;
+}
+.BattleEvent{
+  height:400px;
+}
+.Concert{
+  position:relative;
+  display:flex;
+  flex-direction: column;
+  margin-bottom: 100px;
+}
+.description1{
+  position:absolute;
+  top:105%;
+  font-family: MedievalSharp;;
+  padding-left:0px;
+  font-size: 30.3px;
+  display: flex;
+  flex-direction: column;
+  text-wrap: wrap;
+}
+.ConcertButton{
+  position:absolute;
+  top:132%;
+  left:44.5%;
+  font-family: MedievalSharp;
+  font-size: larger;
+  background-color: #686557;
+}
+.datetime{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: large;
+}
+.description2{
+  position:absolute;
+  top:105%;
+  font-family: MedievalSharp;;
+  padding-left:0px;
+  font-size: 55.3px;
+  display: flex;
+  flex-direction: column;
+  text-wrap: wrap;
+}
+.datetime2{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: 25px;
+}
+.Venue2{
+  font-size: 32px;
+}
+.BattleButton{
+  position:absolute;
+  top:145%;
+  left:44.5%;
+  font-family: MedievalSharp;
+  font-size: larger;
+  background-color: #686557;
+}

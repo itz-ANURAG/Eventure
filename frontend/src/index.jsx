@@ -3,11 +3,9 @@ import ReactDOM from 'react-dom/client';
 import './stylesheets/index.css';
 import App from './local-module/App.jsx';
 import reportWebVitals from './reportWebVitals.js';
-
-
 import { BrowserRouter } from 'react-router-dom';
-import QWCevent from './local-module/Events/QWCevent.jsx';
-
+import EventPage from './local-module/Events/EventPage.jsx';
+import MyEvent from './local-module/profile/MyEvent.jsx';
 
 
 
@@ -15,9 +13,8 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
+      <App />
     </BrowserRouter>
-    
-
   </React.StrictMode>
 );
 
