@@ -3,13 +3,14 @@ import ReactDOM from 'react-dom/client';
 import './stylesheets/index.css';
 import App from './local-module/App.jsx';
 import reportWebVitals from './reportWebVitals.js';
+import QWCmatches from './local-module/Navbar.jsx';
 
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <QWCmatches/>
   </React.StrictMode>
 );
 
