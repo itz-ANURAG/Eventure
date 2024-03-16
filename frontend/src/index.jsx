@@ -3,14 +3,21 @@ import ReactDOM from 'react-dom/client';
 import './stylesheets/index.css';
 import App from './local-module/App.jsx';
 import reportWebVitals from './reportWebVitals.js';
-import QWCmatches from './local-module/Navbar.jsx';
+
+
+import { BrowserRouter } from 'react-router-dom';
+
 
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <QWCmatches/>
+
+    <BrowserRouter>
+    <App />
+    </BrowserRouter>
+
   </React.StrictMode>
 );
 

@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import { TfiAlignJustify , TfiClose} from "react-icons/tfi";
-import {Link} from 'react-router-dom'
+import {Link,NavLink,Outlet} from 'react-router-dom'
 import { CgProfile } from "react-icons/cg";
 
 
 function Profile  () {
   
   const [toggle, SetToggle] = useState(false);
+  const [selected,SetSelected] = useState('view profile');
 
 
 
@@ -34,9 +35,10 @@ function Profile  () {
           <li className='text-3xl'><Link to={'/logout'}>
             Logout</Link>
           </li>
-          <li className='text-3xl'><Link to={'/blogs'}>
+          <li className='text-3xl'><Link to={'/blogs'} >
             Blogs</Link>
           </li>
+
         </ul>
         <CgProfile className='text-4xl' />
         
@@ -48,18 +50,24 @@ function Profile  () {
           <></>
           :
           <ul className=' bg-emerald-400 fixed left-[0]  top-[92px] text-white gap-10 items-start w-[500px] h-[1000px]'>
-          <li className='m-[40px] p-[20px] text-5xl' ><Link to={'/myEvents'}>
-            My Events</Link>
+            <li className=' m-[40px] p-[20px] text-5xl'><NavLink to={'view-Profile'}>
+            View Profile </NavLink>
+          </li>
+          <li className='m-[40px] p-[20px] text-5xl' ><NavLink to={'myEvents'}>
+            My Events</NavLink>
           </li >
-          <li className='m-[40px] p-[20px] text-5xl '><Link to={'/createEvents'}>
-            Create Events</Link>
+          <li className='m-[40px] p-[20px] text-5xl '><NavLink to={'refund'}>
+            Reimbursement</NavLink>
           </li>
-          <li className=' m-[40px] p-[20px] text-5xl'>
-            Logout
+           <li className='m-[40px] p-[20px] text-5xl '><NavLink to={'createEvent'}>
+            Create Events</NavLink>
+          </li> 
+          
+          <li className=' m-[40px] p-[20px] text-5xl'><Link to={'/'}>
+            Log-out</Link>
           </li>
-          <li className=' m-[40px] p-[20px] text-5xl'>
-            Blogs
-          </li>
+        <Outlet/>
+          
         </ul>
         }
     </div>
