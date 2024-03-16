@@ -226,7 +226,7 @@
   .right4 {
     flex: 1;
   
-    background-image: url("../images/contactUs.jpg");
+    /* background-image: url("../images/contactUs.jpg"); */
     background-repeat: no-repeat;
     background-position: center;
     background-color: white;
