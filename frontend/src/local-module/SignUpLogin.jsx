@@ -2,7 +2,7 @@
 import React from "react";
 import "../stylesheets/signUpLogin.css";
 import {useState} from "react";
-import google from "../images/google.png";
+// import google from "../images/google.png";
 import axios from 'axios'
 // import navigate from 'navigate'
 import { Link, useNavigate } from 'react-router-dom';
@@ -98,7 +98,7 @@ function SignUpLogin() {
         </h3>
         {action==="Sign Up"?<div className="google-cont">
            <a href="#" className="google-auth-button">
-            <img src={google} alt="Google Logo" className="google-logo"/>
+            {/* <img src={google} alt="Google Logo" className="google-logo"/> */}
              Sign up with Google
              </a>
              </div>:<></>}

@@ -7,10 +7,10 @@
 // // to import files and images in our landing pages from different component and folders.
 import "../../stylesheets/homePage.css";
 import React from "react";
-import profile from "../../images/profile.jpg";
+// import profile from "../../images/profile.jpg";
 import {Link,NavLink,Outtlet,useNavigate} from "react-router-dom"
 // import Team from "../Team.jsx"
-import notificationBell from "../../images/notificationBell.png";
+// import notificationBell from "../../images/notificationBell.png";
 // // import community from "../images/community.png";
 // // import education_icon from "../images/education_icon.png";
 // // import Finance_icon from "../images/Finance_icon.png";
@@ -44,11 +44,11 @@ export default function HomePage() {
             <NavLink to="/team" >Team</NavLink>
             <NavLink to="/signin">Sign in</NavLink>
             <li>
-              <img className="bell" src={notificationBell} alt="notification" />
+              {/* <img className="bell" src={notificationBell} alt="notification" /> */}
             </li>
 
             <button className="profile" onClick={()=>navigate('my-profile')}>
-              <img src={profile} alt="profile" />
+              {/* <img src={profile} alt="profile" /> */}
             </button>
           </ul>
         </nav>
