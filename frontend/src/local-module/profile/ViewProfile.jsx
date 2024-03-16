@@ -5,7 +5,7 @@ import userImage from '../../photos/harry-potter.gif'
 function ViewProfile() {
   return (
     <>
-    {/* <div className='container '>
+    <div className='container '>
     <div className='user-profile-card '>
     <div className='gradient bg-gradient-to-br from-red-950 to-black '></div>
     <div className="user-info-container  border-4 border-black">
@@ -16,7 +16,7 @@ function ViewProfile() {
       <div className='email'>Email ID:harry@gmail.com</div>
     </div>
     </div>
-    </div> */}
+    </div>
     </>
   )
 }
