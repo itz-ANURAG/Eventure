@@ -1,30 +1,31 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-var cors = require('cors');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const cors = require('cors');
 const dotenv=require('dotenv')
 dotenv.config({ path: './.env' });
 
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var loginRouter = require('./routes/login');
-var verifyRouter = require('./routes/verify');
-var eventCreate = require('./routes/eventCreate')
-var logout = require('./routes/logout')
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
+const loginRouter = require('./routes/login');
+const verifyRouter = require('./routes/verify');
+const eventCreate = require('./routes/eventCreate')
+const logout = require('./routes/logout')
 const googleAuth = require('./api/googleAuth')
 const forget = require('./routes/forgetPassword')
+const reset = require('./routes/resetPassword')
 
 
 
-var app = express();
-var bodyParser = require('body-parser');
-var session = require('cookie-session');
-var expressSession = require('express-session');
-var mongoose = require('mongoose');
-var passport = require('passport')
+const app = express();
+const bodyParser = require('body-parser');
+const session = require('cookie-session');
+const expressSession = require('express-session');
+const mongoose = require('mongoose');
+const passport = require('passport')
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -77,6 +78,10 @@ app.use('/createEvent',eventCreate)
 app.use('/logout',logout);
 app.use('/api',googleAuth);
 app.use('/forgetPassword',forget);
+app.use('/resetPassword',reset);
+
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

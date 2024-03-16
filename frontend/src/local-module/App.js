@@ -5,6 +5,7 @@ import Profile from './profile.jsx'
 import AdminProfile from './AdminProfile.jsx'
 import CreateEvent from './CreateEvent.jsx'
 import ForgetPassword from '../local-module/forget.jsx'
+import Reset from '../local-module/resetPassword.jsx'
 
 import { useState } from 'react';
 import {
@@ -40,6 +41,9 @@ export default function App() {
             />
             <Route
               path='/forget' element={<ForgetPassword />}
+            />
+            <Route
+              path='/forget-password/:token' element={<Reset />}
             />
           </Routes>
         </Router>

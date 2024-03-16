@@ -3,6 +3,9 @@ var router = express.Router();
 var passport = require('passport')
 const dotenv=require('dotenv').config()
 const jwt = require('jsonwebtoken')
+const clientID = process.env.CLIENT_ID;
+const clientSecret = process.env.CLIENT_SECRET;
+const callbackURL = process.env.CALLBACK_URL;
 
 var GoogleStrategy = require( 'passport-google-oauth2' ).Strategy;
 
@@ -10,9 +13,12 @@ const userdb = require('../database/googleAuth');
 const { json } = require('body-parser');
 
 passport.use(new GoogleStrategy({
-    clientID:`${process.env.clientID}`,
-    clientSecret:`${process.env.clientSecret}`,
-    callbackURL:`${process.env.callbackURL}`,
+    // clientID:clientID,
+    // clientSecret:clientSecret,
+    // callbackURL:callbackURL,
+    clientID:"123",
+    clientSecret:"xyz",
+    callbackURL:"asd",
     scope:['profile','email'],
     passReqToCallback   : true
   },
@@ -51,16 +57,14 @@ router.get('/google',(req,res)=>{
         email:req.user.email
     },process.env.KEY,{expiresIn:'1h'});
     res.cookie('token',token,{httpOnly:true,maxAge:3600000})
-    return res.send({ data:user , token : token, path:'/adminProfile'});
+    return res.redirect('http://localhost:3000/userProfile');
 })
 
 router.get('/googleAuth/callback',
 passport.authenticate( 'google',{
-    successRedirect: 'http://localhost:3000',
+    successRedirect: '/api/google',
     failureRedirect: 'http://localhost:3000/Signin'
 })
 );
-
-
 
 module.exports = router;

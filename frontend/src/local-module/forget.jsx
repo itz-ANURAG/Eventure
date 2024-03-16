@@ -32,7 +32,11 @@ function SignUpLogin() {
     event.preventDefault();
     console.log(formData);
     const reset = await axios.post('/forgetPassword',formData)
-    if(reset.status) console.log("Success");
+    if(reset.status){
+    console.log("Success");
+    alert("Check Your Email for Reset Link");
+    navigate('/Signin')
+  }
     else console.log("failure")
     // Add your form submission logic here
 

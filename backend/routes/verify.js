@@ -30,7 +30,7 @@ const verifyUser = async (req, res, next) => {
 
 
 router.get('/', verifyUser, (req, res) => {
-    res.send({ success: true, data: data.username, massage: "Event created Successfully" });
+    res.send({ success: true, data: data, massage: "Event created Successfully" });
 })
 
 

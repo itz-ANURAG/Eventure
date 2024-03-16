@@ -18,7 +18,7 @@ function Profile() {
     const fetchData = async () => {
       try {
         const verify = await axios.get('/verify');
-        // console.log("verify response ", verify);
+        console.log("verify response ", verify);
 
         // Check if the component is still mounted before performing state updates
         if (isMounted && !verify.data.success) {
