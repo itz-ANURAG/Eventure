@@ -8,6 +8,7 @@ const dotenv=require('dotenv')
 dotenv.config({ path: './.env' });
 
 
+
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const loginRouter = require('./routes/login');
@@ -17,6 +18,7 @@ const logout = require('./routes/logout')
 const googleAuth = require('./api/googleAuth')
 const forget = require('./routes/forgetPassword')
 const reset = require('./routes/resetPassword')
+const myEventAdmin = require('./routes/myEventAdmin')
 
 
 
@@ -79,7 +81,7 @@ app.use('/logout',logout);
 app.use('/api',googleAuth);
 app.use('/forgetPassword',forget);
 app.use('/resetPassword',reset);
-
+app.use('/myEventAdmin',myEventAdmin)
 
 
 

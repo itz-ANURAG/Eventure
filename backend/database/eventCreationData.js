@@ -25,6 +25,11 @@ const EventSchema = new mongoose.Schema({
     eventPrice:{
         type:Number,
         required:true
+    },
+    createDate:{
+        type:Date,
+        required:true,
+        default:Date.now()
     }
 });
 

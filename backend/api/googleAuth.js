@@ -13,12 +13,9 @@ const userdb = require('../database/googleAuth');
 const { json } = require('body-parser');
 
 passport.use(new GoogleStrategy({
-    // clientID:clientID,
-    // clientSecret:clientSecret,
-    // callbackURL:callbackURL,
-    clientID:"123",
-    clientSecret:"xyz",
-    callbackURL:"asd",
+    clientID:clientID,
+    clientSecret:clientSecret,
+    callbackURL:callbackURL,
     scope:['profile','email'],
     passReqToCallback   : true
   },

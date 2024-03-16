@@ -20,7 +20,8 @@ router.post('/',async (req, res) => {
             }
             if(admin.password==req.body.password){
                 const token = jwt.sign({
-                    username:admin.username
+                    username:admin.username,
+                    id:admin._id
                 },process.env.KEY,{expiresIn:'1h'});
                 res.cookie('token',token,{httpOnly:true,maxAge:3600000})
                 return res.send({ data:user , token : token, path:'/adminProfile'});

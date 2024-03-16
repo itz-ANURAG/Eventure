@@ -23,9 +23,9 @@ router.post('/', async (req, res) => {
             eventName: req.body.eventName,
             eventDate: req.body.eventDate,
             eventDiscription: req.body.eventDiscription,
-            createrId: req.body.createrId,
+            createrId: isVerified.id,
             eventPrice: req.body.eventPrice,
-            eventTime: req.body.eventTime
+            eventTime: req.body.eventTime,
         });
         console.log("model ready");
         await event.save();

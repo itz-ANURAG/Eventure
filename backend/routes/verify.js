@@ -16,7 +16,7 @@ const verifyUser = async (req, res, next) => {
         // console.log(decoded);
         if (!decoded) {
             console.log("unauthorised");
-            return res.send({ success: fasle, massage: "Login first" })
+            return res.send({ success: false, massage: "Login first" })
         }
         // console.log("succesfull")
         data = decoded;

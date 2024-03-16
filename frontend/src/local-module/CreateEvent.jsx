@@ -56,7 +56,7 @@ function SignUpLogin() {
 
 
   const [formData, setFormData] = useState({
-    createrId: '',
+    // createrId: '',
     eventName: '',
     eventDate: '',
     eventTime: '',
@@ -107,9 +107,9 @@ function SignUpLogin() {
             <div className="sunderline"></div>
           </div>
 
-          <div className="sinput">
+          {/* <div className="sinput">
             <input type="text" name="createrId" className="sinput_style" placeholder="creater_id" value={formData.createrId} onChange={handleChange} />
-          </div>
+          </div> */}
           <div className="sinput">
             <input type="text" name='eventName' className="sinput_style" placeholder="eventName" value={formData.eventName} onChange={handleChange} />
           </div>
