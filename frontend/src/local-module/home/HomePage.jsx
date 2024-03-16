@@ -1,26 +1,31 @@
-// i have not made any changes for now before this  version push but we need to seperate navbar and footer form the 
-// rest of homepage component from rest of jsx plz note. 
+// // i have not made any changes for now before this  version push but we need to seperate navbar and footer form the 
+// // rest of homepage component from rest of jsx plz note. 
 
 
 
 
-// to import files and images in our landing pages from different component and folders.
-import "../stylesheets/homePage.css";
-import profile from "../images/profile.jpg";
-import notificationBell from "../images/notificationBell.png";
-import community from "../images/community.png";
-import education_icon from "../images/education_icon.png";
-import Finance_icon from "../images/Finance_icon.png";
-import govScheme_icon from "../images/govScheme_icon.png";
-import opportunity_icon from "../images/opportunity_icon.png";
-import resource_icon from "../images/resource_icon.png";
-import goals from "../images/goals.png";
+// // to import files and images in our landing pages from different component and folders.
+import "../../stylesheets/homePage.css";
+import React from "react";
+import profile from "../../images/profile.jpg";
+import {Link,NavLink,Outtlet,useNavigate} from "react-router-dom"
+// import Team from "../Team.jsx"
+import notificationBell from "../../images/notificationBell.png";
+// // import community from "../images/community.png";
+// // import education_icon from "../images/education_icon.png";
+// // import Finance_icon from "../images/Finance_icon.png";
+// // import govScheme_icon from "../images/govScheme_icon.png";
+// // import opportunity_icon from "../images/opportunity_icon.png";
+// // import resource_icon from "../images/resource_icon.png";
+// // import goals from "../images/goals.png";
 
 // library imported to create the effect of autowrite
+
 import { useTypewriter, Cursor } from "react-simple-typewriter";
-import {Link } from 'react-router-dom'
+
 export default function HomePage() {
 
+  const navigate=useNavigate();
   // this is the logic of autowrite function
   const [text] = useTypewriter({
     words: [`blogs`, `schemes info`, `research info`],
@@ -36,13 +41,13 @@ export default function HomePage() {
           <ul className="leftBar">
             <li>contact us</li>
             <li>Blogs</li>
-            <li>About</li>
-            <li><Link to={'/Signin'}>Sign in</Link></li>
+            <NavLink to="/team" >Team</NavLink>
+            <NavLink to="/signin">Sign in</NavLink>
             <li>
               <img className="bell" src={notificationBell} alt="notification" />
             </li>
 
-            <button className="profile">
+            <button className="profile" onClick={()=>navigate('my-profile')}>
               <img src={profile} alt="profile" />
             </button>
           </ul>
@@ -77,7 +82,7 @@ export default function HomePage() {
 
         <div className="aboutGrid">
           <div className="template">
-            <img className="community" src={community} alt="community logo" />
+            {/* <img className="community" src={community} alt="community logo" /> */}
             <h2>Build Community</h2>
             <div>
               Loremschhed sbhbjdw dwhhwd hwdvhwh dvwhvhdw wdvhv dwvvh dgvvvd mtm
@@ -85,7 +90,7 @@ export default function HomePage() {
             </div>
           </div>
           <div className="template">
-            <img className="community" src={education_icon} alt="community logo" />
+            {/* <img className="community" src={education_icon} alt="community logo" /> */}
             <h2>Educate</h2>
             <div>
               Loremschhed sbhbjdw dwhhwd hwdvhwh dvwhvhdw wdvhv dwvvh dgvvvd mtm
@@ -93,7 +98,7 @@ export default function HomePage() {
             </div>
           </div>
           <div className="template">
-            <img className="community" src={opportunity_icon} alt="community logo" />
+            {/* <img className="community" src={opportunity_icon} alt="community logo" /> */}
             <h2>Research Oportunity </h2>
             <div>
               Loremschhed sbhbjdw dwhhwd hwdvhwh dvwhvhdw wdvhv dwvvh dgvvvd mtm
@@ -101,7 +106,7 @@ export default function HomePage() {
             </div>
           </div>
           <div className="template">
-            <img className="community" src={Finance_icon} alt="community logo" />
+            {/* <img className="community" src={Finance_icon} alt="community logo" /> */}
             <h2>Financial Awareness</h2>
             <div>
               Loremschhed sbhbjdw dwhhwd hwdvhwh dvwhvhdw wdvhv dwvvh dgvvvd
@@ -109,7 +114,7 @@ export default function HomePage() {
             </div>
           </div>
           <div className="template">
-            <img className="community" src={govScheme_icon} alt="community logo" />
+            {/* <img className="community" src={govScheme_icon} alt="community logo" /> */}
             <h2>Gov Schemes Info</h2>
             <div>
               Loremschhed sbhbjdw dwhhwd hwdvhwh dvwhvhdw wdvhv dwvvh dgvvvd mtm
@@ -117,7 +122,7 @@ export default function HomePage() {
             </div>
           </div>
           <div className="template">
-            <img className="community" src={resource_icon} alt="community logo" />
+            {/* <img className="community" src={resource_icon} alt="community logo" /> */}
             <h2>Resource Acess</h2>
             <div>
               Loremschhed sbhbjdw dwhhwd hwdvhwh dvwhvhdw wdvhv dwvvh dgvvvd mtm
@@ -137,7 +142,7 @@ export default function HomePage() {
 
       <section className="thirdSection">
         <div className="left3">
-          <img src={goals} alt="goals logo" className="goals" />
+          {/* <img src={goals} alt="goals logo" className="goals" /> */}
         </div>
         <div className="right3">
           <h1>Goals</h1>
@@ -219,3 +224,5 @@ export default function HomePage() {
     </>
   );
 }
+
+
