@@ -35,7 +35,7 @@ export default function HomePage() {
             <li>
               <img className="bell" src={notificationBell} alt="notification" />
             </li>
-
+            
             <button className="profile">
               <img src={profile} alt="profile" />
             </button>

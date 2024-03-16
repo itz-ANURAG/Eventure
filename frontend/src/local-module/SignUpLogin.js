@@ -11,9 +11,13 @@ import { Link, useNavigate } from 'react-router-dom';
 function SignUpLogin() {
   // using useState hook for creating desired logIn signUp effect.
   const [action,setAction] = useState("Sign Up");
-
+  const handleClick = () => {
+    (action==="Sign Up")?setAction("Log In"):setAction("Sign Up");
+    console.log(action);
+  }
 
   const url='/users/register'
+  const url1='/login'
 
 
   const [formData, setFormData] = useState({
@@ -32,14 +36,24 @@ function SignUpLogin() {
       [name]: value,
     }));
   };
-
   axios.defaults.withCredentials=true;
   const navigate = useNavigate();
+  const handleGoogle = async(event) => {
+    event.preventDefault();
+    console.log("googleAuth invoked")
+      // const response = await axios.get('api/googleAuth/callback')
+      window.open('http://localhost:5000/api/googleAuth/callback',"_self")
+      // navigate('/api/googleAuth/callback')
+
+  };
+
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     console.log(formData);
+    if(action=="Sign Up"){
     try {
+      console.log("from user side")
       console.log(formData)
       const response = await axios.post(url, formData);
       console.log("created");
@@ -48,15 +62,25 @@ function SignUpLogin() {
     } catch (error) {
       alert("something went wrong")
     }
-
+  }
+  else{
+    try {
+      console.log("from admin side")
+      console.log(formData)
+      const response = await axios.post(url1, formData);
+      console.log("created");
+      console.log(response.data.path);
+      navigate(response.data.path, {state:{ data : response.data.data}})
+    } catch (error) {
+      alert("something went wrong")
+    }
+  }
     // Add your form submission logic here
 
   };
 
 
-  const handleClick = () => {
-      (action==="Sign Up")?setAction("Log In"):setAction("Sign Up");
-    }
+
 
   return (
     <>
@@ -68,7 +92,7 @@ function SignUpLogin() {
         </div>
         
         {action==="Sign Up"?<div className="sinput">
-          <input type="text" name="username" className="sinput_style" placeholder="username"  value={formData.username} onChange={handleChange}/>
+          <input type="text" name="email" className="sinput_style" placeholder="email"  value={formData.email} onChange={handleChange}/>
         </div>
         :<></>}
         {action==="Sign Up"?<div className="sinput">
@@ -81,13 +105,13 @@ function SignUpLogin() {
         
         
         <div className="sinput">
-          <input type="email" name="email" className="sinput_style"placeholder="email" value={formData.email} onChange={handleChange}/>
+          <input type="username" name="username" className="sinput_style"placeholder="username" value={formData.username} onChange={handleChange}/>
         </div>
         <div className="sinput">
           <input type="password" name="password" className="sinput_style" placeholder="password" value={formData.password} onChange={handleChange}/>
           {action==="Sign Up"?<></>:<div className="lostpassword">
           {" "}
-          Lost Password?<span>{" "}clickhere</span>
+          Lost Password?<a href="/forget">clickhere</a>
         </div>}
           
         </div>
@@ -97,10 +121,10 @@ function SignUpLogin() {
         <span className="or">or</span>
         </h3>
         {action==="Sign Up"?<div className="google-cont">
-           <a href="#" className="google-auth-button">
-            <img src={google} alt="Google Logo" className="google-logo"/>
+           <button className="google-auth-button" onClick={handleGoogle}>
+            <img src={google} alt="Google Logo" className="google-logo" />
              Sign up with Google
-             </a>
+             </button> 
              </div>:<></>}
 
         <div className="haveAccount">{action==="Sign Up"?"Already":"don\'t"} have an account?<span onClick={handleClick} >{" "}{ action==="Sign Up"?"Log In":"Sign Up"}</span></div>

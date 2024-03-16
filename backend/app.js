@@ -4,14 +4,18 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors');
-
-
+const dotenv=require('dotenv')
+dotenv.config({ path: './.env' });
 
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var loginRouter = require('./routes/login');
 var verifyRouter = require('./routes/verify');
+var eventCreate = require('./routes/eventCreate')
+var logout = require('./routes/logout')
+const googleAuth = require('./api/googleAuth')
+const forget = require('./routes/forgetPassword')
 
 
 
@@ -57,8 +61,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
 app.use(cors({
-  origin:'*',
-  credentials:true
+  origin:'http://localhost:3000',
+  credentials:true,
+  // allowedHeaders:'*',
+  methods:"GET,POST,PUT,DELETE"
 }))
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
@@ -67,6 +73,10 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/login',loginRouter);
 app.use('/verify',verifyRouter);
+app.use('/createEvent',eventCreate)
+app.use('/logout',logout);
+app.use('/api',googleAuth);
+app.use('/forgetPassword',forget);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

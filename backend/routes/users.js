@@ -15,14 +15,14 @@ router.post('/register',async (req, res) => {
     email:req.body.email,
     fullname:req.body.fullName,
     password:hashPassword
-  })
+  }) 
   await userData.save();
   console.log("registerd successfully")
-  const token = jwt.sign({username:userData.username},"aryanKesahrwani@21022003",{expiresIn:'1h'});
+  const token = jwt.sign({username:userData.username},process.env.KEY,{expiresIn:'1h'});
   res.cookie('token',token,{httpOnly:true,maxAge:3600000})
   console.log("user registered succesfully");
   console.log(userData);
-  res.send({ data:userData , path:'/profile', token:token});
+  res.send({ data:userData , path:'/userProfile', token:token});
 });
 
 module.exports = router;
