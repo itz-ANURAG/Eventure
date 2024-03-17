@@ -3,9 +3,15 @@ import React from 'react'
 
 function Footer() {
   return (
-    <div>
-      <h1>this is the footer</h1>
-    </div>
+    <> 
+     <footer>
+        <p>
+          Made with &#10084; by team Eklavya for benefit of society and
+          bettermnet of others .{" "}
+        </p>
+        <p>all copyright &#169; rights reserved till 2024.</p>
+      </footer>
+    </>
   )
 }
 

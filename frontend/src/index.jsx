@@ -6,7 +6,7 @@ import reportWebVitals from './reportWebVitals.js';
 
 
 import { BrowserRouter } from 'react-router-dom';
-import QWCevent from './local-module/Events/QWCevent.jsx';
+
 
 
 
@@ -15,6 +15,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
+    <App/>
     </BrowserRouter>
     
 
