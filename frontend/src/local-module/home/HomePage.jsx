@@ -214,13 +214,7 @@ export default function HomePage() {
         <div className="right4"></div>
       </section>
       {/* usual foorter creation. */}
-      <footer>
-        <p>
-          Made with &#10084; by team Eklavya for benefit of society and
-          bettermnet of others .{" "}
-        </p>
-        <p>all copyright &#169; rights reserved till 2024.</p>
-      </footer>
+      
     </>
   );
 }

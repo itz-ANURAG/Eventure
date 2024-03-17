@@ -12,11 +12,11 @@ function Sidebar() {
     <div className='sidebarcontainer w-64 h-full pt-10  bg-gradient-to-br from-red-950 to to-black'>
         <nav className=' flex-1'>
             <ul className='nav h-screen space-y-2 list-none'>
-            <Option value="Profile" image={profile}/>
-            <Option value="My Events" image={myevents}/>
-            <Option value="Add Events" image={addevents}/>
-            <Option value="Refund" image={refund}/>
-            <Option value="Log Out" image={logout}/>
+            <Option value="Profile" image={profile} alt="profile png"/>
+            <Option value="My Events" image={myevents} alt="my event png"/>
+            <Option value="Add Events" image={addevents} alt=" addevent png"/>
+            <Option value="Refund" image={refund} alt="refund png"/>
+            <Option value="Log Out" image={logout} alt=" logout png"/>
             </ul>
         </nav>
     </div>
@@ -34,7 +34,7 @@ const Option=({
         
                 <button className=' text-white w-64 text-2xl block py-2 ml-0  '>
                     <div className='flex flex-row justify-center items-center gap-5'>
-                        <img className='image-icon w-10 mr-0'src={image}/>
+                        <img className='image-icon w-10 mr-0'src={image} alt=" profile icon"/>
                     {value}
                     </div>
                 </button>               
