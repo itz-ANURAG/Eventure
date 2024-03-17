@@ -26,7 +26,7 @@ const SingleCard = ({
 }) => {
   return (
     <>
-    <a href="https://www.google.com">
+    <a href="">
       <div className="bx bg-gradient-to-br from-red-950 to-black rounded-lg shadow-md p-6 relative hover:cursor-pointer hover:shadow-slate-100 
       transition duration-300">
         <div>
