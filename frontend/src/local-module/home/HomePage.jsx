@@ -132,7 +132,7 @@ export default function HomePage() {
       {/* usual foorter creation. */}
 
       <Footer />
-
+    
     </>
   );
 }

@@ -1,11 +1,25 @@
 // description for event component will be given here
-
+import "../../stylesheets/EventDescription.css";
 import React from 'react'
-
+import concert from "../../HarryPotter/Concert.jpg";
 function EventsDescripition() {
   return (
-    <div>
-      <h1>this is the EventDescription page</h1>
+    <div className="flex flex-col items-center justify-center min-h-screen">
+      <img src={concert} className="description max-w-3xl mx-auto px-4 rounded-xl overflow-hidden" alt="Concert" />
+      <div className="max-w-3xl mx-auto px-4 mt-6">
+        <div className="bg-white p-6 rounded-lg shadow-md flex flex-col md:flex-row items-center justify-between">
+          <div className="md:text-left mb-6 md:mb-0">
+            <h2 className="text-xl font-bold mb-2">Harry Potter Concert</h2>
+            <p><span className="font-bold">Date:</span> August 20, 2024</p>
+            <p><span className="font-bold">Time:</span> 7:00 PM - 10:00 PM</p>
+            <p><span className="font-bold">Location:</span> Forbidden Forest</p>
+            <p><span className="font-bold">Description:</span> Join us for the most exhilarating event of the wizarding world - the Battle of Potions! Prepare to witness a spectacle of magical mastery as talented witches and wizards from across the realm compete in a thrilling display of potion-making prowess</p>
+          </div>
+          <button className="bg-gradient-to-br from-red-950 to-black hover:opacity-80 transition duration-300 text-white font-bold py-2 px-4 rounded">
+            Book Now
+          </button>
+        </div>
+      </div>
     </div>
   )
 }

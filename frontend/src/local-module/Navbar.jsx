@@ -4,7 +4,6 @@ import harrypotter from '../HarryPotter/harry-potter.gif';
 import logo from '../HarryPotter/logo.png';
 import {NavLink,Link,useNavigate} from "react-router-dom" ;
 export default function Navbar() {
-  
   const navigate=useNavigate();
   return (
     <>
