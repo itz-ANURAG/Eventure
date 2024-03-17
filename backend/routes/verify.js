@@ -1,6 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const jwt = require('jsonwebtoken')
+const userD = require('../database/userData')
+const adminD = require('../database/adminModel');
+const admin = require('../database/adminModel');
 
 let data;
 
@@ -19,7 +22,14 @@ const verifyUser = async (req, res, next) => {
             return res.send({ success: false, massage: "Login first" })
         }
         // console.log("succesfull")
-        data = decoded;
+        const userData= await userD.findOne({username:decoded.username});
+        if(!userData){
+            const adminData= await adminD.findOne({username:decoded.username})
+            data=adminData;
+        }
+        else{
+        data=userData;
+    }
         next();
     }
     catch (err) {

@@ -1,39 +1,63 @@
-import React ,{ useState, useEffect } from 'react'
-import axios from 'axios'
-
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 const MyEvent = () => {
-  var data;
+  const [verifyData, setVerifyData] = useState(null); // State to store verify data
 
-    useEffect(() => {
-        let isMounted = true; // Flag to track whether the component is mounted
-    
-        const fetchData = async () => {
-          try {
-            const verify = await axios.get('/myEventAdmin');
-            console.log(verify);
-            if (isMounted && !verify.data.status) {
-              data=verify.data.data;
-            }
-            data=verify.eventName;
-          } catch (error) {
-            alert("something went wrong");
-          }
-        };
-    
-        fetchData(); // Call the fetchData function
-    
-        // Cleanup function to set isMounted to false when the component unmounts
-        return () => {
-          isMounted = false;
-        };
-      }, []); // Adding navigate as a dependency to useEffect
+  useEffect(() => {
+    let isMounted = true; // Flag to track whether the component is mounted
+
+    const fetchData = async () => {
+      try {
+        const verify = await axios.get('/myEventAdmin');
+        // console.log(verify);
+        //   console.log(verify.data)
+          setVerifyData(verify.data.data); // Store verify data in state
+      } catch (error) {
+        alert("something went wrong");
+      }
+    };
+
+    fetchData(); // Call the fetchData function
+
+    // Cleanup function to set isMounted to false when the component unmounts
+    return () => {
+      isMounted = false;
+    };
+  }, []); // Empty dependency array, so useEffect runs only once
 
   return (
     <div>
-      {data}
+      {verifyData==null ?
+        <><h1>Loading....</h1></>
+        :
+        <table>
+          <thead>
+            <tr>
+              <th>Sr No.</th>
+              <th>Event Name</th>
+              <th>Event Date</th>
+              <th>Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              verifyData.map((row,i)=>(
+                <tr>
+                  <td>
+                    {(i+1)}
+                  </td>
+                  <td>{row.eventName}</td>
+                  <td>{row.eventDate}</td>
+                  <td>{row.eventPrice}</td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      }
     </div>
-  )
-}
+  );
+};
 
-export default MyEvent
+export default MyEvent;

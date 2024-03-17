@@ -16,7 +16,7 @@ router.get('/', async (req, res) => {
             res.send({status:false});
         }
         else{
-            const admin=await eventCreate.findOne({createrId:isVerified.id})
+            const admin=await eventCreate.find({createrId:isVerified.id})
             console.log("admin" , admin)
             res.send({status:true,data:admin});
         }

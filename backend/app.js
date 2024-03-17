@@ -19,6 +19,7 @@ const googleAuth = require('./api/googleAuth')
 const forget = require('./routes/forgetPassword')
 const reset = require('./routes/resetPassword')
 const myEventAdmin = require('./routes/myEventAdmin')
+const eventData = require('./routes/eventdata')
 
 
 
@@ -82,6 +83,7 @@ app.use('/api',googleAuth);
 app.use('/forgetPassword',forget);
 app.use('/resetPassword',reset);
 app.use('/myEventAdmin',myEventAdmin)
+app.use('/eventdata',eventData)
 
 
 
