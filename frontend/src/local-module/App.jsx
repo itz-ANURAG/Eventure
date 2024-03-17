@@ -10,6 +10,7 @@ import MyEvent from './profile/MyEvent.jsx';
 import ViewProfile from './profile/ViewProfile.jsx';
 import Refund from './profile/Refund.jsx';
 import Sidebar from './profile/sideBar.jsx'
+import Navbar from './navbar.jsx';
 
 
 
@@ -17,8 +18,7 @@ import Sidebar from './profile/sideBar.jsx'
 export default function App() {
   return (
   <>
-  <ViewProfile/>
-  <Sidebar/>
+  <Navbar/>
 {/* //       <Routes>
 //         <Route path='/' element={<HomePage/>}/>
 //         <Route path='team' element={<Team/>}/>

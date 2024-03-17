@@ -6,6 +6,8 @@ import reportWebVitals from './reportWebVitals.js';
 import { BrowserRouter } from 'react-router-dom';
 import EventPage from './local-module/Events/EventPage.jsx';
 import MyEvent from './local-module/profile/MyEvent.jsx';
+import RegisterForm from './local-module/Events/RegisterForm.jsx';
+import Navbar from './local-module/navbar.jsx';
 
 
 
@@ -13,7 +15,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <App />
+     <App/>
     </BrowserRouter>
   </React.StrictMode>
 );
