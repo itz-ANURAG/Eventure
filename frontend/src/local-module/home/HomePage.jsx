@@ -10,13 +10,13 @@ import '../../stylesheets/EventPage.css';
 import concert from '../../HarryPotter/Concert.jpg';
 import Quidditch from '../../HarryPotter/quidditch.png';
 import battle from '../../HarryPotter/battle.png';
-import { Link, NavLink, Outtlet, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import { useTypewriter, Cursor } from "react-simple-typewriter";
 
 export default function HomePage() {
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   // this is the logic of autowrite function
   const [text] = useTypewriter({
     words: [`blogs`, `schemes info`, `research info`],
@@ -48,18 +48,18 @@ export default function HomePage() {
       {/* event page creaTED BY chirag added here as homempage jsx */}
       <div className='EventsRows mb-20'>
         <div className='quidditch hover:scale-110 transition duration-1000 mb-11'>
-          <img className='logoquidditch  ' src={Quidditch} />
-          <button className='quidditchButton text-black p-4 rounded-sm hover:opacity-80 hover:scale-110 transition duration-500'>Click Me</button>
+          <Link to='events-page'><img className='logoquidditch  ' src={Quidditch} alt="QWC event logo" /></Link>
+          {/* <button className='quidditchButton text-black p-4 rounded-sm hover:opacity-80 hover:scale-110 transition duration-500'>Click Me</button> */}
         </div>
         <div className="row2Events">
           <div className='Concert hover:scale-110      transition duration-1000 mb-11'>
 
-            <img className='ConcertEvent' src={concert} />
+            <Link to='event-des'><img className='ConcertEvent' src={concert} alt="concert event logo"/></Link>
 
-            <div className='description1 text-white'>Harry Potter And The Sorcerer's Stone Concert
+            <div className='description1 text-black'>Harry Potter And The Sorcerer's Stone Concert
               <div className='datetime'>
                 <div className='Time'>7:00 PM</div>
-                <div className='dateConcert text-white'>
+                <div className='dateConcert text-black'>
                   16/03/2024
                 </div>
               </div>
@@ -67,14 +67,14 @@ export default function HomePage() {
                 Great Hall
               </div>
             </div>
-            <button className='ConcertButton text-black p-4 rounded-sm hover:opacity-80 hover:scale-110 transition duration-500'>Click Me</button>
+            {/* <button className='ConcertButton text-black p-4 rounded-sm hover:opacity-80 hover:scale-110 transition duration-500'>Click Me</button> */}
           </div>
           <div className='Concert hover:scale-110      transition duration-1000 mb-11'>
-            <img className='BattleEvent' src={battle} />
-            <div className='description2 text-white'>Battle Of Potion
+            <Link to='event-des'><img className='BattleEvent' src={battle} alt="battle event logo"/></Link>
+            <div className='description2 text-black'>Battle Of Potion
               <div className='datetime2'>
                 <div className='Time'>7:00 PM</div>
-                <div className='dateConcert text-white'>
+                <div className='dateConcert text-black'>
                   16/03/2024
                 </div>
               </div>
@@ -82,7 +82,7 @@ export default function HomePage() {
                 Dungeons
               </div>
             </div>
-            <button className='BattleButton text-black p-4 rounded-sm hover:opacity-80 hover:scale-110 transition duration-500'>Click Me</button>
+            {/* <button className='BattleButton text-black p-4 rounded-sm hover:opacity-80 hover:scale-110 transition duration-500'>Click Me</button> */}
           </div>
         </div>
       </div>

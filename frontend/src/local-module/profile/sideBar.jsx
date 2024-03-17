@@ -4,19 +4,22 @@ import profile from '../../photos/view-profile.png';
 import myevents from '../../photos/myevents.png';
 import addevents from '../../photos/addevents.png';
 import refund from '../../photos/refund.png';
+import {useNavigate} from "react-router-dom";
+
 import logout from '../../photos/logout.png';
 // import { FaBeer } from "react-icons/fa";
-function Sidebar() {
+function Sidebar(props) {
+    const navigate=useNavigate();
   return (
     <>
     <div className='sidebarcontainer w-64 h-full pt-10  bg-gradient-to-br from-red-950 to to-black'>
         <nav className=' flex-1'>
             <ul className='nav h-screen space-y-2 list-none'>
-            <Option value="Profile" image={profile} alt="profile png"/>
-            <Option value="My Events" image={myevents} alt="my event png"/>
-            <Option value="Add Events" image={addevents} alt=" addevent png"/>
-            <Option value="Refund" image={refund} alt="refund png"/>
-            <Option value="Log Out" image={logout} alt=" logout png"/>
+            <button onClick={()=>props.choose('view-profile')}><Option value="Profile" image={profile} alt="profile png"/></button>
+            <button onClick={()=>props.choose('myEvents')}><Option value="My Events" image={myevents} alt="my event png"/></button>
+            <button onClick={()=>props.choose('createEvent')}><Option value="Add Events" image={addevents} alt=" addevent png"/></button>
+            <button onClick={()=>navigate('/refund-page')}><Option value="Refund" image={refund} alt="refund png"/></button>
+            <button onClick={()=>navigate('/')}><Option value="Log Out" image={logout} alt=" logout png"/></button>
             </ul>
         </nav>
     </div>

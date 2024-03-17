@@ -2,7 +2,7 @@
 
 import React from 'react'
 
-function EventsDescripiton() {
+function EventsDescripition() {
   return (
     <div>
       <h1>this is the EventDescription page</h1>
@@ -10,4 +10,4 @@ function EventsDescripiton() {
   )
 }
 
-export default EventsDescripiton
+export default EventsDescripition
