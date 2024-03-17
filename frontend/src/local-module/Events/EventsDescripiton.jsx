@@ -1,4 +1,4 @@
-// description for event ciomponent will be given here
+// description for event component will be given here
 
 import React from 'react'
 

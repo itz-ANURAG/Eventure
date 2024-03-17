@@ -1,31 +1,22 @@
-// // i have not made any changes for now before this  version push but we need to seperate navbar and footer form the 
-// // rest of homepage component from rest of jsx plz note. 
 
-
-
-
-// // to import files and images in our landing pages from different component and folders.
+// to import files and images in our landing pages from different component and folders.
 import "../../stylesheets/homePage.css";
 import React from "react";
-// import profile from "../../images/profile.jpg";
-import {Link,NavLink,Outtlet,useNavigate} from "react-router-dom"
-// import Team from "../Team.jsx"
-// import notificationBell from "../../images/notificationBell.png";
-// // import community from "../images/community.png";
-// // import education_icon from "../images/education_icon.png";
-// // import Finance_icon from "../images/Finance_icon.png";
-// // import govScheme_icon from "../images/govScheme_icon.png";
-// // import opportunity_icon from "../images/opportunity_icon.png";
-// // import resource_icon from "../images/resource_icon.png";
-// // import goals from "../images/goals.png";
-
-// library imported to create the effect of autowrite
+import Footer from "../Footer.jsx";
+import Navbar from "../Navbar.jsx";
+import '../../stylesheets/EventPage.css';
+// import harrypotter from '../../HarryPotter/harry-potter.gif';
+// import logo from '../../HarryPotter/logo.png';
+import concert from '../../HarryPotter/Concert.jpg';
+import Quidditch from '../../HarryPotter/quidditch.png';
+import battle from '../../HarryPotter/battle.png';
+import { Link, NavLink, Outtlet, useNavigate } from "react-router-dom";
 
 import { useTypewriter, Cursor } from "react-simple-typewriter";
 
 export default function HomePage() {
 
-  const navigate=useNavigate();
+  const navigate = useNavigate();
   // this is the logic of autowrite function
   const [text] = useTypewriter({
     words: [`blogs`, `schemes info`, `research info`],
@@ -33,29 +24,11 @@ export default function HomePage() {
   });
   return (
     <>
-      {/*creating header section which contains our navbar  */}
 
-      <header className="header">
-        <div className="projectName">EduHub</div>
-        <nav>
-          <ul className="leftBar">
-            <li>contact us</li>
-            <li>Blogs</li>
-            <NavLink to="/team" >Team</NavLink>
-            <NavLink to="/signin">Sign in</NavLink>
-            <li>
-              {/* <img className="bell" src={notificationBell} alt="notification" /> */}
-            </li>
-
-            <button className="profile" onClick={()=>navigate('my-profile')}>
-              {/* <img src={profile} alt="profile" /> */}
-            </button>
-          </ul>
-        </nav>
-      </header>
 
       {/* jsx code for the first section which serves the purpose of our website intro.  */}
-
+      {/* navbar added */}
+      <Navbar />
       <section className="firstSection">
         <div className="typewrite">
           We at EduHub help you to get yourself familiar with various stuffs
@@ -68,113 +41,56 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* second section jsx which shows whatwe usually help u with in our website. */}
+      <div className="filler">
+        <hr />
+      </div>
 
-      <section className="secondSection">
-        <h1
-          className="
-      tittle"
-        >
-          <span>What we do</span>
-        </h1>
+      {/* event page creaTED BY chirag added here as homempage jsx */}
+      <div className='EventsRows mb-20'>
+        <div className='quidditch hover:scale-110 transition duration-1000 mb-11'>
+          <img className='logoquidditch  ' src={Quidditch} />
+          <button className='quidditchButton text-black p-4 rounded-sm hover:opacity-80 hover:scale-110 transition duration-500'>Click Me</button>
+        </div>
+        <div className="row2Events">
+          <div className='Concert hover:scale-110      transition duration-1000 mb-11'>
 
-        {/* insterted grid layout to make desired layout. */}
+            <img className='ConcertEvent' src={concert} />
 
-        <div className="aboutGrid">
-          <div className="template">
-            {/* <img className="community" src={community} alt="community logo" /> */}
-            <h2>Build Community</h2>
-            <div>
-              Loremschhed sbhbjdw dwhhwd hwdvhwh dvwhvhdw wdvhv dwvvh dgvvvd mtm
-              jjbrjbhbhg .
+            <div className='description1 text-white'>Harry Potter And The Sorcerer's Stone Concert
+              <div className='datetime'>
+                <div className='Time'>7:00 PM</div>
+                <div className='dateConcert text-white'>
+                  16/03/2024
+                </div>
+              </div>
+              <div className='Venue'>
+                Great Hall
+              </div>
             </div>
+            <button className='ConcertButton text-black p-4 rounded-sm hover:opacity-80 hover:scale-110 transition duration-500'>Click Me</button>
           </div>
-          <div className="template">
-            {/* <img className="community" src={education_icon} alt="community logo" /> */}
-            <h2>Educate</h2>
-            <div>
-              Loremschhed sbhbjdw dwhhwd hwdvhwh dvwhvhdw wdvhv dwvvh dgvvvd mtm
-              jjbrjbhbhg .
+          <div className='Concert hover:scale-110      transition duration-1000 mb-11'>
+            <img className='BattleEvent' src={battle} />
+            <div className='description2 text-white'>Battle Of Potion
+              <div className='datetime2'>
+                <div className='Time'>7:00 PM</div>
+                <div className='dateConcert text-white'>
+                  16/03/2024
+                </div>
+              </div>
+              <div className='Venue2'>
+                Dungeons
+              </div>
             </div>
-          </div>
-          <div className="template">
-            {/* <img className="community" src={opportunity_icon} alt="community logo" /> */}
-            <h2>Research Oportunity </h2>
-            <div>
-              Loremschhed sbhbjdw dwhhwd hwdvhwh dvwhvhdw wdvhv dwvvh dgvvvd mtm
-              .
-            </div>
-          </div>
-          <div className="template">
-            {/* <img className="community" src={Finance_icon} alt="community logo" /> */}
-            <h2>Financial Awareness</h2>
-            <div>
-              Loremschhed sbhbjdw dwhhwd hwdvhwh dvwhvhdw wdvhv dwvvh dgvvvd
-              mtm.
-            </div>
-          </div>
-          <div className="template">
-            {/* <img className="community" src={govScheme_icon} alt="community logo" /> */}
-            <h2>Gov Schemes Info</h2>
-            <div>
-              Loremschhed sbhbjdw dwhhwd hwdvhwh dvwhvhdw wdvhv dwvvh dgvvvd mtm
-              jjbrjbhbhg .
-            </div>
-          </div>
-          <div className="template">
-            {/* <img className="community" src={resource_icon} alt="community logo" /> */}
-            <h2>Resource Acess</h2>
-            <div>
-              Loremschhed sbhbjdw dwhhwd hwdvhwh dvwhvhdw wdvhv dwvvh dgvvvd mtm
-              jjbrjbhbhg .
-            </div>
+            <button className='BattleButton text-black p-4 rounded-sm hover:opacity-80 hover:scale-110 transition duration-500'>Click Me</button>
           </div>
         </div>
-      </section>
-
-      {/* just a filler section to make website more appelaing and giving required spaces. */}
+      </div>
 
       <div className="filler">
         <hr />
       </div>
 
-      {/* third section start here */}
-
-      <section className="thirdSection">
-        <div className="left3">
-          {/* <img src={goals} alt="goals logo" className="goals" /> */}
-        </div>
-        <div className="right3">
-          <h1>Goals</h1>
-          <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rerum
-            porro deserunt architecto expedita voluptate reprehenderit
-            similique, cum optio nulla consequatur aliquam quasi. Quibusdam, at
-            amet .
-          </p>
-
-          <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rerum
-            porro deserunt architecto expedita voluptate reprehenderit
-            similique, cum optio nulla consequatur aliquam quasi. Quibusdam, at
-            amet est rerum molestias itaque repellat similique qui assumenda
-            quasi eligendi aliquid? Velit iste esse Lorem ipsum dolor sit amet
-            consectetur, adipisicing elit. Esse expedita porro inventore
-            blanditiis perspiciatis exercitationem doloremque libero doloribus
-            reiciendis voluptatum voluptatem obcaecati quidem itaque, pariatur
-            accusamus fuga odio animi aliquam?.
-          </p>
-
-          <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rerum
-            porro deserunt architecto expedita voluptate repre.
-          </p>
-        </div>
-      </section>
-      {/* another filler similar to previous one with the same purpose. */}
-      <div className="filler">
-        <hr />
-      </div>
       {/* fourth section for the users to contact the website admins in case of any query. */}
       <section className="fourthSection">
         <div className="left4">
@@ -214,9 +130,10 @@ export default function HomePage() {
         <div className="right4"></div>
       </section>
       {/* usual foorter creation. */}
-      
+
+      <Footer />
+
     </>
   );
 }
-
 
