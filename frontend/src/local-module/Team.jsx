@@ -35,7 +35,8 @@ function Team() {
     )
 }
 
-export default Team;
+
+
 
 const TeamCard = ({ memberName, memberImage, memberDescription }) => {
     return (
@@ -64,4 +65,7 @@ const TeamCard = ({ memberName, memberImage, memberDescription }) => {
         </div>
     );
 };
+
+
+export default Team
 

@@ -86,7 +86,7 @@ export default function HomePage() {
 
       {/* fourth section for the users to contact the website admins in case of any query. */}
       <section className="fourthSection">
-        <div className="left4">
+        <div className="left4" id="ContactUs">
           <form action="#" method="post">
             <h2>Contact Us</h2>
 
