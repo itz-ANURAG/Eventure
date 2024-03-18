@@ -19,7 +19,7 @@ function Sidebar(props) {
             <button onClick={()=>props.choose('view-profile')}><Option value="Profile" image={profile} alt="profile png"/></button>
             <button onClick={()=>props.choose('myEvents')}><Option value="My Events" image={myevents} alt="my event png"/></button>
 
-              if(is)
+              
             <button onClick={()=>props.choose('createEvent')}><Option value="Add Events" image={addevents} alt=" addevent png"/></button>
             
             

@@ -12,6 +12,10 @@ import CreateEvent from "./CreateEvent.jsx";
 import Sidebar from "./sideBar.jsx";
 
 
+
+
+import Layout3 from '../../backgroundLayout/Layout3.jsx';
+
 function Profile  () {
 
 
@@ -162,6 +166,7 @@ function Profile  () {
 
   return (
     <>
+    <Layout3>
     <Navbar/>
     <div className="dash-sidebar">
       
@@ -179,6 +184,7 @@ function Profile  () {
 
     </div>
     <Footer/>
+    </Layout3>
      </>
   )
 }
