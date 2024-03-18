@@ -21,9 +21,9 @@ function Team() {
                     </div>
                     <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
                         <div className="md:col-span-1">
-                            <TeamCard  memberName="Abhishek Kumar Yadav" memberImage={abhishek} memberDescription="FrontEnd Developer"/>
+                            <TeamCard  memberName="Abhishek Kumar Yadav" memberImage={abhishek} memberDescription="BackEnd Developer"/>
                             <div className="mb-6"></div> {/* Add this empty div for the gap */}
-                            <TeamCard  memberName="Anurag Bandejia" memberImage={anurag} memberDescription="FrontEnd Developer"/>
+                            <TeamCard  memberName="Anurag Bandejia" memberImage={anurag} memberDescription="BackEnd Developer"/>
                         </div> 
                         <div className="md:col-span-1">
                             <TeamCard  memberName="Chirag Murarka" memberImage={chirag} memberDescription="BackEnd Developer"/>
@@ -44,22 +44,20 @@ function Team() {
 const TeamCard = ({ memberName, memberImage, memberDescription }) => {
     return (
         <div className="w-full md:w-1/2 items-center bg-gray-50 rounded-lg shadow sm:flex dark:bg-gray-800 dark:border-gray-700">
-            <a href="#" className="">
                 <img className="p-10 w-full h-full object-cover rounded-lg" src={memberImage} alt={memberName} />
-            </a>
             <div className="p-5">
-                <h3 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
+                <h3 className="text-xl font-bold tracking-tight text-white dark:text-white">
                     <a href="#">{memberName}</a>
                 </h3>
-                <p className="mt-3 mb-4 font-light text-gray-500 dark:text-gray-400">{memberDescription}</p>
+                <p className="mt-3 mb-4 font-light text-white dark:text-gray-400">{memberDescription}</p>
                 <ul className="flex space-x-4 sm:mt-0">
                     <li>
-                        <a href="#" className="text-gray-500 hover:text-pink-400 dark:hover:text-white">
+                        <a href="#" className="text-white hover:text-pink-400 dark:hover:text-white">
                             <FaInstagramSquare className='text-4xl' />
                         </a>
                     </li>
                     <li>
-                        <a href="#" className="text-gray-500 hover:text-blue-400 dark:hover:text-white">
+                        <a href="#" className="text-white hover:text-blue-400 dark:hover:text-white">
                             <FaLinkedin className='text-4xl'/>
                         </a>
                     </li>
