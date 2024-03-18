@@ -6,6 +6,7 @@ import addevents from '../../photos/addevents.png';
 import refund from '../../photos/refund.png';
 import {useNavigate} from "react-router-dom";
 
+
 import logout from '../../photos/logout.png';
 // import { FaBeer } from "react-icons/fa";
 function Sidebar(props) {
@@ -17,7 +18,11 @@ function Sidebar(props) {
             <ul className='nav h-screen space-y-2 list-none'>
             <button onClick={()=>props.choose('view-profile')}><Option value="Profile" image={profile} alt="profile png"/></button>
             <button onClick={()=>props.choose('myEvents')}><Option value="My Events" image={myevents} alt="my event png"/></button>
+
+              if(is)
             <button onClick={()=>props.choose('createEvent')}><Option value="Add Events" image={addevents} alt=" addevent png"/></button>
+            
+            
             <button onClick={()=>navigate('/refund-page')}><Option value="Refund" image={refund} alt="refund png"/></button>
             <button onClick={()=>navigate('/')}><Option value="Log Out" image={logout} alt=" logout png"/></button>
             </ul>

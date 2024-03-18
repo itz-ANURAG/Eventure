@@ -14,7 +14,7 @@ function SignUpLogin() {
 
 
   const url='/users/register'
-
+  const url1='/login'
 
   const [formData, setFormData] = useState({
     email: '',
@@ -35,20 +35,42 @@ function SignUpLogin() {
 
   axios.defaults.withCredentials=true;
   const navigate = useNavigate();
+  const handleGoogle = async(event) => {
+    event.preventDefault();
+    console.log("googleAuth invoked")
+      // const response = await axios.get('api/googleAuth/callback')
+      window.open('http://localhost:5000/api/googleAuth/callback',"_self")
+      // navigate('/api/googleAuth/callback')
+
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     console.log(formData);
+    if(action=="Sign Up"){
     try {
+      console.log("from user side")
       console.log(formData)
       const response = await axios.post(url, formData);
+      console.log("created");
+      console.log(response.data.path);
+      navigate(response.data.path, {state:{ data : response.data.data , admin:response.data.isAdmin}})
+    } catch (error) {
+      alert("something went wrong")
+    }
+  }
+  else{
+    try {
+      console.log("from admin side")
+      console.log(formData)
+      const response = await axios.post(url1, formData);
       console.log("created");
       console.log(response.data.path);
       navigate(response.data.path, {state:{ data : response.data.data}})
     } catch (error) {
       alert("something went wrong")
     }
-
+  }
     // Add your form submission logic here
 
   };
@@ -97,10 +119,10 @@ function SignUpLogin() {
         <span className="or">or</span>
         </h3>
         {action==="Sign Up"?<div className="google-cont">
-           <a href="#" className="google-auth-button">
+           <button onClick={handleGoogle} className="google-auth-button">
             {/* <img src={google} alt="Google Logo" className="google-logo"/> */}
              Sign up with Google
-             </a>
+             </button>
              </div>:<></>}
 
         <div className="haveAccount">{action==="Sign Up"?"Already":"don\'t"} have an account?<span onClick={handleClick} >{" "}{ action==="Sign Up"?"Log In":"Sign Up"}</span></div>
