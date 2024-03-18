@@ -6,8 +6,8 @@ function Footer() {
     <> 
      <footer className='bg-gradient-to-br from-red-950 to-black'>
         <p>
-          Made with &#10084; by team Eklavya for benefit of society and
-          bettermnet of others .{" "}
+        Join us on an unforgettable journey through the wizarding realm, where spells are cast, friendships are forged, and the extraordinary becomes ordinary.
+        {" "}
         </p>
         <p>all copyright &#169; rights reserved till 2024.</p>
       </footer>

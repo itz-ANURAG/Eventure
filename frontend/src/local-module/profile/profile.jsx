@@ -168,23 +168,33 @@ function Profile  () {
     <>
     <Layout3>
     <Navbar/>
-    <div className="dash-sidebar">
-      
-      <Sidebar choose={handleChange1} />
+    <div className='content-container'>
+    <div className="dash-sidebar h-screen">
+
+      <Sidebar className="sidebar" choose={handleChange1} />
+    </div>
+    <div className='main-content'>
+
+   
        
+
         {
           selected === 'view-profile'?
-         <ViewProfile />
+         <ViewProfile className="view-profile" />
          :
           selected === 'myEvents'?
            <MyEvent />
           :
            <CreateEvent /> 
         }
-
+      </div>
     </div>
-    <Footer/>
+
+    <Footer className="footer"/>
+
+   
     </Layout3>
+
      </>
   )
 }
