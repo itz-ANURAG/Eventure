@@ -1,8 +1,10 @@
 import React from 'react'
 import SingleCardQwc from './SingleCardQwc.jsx'
+import Layout from '../../backgroundLayout/Layout.jsx'
 function QWCevent() {
   return (
 <>
+<Layout>
 <div className="min-h-screen ">
     <div className="mx-auto max-w-5xl px-6 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-16">
@@ -25,6 +27,7 @@ function QWCevent() {
         </div>
     </div>
 </div>
+</Layout>
 </>
   )
 }

@@ -49,12 +49,14 @@
   align-items: center;
   background-color: white;
   border-radius: 20px;
+  margin-top: -2.1px;
 }
 .Ptext{
   color: black;
   font-size: large;
   font-weight: 700;
   font-family: MedievalSharp;
+  padding-top: 1px;
 }
 .combined{
   display: flex;

@@ -4,7 +4,7 @@ import React from 'react'
 function Footer() {
   return (
     <> 
-     <footer>
+     <footer className='bg-gradient-to-br from-red-950 to-black'>
         <p>
           Made with &#10084; by team Eklavya for benefit of society and
           bettermnet of others .{" "}
