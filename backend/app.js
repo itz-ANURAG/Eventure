@@ -20,7 +20,7 @@ const forget = require('./routes/forgetPassword')
 const reset = require('./routes/resetPassword')
 const myEventAdmin = require('./routes/myEventAdmin')
 const eventData = require('./routes/eventdata')
-
+const eventRegister = require('./routes/eventRegisterUser')
 
 
 const app = express();
@@ -84,7 +84,7 @@ app.use('/forgetPassword',forget);
 app.use('/resetPassword',reset);
 app.use('/myEventAdmin',myEventAdmin)
 app.use('/eventdata',eventData)
-
+app.use('/eventRegister',eventRegister)
 
 
 // catch 404 and forward to error handler

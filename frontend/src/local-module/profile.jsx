@@ -127,9 +127,18 @@ function Profile() {
     }));
   };
 
-  const handleSubmitForm = () => {
+  const handleSubmitForm = async() => {
     console.log("formData",formData);
     setIsOpen(false);
+    try {
+      const responce = await axios.post('/eventRegister',formData);
+      console.log(responce.data)
+      alert(responce.data.message);
+      navigate('/userProfile')
+    } catch (error) {
+      alert("some error occured");
+      navigate('/userProfile')
+    }
   }
 
 
