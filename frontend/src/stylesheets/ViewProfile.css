@@ -1,13 +1,13 @@
 .container{
     width: 2000px;
-    height:1000px;
+    height:100vh;
     display:flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
   }
   .user-profile-card{
-    position: absolute;;
+    position: absolute;
   }
   .gradient{
     height: 125px;
@@ -28,14 +28,12 @@
     font-size: 36px;
     font-weight: 600;
     font-family:MedievalSharp;
-    color:black;
   }
   .user-description{
     text-align: center;
     padding: 20px 40px;
     font-size: 16px;
     font-family:MedievalSharp;
-    color:black ;
   }
   .email{
     text-align: center;
@@ -45,6 +43,5 @@
     padding-bottom: 40px;
     border-radius: 40px;
     font-family:MedievalSharp;
-    color:black;
   }
   

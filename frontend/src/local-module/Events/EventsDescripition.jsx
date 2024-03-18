@@ -2,9 +2,11 @@
 import "../../stylesheets/EventDescription.css";
 import React from 'react'
 import concert from "../../HarryPotter/Concert.jpg";
+import Layout4 from "../../backgroundLayout/Layout4";
 function EventsDescripition() {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen">
+    <Layout4>
+    <div className="flex flex-col items-center justify-center min-h-screen pt-5 pb-5 scale-95">
       <img src={concert} className="description max-w-3xl mx-auto px-4 rounded-xl overflow-hidden" alt="Concert" />
       <div className="max-w-3xl mx-auto px-4 mt-6">
         <div className="bg-white p-6 rounded-lg shadow-md flex flex-col md:flex-row items-center justify-between">
@@ -21,6 +23,7 @@ function EventsDescripition() {
         </div>
       </div>
     </div>
+    </Layout4>
   )
 }
 

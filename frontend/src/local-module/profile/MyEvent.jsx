@@ -1,33 +1,92 @@
-import React from "react";
-import battle from "../../HarryPotter/battle.png"
-import concert from "../../HarryPotter/Concert.jpg"
-import promnight from "../../HarryPotter/promnight.png"
-import SingleCard from "./SingleCard";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 const MyEvent = () => {
+  const [verifyData, setVerifyData] = useState(null); // State to store verify data
+
+  useEffect(() => {
+    let isMounted = true; // Flag to track whether the component is mounted
+
+    const fetchData = async () => {
+      try {
+        const verify = await axios.get('/myEventAdmin');
+        // console.log(verify);
+        //   console.log(verify.data)
+          setVerifyData(verify.data.data); // Store verify data in state
+      } catch (error) {
+        alert("something went wrong");
+      }
+    };
+
+    fetchData(); // Call the fetchData function
+
+    // Cleanup function to set isMounted to false when the component unmounts
+    return () => {
+      isMounted = false;
+    };
+  }, []); // Empty dependency array, so useEffect runs only once
+
   return (
-    <>
-      <section className="bg-gray-2 pb-10 pt-20 dark:bg-dark lg:pb-20 lg:pt-[120px] ml-10">
-        <div className="container">
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            <SingleCard
-              image={battle}
-              CardTitle="Battle Of Potion"
-              CardDescription="Embark on a mystical journey into the captivating world of potions, where magic intertwines with science in the most enchanting way possible. Welcome to the Battle of Potions, a mesmerizing event that brings together alchemists, wizards, and potion enthusiasts from far and wide to showcase their mastery in the art of potion-making"
-            />
-            <SingleCard
-              image={concert}
-              CardTitle="Harry Potter Concert"
-              CardDescription="Immerse yourself in the enchanting world of Harry Potter as you embark on a musical journey unlike any other. Join us for The Magic of Harry Potter: A Musical Journey, an extraordinary concert experience that brings the beloved wizarding world to life through the power of music"
-            />
-            <SingleCard
-              image={promnight}
-              CardTitle="Harry Potter Prom Night"
-              CardDescription="Dust off your dress robes and polish your dancing shoes because it's time to experience the magic of the Yule Ball at our very own Harry Potter Prom Night! Transporting you straight from the pages of J.K. Rowling's beloved series, this enchanting event promises an evening of wizarding wonder, friendship, and unforgettable memories"
-            />
-          </div>
-        </div>
-      </section>
-    </>
+    // <div>
+    //   {verifyData==null ?
+    //     <><h1>Loading....</h1></>
+    //     :
+    //     <table>
+    //       <thead>
+    //         <tr>
+    //           <th>Sr No.</th>
+    //           <th>Event Name</th>
+    //           <th>Event Date</th>
+    //           <th>Price</th>
+    //         </tr>
+    //       </thead>
+    //       <tbody>
+    //         {
+    //           verifyData.map((row,i)=>(
+    //             <tr>
+    //               <td>
+    //                 {(i+1)}
+    //               </td>
+    //               <td>{row.eventName}</td>
+    //               <td>{row.eventDate}</td>
+    //               <td>{row.eventPrice}</td>
+    //             </tr>
+    //           ))
+    //         }
+    //       </tbody>
+    //     </table>
+    //   }
+    // </div>
+    <div>
+{
+  verifyData==null ?
+      <><h1 className='text-white'>Wow So Empty</h1></>
+      :
+    <div className="flex justify-center mt-6 text-white ">
+    <table className="-collapse   bg-gradient-to-br from-red-950 to-black rounded-3xl">
+      <thead>
+        <tr className="">
+          <th className="p-4  ">Sr No.</th>
+          <th className="p-4  ">Event Name</th>
+          <th className="p-4  ">Event Date</th>
+          <th className="p-4  ">Price</th>
+        </tr>
+      </thead>
+      <tbody>{
+        verifyData.map((row,i)=>(
+        <tr className="-b ">
+          <td className="p-4  ">{i+1}</td>
+          <td className="p-4  ">{row.eventName}</td>
+          <td className="p-4  ">{row.eventDate}</td>
+          <td className="p-4  ">{row.eventPrice}</td>
+        </tr>
+        ))
+        }
+      </tbody>
+    </table>
+  </div>
+  }
+  </div>
   );
 };
+
 export default MyEvent;

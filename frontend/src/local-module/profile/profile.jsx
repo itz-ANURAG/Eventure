@@ -171,11 +171,11 @@ function Profile  () {
     <div className='content-container'>
     <div className="dash-sidebar h-screen">
 
-      <Sidebar className="sidebar" choose={handleChange} />
+      <Sidebar className="sidebar" choose={handleChange1} />
     </div>
     <div className='main-content'>
 
-      <Sidebar choose={handleChange1} />
+   
        
 
         {

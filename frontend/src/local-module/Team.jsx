@@ -6,16 +6,18 @@ import chirag from '../photos/chirag.jpg'
 import aryan from '../photos/aryan.jpg'
 import '../stylesheets/team.css'
 import { FaInstagramSquare,FaLinkedin} from "react-icons/fa";
+import Layout4 from '../backgroundLayout/Layout4'
 
 
 function Team() {
     return (
         <>
-            <section className="bg-white dark:bg-gray-900 body">
+        <Layout4>
+            <section className=" dark:bg-gray-900 body">
                 <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
                     <div className="p-4 md:p-0 max-w-screen-sm text-center md:text-left md:pl-0 mb-8 lg:mb-16">
                         <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Our Team</h2>
-                        <p className="font-light text-gray-500 lg:mb-16 sm:text-xl dark:text-gray-400">Explore the whole collection of open-source web components and elements built with the utility classes from Tailwind</p>
+                        <p className="font-light text-black lg:mb-16 sm:text-xl dark:text-gray-400">Explore the whole collection of open-source web components and elements built with the utility classes from Tailwind</p>
                     </div>
                     <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
                         <div className="md:col-span-1">
@@ -31,6 +33,7 @@ function Team() {
                     </div>
                 </div>
             </section>
+        </Layout4>
         </>
     )
 }
