@@ -11,6 +11,7 @@ import ViewProfile from './profile/ViewProfile.jsx';
 import Refund from './profile/Refund.jsx';
 import QWCevent from "./Events/QWCevent.jsx";
 import EventsDescription from "./Events/EventsDescripition.jsx";
+// import RegisterForm from "./Events/RegisterForm.jsx";
 
 
 
@@ -20,6 +21,7 @@ export default function App() {
   <>
   
        <Routes>
+       
          <Route path='/' element={<HomePage/>}/>
          <Route path='team' element={<Team/>}/>
          <Route path='Signin' element={<SignUpLogin/>}/>
@@ -29,10 +31,10 @@ export default function App() {
             <Route path='myEvents' element={<MyEvent/>}></Route>
             <Route path='createEvent' element={<CreateEvent/>}></Route>
             <Route path='refund-page' element={<Refund/>}></Route>
-            <Route path=' ' element={<HomePage/>}></Route>
+            <Route path=' ' element={<HomePage/>}/>
          </Route>
          <Route path='events-page' element={<QWCevent/>}/>
-         <Route path='event-des' element={<EventsDescription/>}/>
+         <Route path='event-des' element={<EventsDescription/>}/>  
          {/* <Route path='*' element={}/> */}
        </Routes>   
   </>

@@ -2,7 +2,10 @@
 
 import React from 'react'
 
-function RegisterForm() {
+function RegisterForm({
+    decide
+}) {
+
   return (
     <div className="min-h-screen">
     <div className="mx-auto max-w-xl px-6 py-12">
@@ -54,7 +57,7 @@ function RegisterForm() {
                     <label htmlFor="terms" className='text-white'>I agree to the Terms & Conditions<span className="text-red-500">*</span></label>
             </div>
             <div className='md:col-span-1 p-4 pb-2 pt-1 px-40 flex justify-between items-center'>  
-                <button className='text-white bg-gradient-to-br from-red-950 to-black p-2'>Submit</button>
+                <button className='text-white bg-gradient-to-br from-red-950 to-black p-2' onClick={()=>decide('false')}>Submit</button>
             </div>
         </div>
     </div>

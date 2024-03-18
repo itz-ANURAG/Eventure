@@ -2,8 +2,26 @@
 import "../../stylesheets/EventDescription.css";
 import React from 'react'
 import concert from "../../HarryPotter/Concert.jpg";
+import {useState} from "react";
+import RegisterForm from "./RegisterForm";
+
 function EventsDescripition() {
+  
+  const [isOpen,setIsOpen]=useState(false); 
+  
+  const handleOpen=()=>{
+    setIsOpen(~isOpen)
+    
+  }
+  const handleRegSubmit=(value)=>{
+     setIsOpen(`${value}`);
+  }
   return (
+    <>
+    {
+      isOpen?
+      <RegisterForm decide={handleRegSubmit}/>
+      :
     <div className="flex flex-col items-center justify-center min-h-screen">
       <img src={concert} className="description max-w-3xl mx-auto px-4 rounded-xl overflow-hidden" alt="Concert" />
       <div className="max-w-3xl mx-auto px-4 mt-6">
@@ -15,12 +33,14 @@ function EventsDescripition() {
             <p><span className="font-bold">Location:</span> Forbidden Forest</p>
             <p><span className="font-bold">Description:</span> Join us for the most exhilarating event of the wizarding world - the Battle of Potions! Prepare to witness a spectacle of magical mastery as talented witches and wizards from across the realm compete in a thrilling display of potion-making prowess</p>
           </div>
-          <button className="bg-gradient-to-br from-red-950 to-black hover:opacity-80 transition duration-300 text-white font-bold py-2 px-4 rounded">
+          <button onClick={()=>handleOpen()} className="bg-gradient-to-br from-red-950 to-black hover:opacity-80 transition duration-300 text-white font-bold py-2 px-4 rounded">
             Book Now
           </button>
         </div>
       </div>
     </div>
+    }
+    </>
   )
 }
 

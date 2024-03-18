@@ -5,8 +5,7 @@ import React from "react";
 import Footer from "../Footer.jsx";
 import Navbar from "../Navbar.jsx";
 import '../../stylesheets/EventPage.css';
-// import harrypotter from '../../HarryPotter/harry-potter.gif';
-// import logo from '../../HarryPotter/logo.png';
+
 import concert from '../../HarryPotter/Concert.jpg';
 import Quidditch from '../../HarryPotter/quidditch.png';
 import battle from '../../HarryPotter/battle.png';
