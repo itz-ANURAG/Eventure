@@ -10,11 +10,10 @@ import MyEvent from "./MyEvent.jsx";
 import CreateEvent from "./CreateEvent.jsx";
 
 import Sidebar from "./sideBar.jsx";
+import Layout3 from '../../backgroundLayout/Layout3.jsx';
 // import Dashboard from "./dashboard.jsx";
 
  // const [toggle, SetToggle] = useState(false);
-
-
 function Profile  () {
   // const navigate=useNavigate();
  const [selected,setSelected]=useState('view-profile');
@@ -23,6 +22,7 @@ function Profile  () {
  }
   return (
     <>
+    <Layout3>
     <Navbar/>
     <div className="dash-sidebar">
       
@@ -40,6 +40,7 @@ function Profile  () {
 
     </div>
     <Footer/>
+    </Layout3>
      </>
   )
 }
