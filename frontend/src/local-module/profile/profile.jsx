@@ -24,22 +24,24 @@ function Profile  () {
   return (
     <>
     <Navbar/>
-    <div className="dash-sidebar">
+    <div className='content-container'>
+    <div className="dash-sidebar h-screen">
       
-      <Sidebar choose={handleChange} />
-       
+      <Sidebar className="sidebar" choose={handleChange} />
+    </div>
+    <div className='main-content'>
         {
           selected === 'view-profile'?
-         <ViewProfile />
+         <ViewProfile className="view-profile" />
          :
           selected === 'myEvents'?
            <MyEvent />
           :
            <CreateEvent /> 
         }
-
+      </div>
     </div>
-    <Footer/>
+    <Footer className="footer"/>
      </>
   )
 }
