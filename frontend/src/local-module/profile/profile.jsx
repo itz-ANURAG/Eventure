@@ -21,7 +21,6 @@ function Profile  () {
 
 
 // Your code 
-//   // const navigate=useNavigate();
  const [selected,setSelected]=useState('view-profile');
  const handleChange1=(value)=>{
       setSelected(`${value}`)
@@ -32,44 +31,41 @@ function Profile  () {
 
 
 
-// axios.defaults.withCredentials = true;
-// const navigate = useNavigate();
-// const [eventData , setEventData ]= useState([]);
-// const [ data , setdata ] = useState([]);
-// const [ isOpen , setIsOpen ] = useState(false);
-// const [ eData , seteData] = useState([]);
-// // Routr protection start here
+axios.defaults.withCredentials = true;
+const navigate = useNavigate();
+const [eventData , setEventData ]= useState([]);
+const [ data , setdata ] = useState([]);
+const [ isOpen , setIsOpen ] = useState(false);
+const [ eData , seteData] = useState([]);
+// Routr protection start here
 
-// useEffect(() => {
-//   let isMounted = true; // Flag to track whether the component is mounted
+useEffect(() => {
+  let isMounted = true; // Flag to track whether the component is mounted
 
-//   const fetchData = async () => {
-//     try {
-//       const verify = await axios.get('/verify');
-//       // console.log("verify response ", verify);
+  const fetchData = async () => {
+    try {
+      const verify = await axios.get('/verify');
+      console.log(verify.data)
+      if (isMounted && !verify.data.success) {
+        alert("Login First");
+        navigate('/Signin');
+      }
+      setdata(verify.data.data)
+    } catch (error) {
+      alert("something went wrong");
+    }
+  };
 
-//       // Check if the component is still mounted before performing state updates
-//       if (isMounted && !verify.data.success) {
-//         alert("Login First");
-//         navigate(verify.data.path);
-//       }
-//       setdata(verify.data.data)
-//       // console.log("user data from verification is:",verify)
-//     } catch (error) {
-//       alert("something went wrong");
-//     }
-//   };
-
-//   fetchData(); // Call the fetchData function
+  fetchData(); // Call the fetchData function
 
 
 
 
-//   // Cleanup function to set isMounted to false when the component unmounts
-//   return () => {
-//     isMounted = false;
-//   };
-// }, [navigate]); // Adding navigate as a dependency to useEffect
+  // Cleanup function to set isMounted to false when the component unmounts
+  return () => {
+    isMounted = false;
+  };
+}, [navigate]); // Adding navigate as a dependency to useEffect
 
 
 
@@ -100,62 +96,62 @@ function Profile  () {
 // }, [navigate]);
 
 
-// // Routr protection end here
+// Routr protection end here
 
 
-// const [toggle, SetToggle] = useState(false);
+const [toggle, SetToggle] = useState(false);
 
-// const handleLogout = async (event) => {
-//   event.preventDefault();
-//   try {
-//     console.log("trying to logout")
-//     const response = await axios.get('/logout');
-//     console.log("logout");
-//     navigate('/')
-//   } catch (error) {
-//     alert("something went wrong")
-//   }
-//   // Add your form submission logic here
+const handleLogout = async (event) => {
+  event.preventDefault();
+  try {
+    console.log("trying to logout")
+    const response = await axios.get('/logout');
+    console.log("logout");
+    navigate('/')
+  } catch (error) {
+    alert("something went wrong")
+  }
+  // Add your form submission logic here
 
-// };
+};
 
 
-// const [formData, setFormData] = useState({
-//   eventName: '',
-//   eventDate: '',
-//   eventTime: '',
-//   eventId:'',
-//   userId: '',
-//   userName: '',
-//   userEmail:'',
-//   phoneNo:''
-// });
+const [formData, setFormData] = useState({
+  eventName: '',
+  eventDate: '',
+  eventTime: '',
+  eventId:'',
+  userId: '',
+  userName: '',
+  userEmail:'',
+  phoneNo:''
+});
 
-// const handleRegister = (event) => {
-//   //  setEventId(event._id);
-//   setFormData({
-//     userId:data._id,
-//     eventDate:event.eventDate,
-//     eventName:event.eventName,
-//     eventTime:event.eventTime,
-//     eventId:event._id
-//   })
-//    setIsOpen(true);
-// }
+const handleRegister = (event) => {
+  //  setEventId(event._id);
+  setFormData({
+    userId:data._id,
+    eventDate:event.eventDate,
+    eventName:event.eventName,
+    eventTime:event.eventTime,
+    eventId:event._id
+  })
+   setIsOpen(true);
+}
 
-// const handleChange = (event) => {
-//   const { name, value } = event.target;
-//   // Handle form field changes
-//   setFormData((prevData) => ({
-//     ...prevData,
-//     [name]: value,
-//   }));
-// };
+const handleChange = (event) => {
+  const { name, value } = event.target;
+  // Handle form field changes
+  setFormData((prevData) => ({
+    ...prevData,
+    [name]: value,
+  }));
+};
 
-// const handleSubmitForm = () => {
-//   console.log("formData",formData);
-//   setIsOpen(false);
-// }
+const handleSubmitForm = () => {
+  console.log("formData",formData);
+  setIsOpen(false);
+}
 
 
 

@@ -5,12 +5,26 @@ import myevents from '../../photos/myevents.png';
 import addevents from '../../photos/addevents.png';
 import refund from '../../photos/refund.png';
 import {useNavigate} from "react-router-dom";
+import axios  from 'axios';
 
 
 import logout from '../../photos/logout.png';
 // import { FaBeer } from "react-icons/fa";
 function Sidebar(props) {
     const navigate=useNavigate();
+    const handleLogout = async (event) => {
+        event.preventDefault();
+        try {
+          console.log("trying to logout")
+          const response = await axios.get('/logout');
+          console.log("logout");
+          navigate('/')
+        } catch (error) {
+          alert("something went wrong")
+        }
+        // Add your form submission logic here
+      
+      };
   return (
     <>
     <div className='sidebarcontainer w-64 h-full pt-10  bg-gradient-to-br from-red-950 to to-black'>
@@ -24,7 +38,7 @@ function Sidebar(props) {
             
             
             <button onClick={()=>navigate('/refund-page')}><Option value="Refund" image={refund} alt="refund png"/></button>
-            <button onClick={()=>navigate('/')}><Option value="Log Out" image={logout} alt=" logout png"/></button>
+            <button onClick={handleLogout}><Option value="Log Out" image={logout} alt=" logout png"/></button>
             </ul>
         </nav>
     </div>

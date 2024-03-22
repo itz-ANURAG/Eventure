@@ -12,7 +12,7 @@ const verifyUser = async (req, res, next) => {
             return res.send({ success: false, massage: "error no token" });
         }
         console.log(token)
-        const decoded = await jwt.verify(token, "aryanKesahrwani@21022003");
+        const decoded = await jwt.verify(token, process.env.KEY);
         console.log(decoded);
         if(!decoded){
             console.log("unauthorised");
@@ -27,7 +27,6 @@ const verifyUser = async (req, res, next) => {
         res.json(err);
     }
 }
-
 
 router.get('/', verifyUser, (req, res) => {
     res.send({ success: true , data:data.username});

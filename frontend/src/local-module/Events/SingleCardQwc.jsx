@@ -1,5 +1,6 @@
 import React  from 'react'
-
+import { useNavigate } from 'react-router-dom';
+import axios from "axios";
 const SingleCardQwc = ({
   title,
   description,
@@ -7,6 +8,23 @@ const SingleCardQwc = ({
   time,
   decide
 }) => {
+  
+  const navigate = useNavigate();
+  const handleSubmit = async()=>{
+    try {
+      const responce = await axios.get("/verify");
+      if(responce.success){
+        decide(true);
+      }
+      else {
+        alert("Login First to Register an Event")
+        navigate('/Signin')
+      }
+    } catch (error) {
+      console.log(error);
+      navigate('/')
+    }
+  }
   
   return (
     <>
@@ -17,7 +35,7 @@ const SingleCardQwc = ({
           <p className="text-white pt-4 pb-3">{description}</p>
           <span className='text-white font-extrabold'>Location:</span><span className='text-white'>  {location}</span>
           <p className='mt-4'><span className='text-white font-extrabold'>Timings:</span><span className='text-white'>{time}</span></p>
-          <p className='pt-2'><button onClick={() => decide('true') } className='p-2 bg-white rounded-lg'>Register Now</button></p>
+          <p className='pt-2'><button onClick={handleSubmit} className='p-2 bg-white rounded-lg'>Register Now</button></p>
         </div>
       </div>
     </>

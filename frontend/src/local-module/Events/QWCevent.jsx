@@ -6,7 +6,7 @@ import { useState } from 'react';
 function QWCevent() {
   const [isopen, setIsopen] = useState(false);
   const handleDecide=(value)=>{
-    setIsopen(`${value}`);
+    setIsopen(value);
   }
   return (
 <>

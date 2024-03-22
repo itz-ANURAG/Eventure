@@ -49,19 +49,19 @@ function SignUpLogin() {
     console.log(formData);
     if(action=="Sign Up"){
     try {
-      console.log("from user side")
+      console.log("For SignIn")
       console.log(formData)
       const response = await axios.post(url, formData);
       console.log("created");
       console.log(response.data.path);
-      navigate(response.data.path, {state:{ data : response.data.data , admin:response.data.isAdmin}})
+      navigate(response.data.path)
     } catch (error) {
       alert("something went wrong")
     }
   }
   else{
     try {
-      console.log("from admin side")
+      console.log("For Login")
       console.log(formData)
       const response = await axios.post(url1, formData);
       console.log("created");
@@ -76,7 +76,7 @@ function SignUpLogin() {
   };
 
 
-  const handleClick = () => {
+  const handleClick =async () => {
       (action==="Sign Up")?setAction("Log In"):setAction("Sign Up");
     }
 
@@ -90,7 +90,7 @@ function SignUpLogin() {
         </div>
         
         {action==="Sign Up"?<div className="sinput">
-          <input type="text" name="username" className="sinput_style" placeholder="username"  value={formData.username} onChange={handleChange}/>
+          <input type="email" name="email" className="sinput_style" placeholder="username"  value={formData.email} onChange={handleChange}/>
         </div>
         :<></>}
         {action==="Sign Up"?<div className="sinput">
@@ -103,7 +103,7 @@ function SignUpLogin() {
         
         
         <div className="sinput">
-          <input type="email" name="email" className="sinput_style"placeholder="email" value={formData.email} onChange={handleChange}/>
+          <input type="username" name="username" className="sinput_style"placeholder="username" value={formData.username} onChange={handleChange}/>
         </div>
         <div className="sinput">
           <input type="password" name="password" className="sinput_style" placeholder="password" value={formData.password} onChange={handleChange}/>
