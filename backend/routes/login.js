@@ -43,7 +43,8 @@ router.post('/',async (req, res) => {
     console.log(user)
     const token = jwt.sign({
         username:user.username,
-        id:user._id
+        id:user._id,
+        email:user.email
     },process.env.KEY,{expiresIn:'1h'});
     res.cookie('token',token,{httpOnly:true,maxAge:3600000})
     return res.send({ data:user , token : token, path:'/my-profile',isAdmin:false});

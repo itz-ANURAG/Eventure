@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const jwt = require('jsonwebtoken')
 
-let data;
+var data;
 
 const verifyUser = async (req, res, next) => {
     console.log(req.cookies)
@@ -29,7 +29,7 @@ const verifyUser = async (req, res, next) => {
 }
 
 router.get('/', verifyUser, (req, res) => {
-    res.send({ success: true , data:data.username});
+    res.send({ success: true , data:data});
 })
 
 

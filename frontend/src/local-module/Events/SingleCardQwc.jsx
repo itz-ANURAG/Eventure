@@ -12,7 +12,8 @@ const SingleCardQwc = ({
   const navigate = useNavigate();
   const handleSubmit = async()=>{
     try {
-      const responce = await axios.get("/verify");
+      console.log("Checking")
+      const responce = await axios.get("http://localhost:5000/verify");
       if(responce.success){
         decide(true);
       }

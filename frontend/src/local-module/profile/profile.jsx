@@ -51,6 +51,7 @@ useEffect(() => {
         navigate('/Signin');
       }
       setdata(verify.data.data)
+      console.log(verify.data.data);
     } catch (error) {
       alert("something went wrong");
     }
@@ -95,7 +96,6 @@ useEffect(() => {
 //   };
 // }, [navigate]);
 
-
 // Routr protection end here
 
 
@@ -111,7 +111,6 @@ const handleLogout = async (event) => {
   } catch (error) {
     alert("something went wrong")
   }
-  // Add your form submission logic here
 
 };
 
