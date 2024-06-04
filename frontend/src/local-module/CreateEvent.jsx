@@ -52,7 +52,7 @@ function SignUpLogin() {
 
 
   const url = '/createEvent'
-  const [action, setAction] = useState("Sign Up");
+  const [action, setAction] = useState("Create Event");
 
 
   const [formData, setFormData] = useState({

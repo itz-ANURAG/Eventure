@@ -123,11 +123,15 @@ function SignUpLogin() {
         </div>
         
         {action==="Sign Up"?<div className="sinput">
+<<<<<<< HEAD:frontend/src/local-module/SignUpLogin.jsx
 <<<<<<< HEAD:frontend/src/local-module/SignUpLogin.js
           <input type="text" name="email" className="sinput_style" placeholder="email"  value={formData.email} onChange={handleChange}/>
 =======
           <input type="email" name="email" className="sinput_style" placeholder="username"  value={formData.email} onChange={handleChange}/>
 >>>>>>> main:frontend/src/local-module/SignUpLogin.jsx
+=======
+          <input type='email' required name="email" className="sinput_style" placeholder="email"  value={formData.email} onChange={handleChange}/>
+>>>>>>> 385ab1203b1717b667890b6006e90f274e900e7f:frontend/src/local-module/SignUpLogin.js
         </div>
         :<></>}
         {action==="Sign Up"?<div className="sinput">
