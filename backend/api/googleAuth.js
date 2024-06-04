@@ -9,13 +9,16 @@ const callbackURL = process.env.CALLBACK_URL;
 
 var GoogleStrategy = require( 'passport-google-oauth2' ).Strategy;
 
-const userdb = require('../database/googleAuth');
+const userdb = require('../database/userData');
 const { json } = require('body-parser');
 
 passport.use(new GoogleStrategy({
-    clientID:clientID,
-    clientSecret:clientSecret,
-    callbackURL:callbackURL,
+    // clientID:clientID,
+    // clientSecret:clientSecret,
+    // callbackURL:callbackURL,
+    clientID:"838913142198-s87nmsckfn6c0uddvoi9qbol6hh738o4.apps.googleusercontent.com",
+clientSecret:"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",
+callbackURL:"http://localhost:5000/api/googleAuth/callback",
     scope:['profile','email'],
     passReqToCallback   : true
   },
@@ -51,7 +54,8 @@ router.get('/google',(req,res)=>{
     const token= jwt.sign({
         username:req.user.username,
         googleId:req.user.googleId,
-        email:req.user.email
+        email:req.user.email,
+        id:req.user._id
     },process.env.KEY,{expiresIn:'1h'});
     res.cookie('token',token,{httpOnly:true,maxAge:3600000})
     return res.redirect('http://localhost:3000/userProfile');

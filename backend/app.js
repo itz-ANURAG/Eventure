@@ -21,6 +21,7 @@ const reset = require('./routes/resetPassword')
 const myEventAdmin = require('./routes/myEventAdmin')
 const eventData = require('./routes/eventdata')
 const eventRegister = require('./routes/eventRegisterUser')
+const myEventUser = require('./routes/myEventUser')
 
 
 const app = express();
@@ -85,13 +86,13 @@ app.use('/resetPassword',reset);
 app.use('/myEventAdmin',myEventAdmin)
 app.use('/eventdata',eventData)
 app.use('/eventRegister',eventRegister)
+app.use('/myEventUser',myEventUser)
 
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
 });
-
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development

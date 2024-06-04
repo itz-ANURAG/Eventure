@@ -78,7 +78,7 @@ function Profile() {
   // Routr protection end here
 
 
-  const [toggle, SetToggle] = useState(false);
+  const [toggle, SetToggle] = useState(true);
 
   const handleLogout = async (event) => {
     event.preventDefault();
@@ -146,20 +146,13 @@ function Profile() {
 
   return (
     <>
-      {isOpen && <div>
+      {isOpen ? 
+      <div className=' justify-center'>
         {/* {setFormData(userId=data._id)}
         {setFormData(eventName=data._id)}
         {setFormData(eventData=data.eventDate)}
         {setFormData(eventTime=data.eventTime)} */}
         <div className="scontainer">
-          <div className="sheader">
-            <div className="stext"></div>
-            <div className="sunderline"></div>
-          </div>
-
-          {/* <div className="sinput">
-            <input type="text" name="createrId" className="sinput_style" placeholder="creater_id" value={formData.createrId} onChange={handleChange} />
-          </div> */}
           <div className="sinput">
             <input type="text" name="userName" className="sinput_style" placeholder="Full Name" value={formData.userName} onChange={handleChange} />
           </div>
@@ -171,7 +164,8 @@ function Profile() {
             <button onClick={handleSubmitForm} >submit</button>
           </div>
         </div>
-        </div>}
+        </div>
+        :
       <div className='bg-[#2699fb] p-4'>
         <div className=' mx auto flex   justify-between items-center'>
           {
@@ -181,11 +175,11 @@ function Profile() {
               <TfiClose className=' text-white text-3xl mr-[50px]' onClick={() => SetToggle(!toggle)} ></TfiClose>
           }
           <div className='text-6xl font-bold ml-[82px] mr-[82px]' >
-            welcome to web
+            welcome to {data.username}
           </div>
 
           <ul className='flex text-white gap-10'>
-            <li className='text-3xl'> <Link to={'/'}>
+            <li className='text-3xl'> <Link to={'/userProfile'}>
               Home</Link>
             </li>
             <li className='text-3xl'><Link to={'/Contact'}>
@@ -193,9 +187,6 @@ function Profile() {
             </li>
             <li className='text-3xl' >
               <button onClick={handleLogout}>Logout</button>
-            </li>
-            <li className='text-3xl'><Link to={'/blogs'}>
-              Blogs</Link>
             </li>
           </ul>
           <CgProfile className='text-4xl' />
@@ -208,27 +199,24 @@ function Profile() {
             <></>
             :
             <ul className=' bg-emerald-400 fixed left-[0]  top-[92px] text-white gap-10 items-start w-[500px] h-[1000px]'>
-              <li className='m-[40px] p-[20px] text-5xl' ><Link to={'/myEvents'}>
+              <li className='m-[40px] p-[20px] text-5xl' ><Link to={'/myEventUser'}>
                 My Events</Link>
               </li >
-              <li className='m-[40px] p-[20px] text-5xl '><Link to={'/createEvents'}>
-                Create Events</Link>
-              </li>
+
               <li className=' m-[40px] p-[20px] text-5xl'>
                 Logout
-              </li>
-              <li className=' m-[40px] p-[20px] text-5xl'>
-                Blogs
               </li>
             </ul>
         }
       </div>
       
-
-
-  <ul>{
-  eventData?.map((data,index) => {
+      }
+  {
+    eventData?
+  eventData.map((data,index) => {
     return (
+      <div className='flex justify-center align-bottom '>
+      <ul>
       <li>
         <div>
           {data.eventName}
@@ -240,9 +228,15 @@ function Profile() {
           register
         </button>
       </li>
+    </ul>
+    </div>
     )
-  })}
-  </ul>
+  })
+  :
+  <div><h1 className='text-black'>Currently No Events is running</h1></div>
+}
+
+
 
 
     </>
@@ -251,23 +245,4 @@ function Profile() {
 
 export default Profile
 
-
-// import React from 'react';
-// import { useLocation } from 'react-router-dom';
-
-// function Profile() {
-//   const location = useLocation();
-//   console.log(location.state.data)
-//   const { username, fullname, email } = location.state.data || {};
-
-//   return (
-//     <div>
-//       <div>{username}</div>
-//       <div>{fullname}</div>
-//       <div>{email}</div>
-//     </div>
-//   );
-// }
-
-// export default Profile;
 

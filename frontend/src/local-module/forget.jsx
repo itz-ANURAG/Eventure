@@ -55,7 +55,7 @@ function SignUpLogin() {
           <div className="sunderline"></div>
         </div>
         <div className="sinput">
-          <input type="text" name="email" className="sinput_style" placeholder="email"  value={formData.email} onChange={handleChange}/>
+          <input type="email" required name="email" className="sinput_style" placeholder="email"  value={formData.email} onChange={handleChange}/>
         </div>
         {/* embedding js in jsx for the desired layout. */}
         <button onClick={handleSubmit} >submit</button>

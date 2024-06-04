@@ -4,7 +4,7 @@ var router = express.Router();
 const jwt = require('jsonwebtoken')
 const eventCreate = require('../database/eventCreationData')
 
-/* GET users listing. */
+// To Send Whole Running Event to Client Side
 router.get('/', async (req, res) => {
     const eventData= await eventCreate.find({});
     res.statusCode = 200;

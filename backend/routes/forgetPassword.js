@@ -24,7 +24,7 @@ router.post('/', async (req, res) => {
             service: 'gmail',
             auth: {
                 user: "aryankesarwani21022003@gmail.com",
-                pass: ""
+                pass: "jtuw acdk nutl qjts"
             }
         });
 

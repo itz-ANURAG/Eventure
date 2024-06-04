@@ -40,7 +40,7 @@ router.post('/',async (req, res) => {
         console.log("wrong Password")
         return res.send();
     }
-    const token = jwt.sign({username:user.username},process.env.KEY,{expiresIn:'1h'});
+    const token = jwt.sign({username:user.username , id:user._id},process.env.KEY,{expiresIn:'1h'});
     res.cookie('token',token,{httpOnly:true,maxAge:3600000})
 
     

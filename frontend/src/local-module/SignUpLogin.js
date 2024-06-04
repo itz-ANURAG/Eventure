@@ -92,7 +92,7 @@ function SignUpLogin() {
         </div>
         
         {action==="Sign Up"?<div className="sinput">
-          <input type="text" name="email" className="sinput_style" placeholder="email"  value={formData.email} onChange={handleChange}/>
+          <input type='email' required name="email" className="sinput_style" placeholder="email"  value={formData.email} onChange={handleChange}/>
         </div>
         :<></>}
         {action==="Sign Up"?<div className="sinput">

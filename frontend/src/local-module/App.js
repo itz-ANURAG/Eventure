@@ -7,6 +7,7 @@ import CreateEvent from './CreateEvent.jsx'
 import ForgetPassword from '../local-module/forget.jsx'
 import Reset from '../local-module/resetPassword.jsx'
 import MyEvent from './myEventAdmin.jsx';
+import MyEventUser from './myEventUser.jsx'
 
 import { useState } from 'react';
 import {
@@ -48,6 +49,9 @@ export default function App() {
             />
             <Route
               path='/myEvents' element={<MyEvent />}
+            />
+            <Route
+              path='/myEventUser' element={<MyEventUser />}
             />
           </Routes>
         </Router>
