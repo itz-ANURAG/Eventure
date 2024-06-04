@@ -9,16 +9,16 @@ process.env.KEY
 router.post('/', async (req, res) => {
     try {
         console.log("creating Event")
-        const token = req.cookies.token;
-        // console.log(token)
+        const token = req.cookies.token;    // Extracting Token from Cookies
         if (!token) {
             console.log("NO Token")
             res.send({ success: false, path: '/', massage: "Login first" }) }
             const isVerified = jwt.verify(token, process.env.KEY);
             if(!isVerified) console.log("NOt verified")
             else console.log(isVerified)
-        // console.log(isVerified.username);
-        // console.log(req.body);
+
+            // Creating New Event
+
         const event = new eventCreate({
             eventName: req.body.eventName,
             eventDate: req.body.eventDate,

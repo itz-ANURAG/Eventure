@@ -1,7 +1,11 @@
 // importing files needed for the sign up log in page.
 // import React from "react";
 import "../stylesheets/signUpLogin.css";
+<<<<<<< HEAD
 import React, { useState} from "react";
+=======
+import React, { useState } from "react";
+>>>>>>> main
 import google from "../images/google.png";
 import axios from 'axios'
 // import navigate from 'navigate'

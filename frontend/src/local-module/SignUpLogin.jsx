@@ -2,7 +2,7 @@
 import React from "react";
 import "../stylesheets/signUpLogin.css";
 import {useState} from "react";
-import google from "../images/google.png";
+// import google from "../images/google.png";
 import axios from 'axios'
 // import navigate from 'navigate'
 import { Link, useNavigate } from 'react-router-dom';
@@ -18,7 +18,10 @@ function SignUpLogin() {
 
   const url='/users/register'
   const url1='/login'
+<<<<<<< HEAD:frontend/src/local-module/SignUpLogin.js
 
+=======
+>>>>>>> main:frontend/src/local-module/SignUpLogin.jsx
 
   const [formData, setFormData] = useState({
     email: '',
@@ -46,16 +49,35 @@ function SignUpLogin() {
       // navigate('/api/googleAuth/callback')
 
   };
+<<<<<<< HEAD:frontend/src/local-module/SignUpLogin.js
 
+=======
+>>>>>>> main:frontend/src/local-module/SignUpLogin.jsx
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     console.log(formData);
     if(action=="Sign Up"){
     try {
+<<<<<<< HEAD:frontend/src/local-module/SignUpLogin.js
       console.log("from user side")
+=======
+      console.log("For SignIn")
+>>>>>>> main:frontend/src/local-module/SignUpLogin.jsx
       console.log(formData)
       const response = await axios.post(url, formData);
+      console.log("created");
+      console.log(response.data.path);
+      navigate(response.data.path)
+    } catch (error) {
+      alert("something went wrong")
+    }
+  }
+  else{
+    try {
+      console.log("For Login")
+      console.log(formData)
+      const response = await axios.post(url1, formData);
       console.log("created");
       console.log(response.data.path);
       navigate(response.data.path, {state:{ data : response.data.data}})
@@ -63,6 +85,7 @@ function SignUpLogin() {
       alert("something went wrong")
     }
   }
+<<<<<<< HEAD:frontend/src/local-module/SignUpLogin.js
   else{
     try {
       console.log("from admin side")
@@ -75,12 +98,20 @@ function SignUpLogin() {
       alert("something went wrong")
     }
   }
+=======
+>>>>>>> main:frontend/src/local-module/SignUpLogin.jsx
     // Add your form submission logic here
 
   };
 
 
+<<<<<<< HEAD:frontend/src/local-module/SignUpLogin.js
 
+=======
+  const handleClick =async () => {
+      (action==="Sign Up")?setAction("Log In"):setAction("Sign Up");
+    }
+>>>>>>> main:frontend/src/local-module/SignUpLogin.jsx
 
   return (
     <>
@@ -92,7 +123,11 @@ function SignUpLogin() {
         </div>
         
         {action==="Sign Up"?<div className="sinput">
+<<<<<<< HEAD:frontend/src/local-module/SignUpLogin.js
           <input type="text" name="email" className="sinput_style" placeholder="email"  value={formData.email} onChange={handleChange}/>
+=======
+          <input type="email" name="email" className="sinput_style" placeholder="username"  value={formData.email} onChange={handleChange}/>
+>>>>>>> main:frontend/src/local-module/SignUpLogin.jsx
         </div>
         :<></>}
         {action==="Sign Up"?<div className="sinput">
@@ -121,10 +156,17 @@ function SignUpLogin() {
         <span className="or">or</span>
         </h3>
         {action==="Sign Up"?<div className="google-cont">
+<<<<<<< HEAD:frontend/src/local-module/SignUpLogin.js
            <button className="google-auth-button" onClick={handleGoogle}>
             <img src={google} alt="Google Logo" className="google-logo" />
              Sign up with Google
              </button> 
+=======
+           <button onClick={handleGoogle} className="google-auth-button">
+            {/* <img src={google} alt="Google Logo" className="google-logo"/> */}
+             Sign up with Google
+             </button>
+>>>>>>> main:frontend/src/local-module/SignUpLogin.jsx
              </div>:<></>}
 
         <div className="haveAccount">{action==="Sign Up"?"Already":"don\'t"} have an account?<span onClick={handleClick} >{" "}{ action==="Sign Up"?"Log In":"Sign Up"}</span></div>

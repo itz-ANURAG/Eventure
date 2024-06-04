@@ -22,7 +22,7 @@ router.post('/register',async (req, res) => {
   res.cookie('token',token,{httpOnly:true,maxAge:3600000})
   console.log("user registered succesfully");
   console.log(userData);
-  res.send({ data:userData , path:'/userProfile', token:token});
+  res.send({ data:userData , path:'/my-profile', token:token});
 });
 
 module.exports = router;

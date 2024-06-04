@@ -1,0 +1,47 @@
+.container{
+    width: 2000px;
+    height:100vh;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+  .user-profile-card{
+    position: absolute;
+  }
+  .gradient{
+    height: 125px;
+    border-radius: 4px 4px 0px 0px;
+  
+  }
+  .user-image{
+    position:relative;
+    left:30%;
+    height: 150px;
+    border-radius:100px;
+    margin-top:-75px;
+    padding: 5px;
+    background: white;
+  }
+  .user-name{
+    text-wrap:stable;
+    font-size: 36px;
+    font-weight: 600;
+    font-family:MedievalSharp;
+  }
+  .user-description{
+    text-align: center;
+    padding: 20px 40px;
+    font-size: 16px;
+    font-family:MedievalSharp;
+  }
+  .email{
+    text-align: center;
+    font-size: 16px;
+    margin:10px 10px;
+    padding-top: 8px;
+    padding-bottom: 40px;
+    border-radius: 40px;
+    font-family:MedievalSharp;
+  }
+  

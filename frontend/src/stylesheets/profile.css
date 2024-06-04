@@ -1,0 +1,15 @@
+.content-container{
+    display:flex;
+    align-items:center;
+}
+.dash-sidebar{ 
+    display:flex;
+    flex-direction:row;
+}
+main-content{
+    display:flex;
+}
+ 
+
+
+ 

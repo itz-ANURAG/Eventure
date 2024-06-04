@@ -1,198 +1,29 @@
-/* just some general css rpoperty to whole layout */
-* { 
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  /* styling of header i.e navbar */
-  
-  .header {
-    display: flex;
-    background-color: rgb(57, 57, 57);
-    color: white;
-    /* justify-content: space-between;
-     */
-     justify-content:space-between;
-    height: 80px;
-    width:100%;
-  }
-  .leftBar {
-    display: flex;
-    margin-right: 40px;
-    margin-top: 10px;
-  }
-  .leftBar > li {
-    margin: 20px;
-    list-style: none;
-    font-size: 1.1rem;
-    cursor:pointer;
-    
-  }
-  .leftBar > li > Link {
-    margin: 20px;
-    list-style: none;
-    font-size: 1.1rem;
-    cursor:pointer;
-    
-  }
-  .leftBar > li > Link:hover{
-    color: rgb(228, 220, 220);
-  }
-  .projectName {
-    font-size: 1.6rem;
-    font-weight: bold;
-    margin: 20px 0px 0px 60px;
-  }
-  .bell {
-    width: 30px;
-    height: 35px;
-    margin-top: -3px;
-    background-color: rgb(57, 57, 57);
-  }
-  .profile {
-    width: 20px;
-    height: 20px;
-    margin-top: 13px;
-    background-color: rgb(57, 57, 57);
-    border-color: rgb(57, 57, 57);
-    cursor:pointer;
-  }
-  .profile > img {
-    width: 40px;
-    border-radius: 20px;
-  }
+
+ 
   
   /* styling of the first section whihc is jusrt general landing scenery. */
   
   .firstSection {
-    background-color: rgb(212, 184, 212);
     width: 100%;
-    height: 500px;
+    height: 200px;
     display: flex;
-    justify-content: center;
+    padding-left: 32px;
     align-items: center;
   }
   .firstSection > div {
     font-weight: 300;
     font-size: 2.5rem;
-    width: 40%;
+    width: 70%;
   }
   
-  /* styling of the second section whihc is about what we do. */
-  
-  .secondSection {
-    background-color: white;
-    width: 100%;
-    height: 800px;
-  }
-  .tittle {
-    display: grid;
-    grid-template-columns: 1fr 250px 1fr;
-    align-items: center;
-    font-size: 2.5rem;
-    padding-top: 20px;
-    margin-bottom: 60px;
-    padding: 30px;
-    font-weight: 400;
-  }
-  /* applying pseudo class for cretion that text inbetween effect in the scetion. */
-  .tittle::before,
-  .tittle::after {
-    content: "";
-    height: 2px;
-    background-color: rgb(52, 50, 50);
-    display: block;
-  }
-  .tittle > span {
-    padding: 12px;
-  }
-  .aboutGrid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    row-gap: 2rem;
-    justify-items: center;
-  }
-  .template {
-    width: 250px;
-    height: 250px;
-    background-color: #f3e7e7;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 12px;
-    border-radius: 10px;
-  }
-  .template > h2 {
-    margin: 5px 0;
-    font-weight: 300;
-  }
-  .template > div {
-    font-weight: 200;
-  }
-  .community {
-    height: 80px;
-    width: 100px;
-    border-radius: 4px;
-  }
-  
-  /* styling the third section which is about the goals. */
-  .thirdSection {
-    width: 100%;
-    min-height: 700px;
-    display: flex;
-    background-color: white;
-    padding: 1px;
-  }
-  .right3 {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 30px;
-    font-size: 1.3rem;
-    font-weight: 500;
-  }
-  .right3 > h1 {
-    font-size: 5rem;
-  }
-  .right3 > p {
-    margin: 20px;
-  }
-  .left3 {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .goals {
-    width: 300px;
-    height: 400px;
-    border-radius: 2px;
-  }
-  .filler {
-    background-color: white;
-    width: 100%;
-    height: 100px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  hr {
-    background-color: black;
-    border: 1px solid black;
-    width: 95%;
-  }
-  
-  /* styling the fourth section to contact the admins of the website by the users. */
   
   .fourthSection {
     width: 100%;
     height: 500px;
     display: flex;
-    background-color: white;
     padding: 1px;
     padding-bottom: 100px;
+    color:white
   }
   .left4 {
     flex: 1;
@@ -204,7 +35,6 @@
     flex-direction: column;
     justify-content: space-around;
     padding: 20px;
-    background-color: white;
   }
   label {
     display: block;
@@ -216,7 +46,7 @@
     padding: 8px;
     margin-bottom: 12px;
     box-sizing: border-box;
-    border: 1px solid #928e8e;
+    border: 1px solid black;
     border-radius: 4px;
     font-size: 1.2rem;
   }
@@ -226,10 +56,9 @@
   .right4 {
     flex: 1;
   
-    background-image: url("../images/contactUs.jpg");
+    /* background-image: url("../images/contactUs.jpg"); */
     background-repeat: no-repeat;
     background-position: center;
-    background-color: white;
   }
   form > button {
     width: 100%;
@@ -239,10 +68,9 @@
     border-radius: 5px;
     margin: 10px 10px 10px 0px;
     cursor:pointer;
+    padding-top: 3.7px;
+    padding-bottom: 3.7px;
   }
-  
-  /* styling the footer section. */
-  
   footer {
     width: 100%;
     height: 80px;
@@ -254,4 +82,95 @@
     flex-direction: column;
     justify-content: center;
   }
-  
+  .quidditch{
+    position:relative;
+    display:inline-flex;
+    margin-bottom: 100px;
+  }
+  .quidditchButton{
+    position:absolute;
+    top:100%;
+    left:68.5%;
+    font-family: MedievalSharp;
+    font-size: larger;
+    background-color: #686557;
+  }
+  .logoquidditch{
+    padding-left: 555px;
+    height: 350px;
+    width:1000px;
+    margin-right:50px;
+  }
+  .EventRows{
+    display: flex;
+    flex-direction: column; 
+  }
+  .ConcertEvent{
+    height:400px;
+  }
+  .row2Events{
+    display: flex;
+    flex-direction: row;
+    column-gap: 50px;
+    justify-content: space-around;
+  }
+  .BattleEvent{
+    height:400px;
+  }
+  .Concert{
+    position:relative;
+    display:flex;
+    flex-direction: column;
+    margin-bottom: 100px;
+  }
+  .description1{
+    position:absolute;
+    top:105%;
+    font-family: MedievalSharp;;
+    padding-left:0px;
+    font-size: 30.3px;
+    display: flex;
+    flex-direction: column;
+    text-wrap: wrap;
+  }
+  .ConcertButton{
+    position:absolute;
+    top:132%;
+    left:44.5%;
+    font-family: MedievalSharp;
+    font-size: larger;
+    background-color: #686557;
+  }
+  .datetime{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: large;
+  }
+  .description2{
+    position:absolute;
+    top:105%;
+    font-family: MedievalSharp;;
+    padding-left:0px;
+    font-size: 55.3px;
+    display: flex;
+    flex-direction: column;
+    text-wrap: wrap;
+  }
+  .datetime2{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 25px;
+  }
+  .Venue2{
+    font-size: 32px;
+  }
+  .BattleButton{
+    position:absolute;
+    top:145%;
+    left:44.5%;
+    font-family: MedievalSharp;
+    font-size: larger;
+    background-color: #686557;
+  }

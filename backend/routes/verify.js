@@ -5,7 +5,7 @@ const userD = require('../database/userData')
 const adminD = require('../database/adminModel');
 const admin = require('../database/adminModel');
 
-let data;
+var data;
 
 const verifyUser = async (req, res, next) => {
     // console.log(req.cookies)
@@ -14,10 +14,10 @@ const verifyUser = async (req, res, next) => {
         if (!token) {
             return res.send({ success: false, massage: "Login First", path: '/' });
         }
-        // console.log(token)
+        console.log(token)
         const decoded = await jwt.verify(token, process.env.KEY);
-        // console.log(decoded);
-        if (!decoded) {
+        console.log(decoded);
+        if(!decoded){
             console.log("unauthorised");
             return res.send({ success: false, massage: "Login first" })
         }
@@ -38,9 +38,8 @@ const verifyUser = async (req, res, next) => {
     }
 }
 
-
 router.get('/', verifyUser, (req, res) => {
-    res.send({ success: true, data: data, massage: "Event created Successfully" });
+    res.send({ success: true , data:data});
 })
 
 

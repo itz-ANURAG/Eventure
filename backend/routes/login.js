@@ -9,7 +9,7 @@ const AdminModel = require('../database/adminModel');
 /* GET users listing. */
 router.post('/',async (req, res) => {
     console.log("login page")
-    // console.log(req.body);
+    console.log(req.body)
     const user = await UserModel.findOne({username:req.body.username});
     if(!user){
         try {
@@ -24,7 +24,7 @@ router.post('/',async (req, res) => {
                     id:admin._id
                 },process.env.KEY,{expiresIn:'1h'});
                 res.cookie('token',token,{httpOnly:true,maxAge:3600000})
-                return res.send({ data:user , token : token, path:'/adminProfile'});
+                return res.send({ data:user , token : token, path:'/my-profile', isAdmin:true});
             }
             else{
                 console.log("Not a  Admin");
@@ -40,11 +40,14 @@ router.post('/',async (req, res) => {
         console.log("wrong Password")
         return res.send();
     }
-    const token = jwt.sign({username:user.username},process.env.KEY,{expiresIn:'1h'});
+    console.log(user)
+    const token = jwt.sign({
+        username:user.username,
+        id:user._id,
+        email:user.email
+    },process.env.KEY,{expiresIn:'1h'});
     res.cookie('token',token,{httpOnly:true,maxAge:3600000})
-
-    
-    return res.send({ data:user , token : token, path:'/userProfile'});
+    return res.send({ data:user , token : token, path:'/my-profile',isAdmin:false});
 });
 
 module.exports = router;
