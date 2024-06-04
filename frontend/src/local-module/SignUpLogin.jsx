@@ -11,10 +11,17 @@ import { Link, useNavigate } from 'react-router-dom';
 function SignUpLogin() {
   // using useState hook for creating desired logIn signUp effect.
   const [action,setAction] = useState("Sign Up");
-
+  const handleClick = () => {
+    (action==="Sign Up")?setAction("Log In"):setAction("Sign Up");
+    console.log(action);
+  }
 
   const url='/users/register'
   const url1='/login'
+<<<<<<< HEAD:frontend/src/local-module/SignUpLogin.js
+
+=======
+>>>>>>> main:frontend/src/local-module/SignUpLogin.jsx
 
   const [formData, setFormData] = useState({
     email: '',
@@ -32,7 +39,6 @@ function SignUpLogin() {
       [name]: value,
     }));
   };
-
   axios.defaults.withCredentials=true;
   const navigate = useNavigate();
   const handleGoogle = async(event) => {
@@ -43,13 +49,21 @@ function SignUpLogin() {
       // navigate('/api/googleAuth/callback')
 
   };
+<<<<<<< HEAD:frontend/src/local-module/SignUpLogin.js
+
+=======
+>>>>>>> main:frontend/src/local-module/SignUpLogin.jsx
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     console.log(formData);
     if(action=="Sign Up"){
     try {
+<<<<<<< HEAD:frontend/src/local-module/SignUpLogin.js
+      console.log("from user side")
+=======
       console.log("For SignIn")
+>>>>>>> main:frontend/src/local-module/SignUpLogin.jsx
       console.log(formData)
       const response = await axios.post(url, formData);
       console.log("created");
@@ -71,14 +85,33 @@ function SignUpLogin() {
       alert("something went wrong")
     }
   }
+<<<<<<< HEAD:frontend/src/local-module/SignUpLogin.js
+  else{
+    try {
+      console.log("from admin side")
+      console.log(formData)
+      const response = await axios.post(url1, formData);
+      console.log("created");
+      console.log(response.data.path);
+      navigate(response.data.path, {state:{ data : response.data.data}})
+    } catch (error) {
+      alert("something went wrong")
+    }
+  }
+=======
+>>>>>>> main:frontend/src/local-module/SignUpLogin.jsx
     // Add your form submission logic here
 
   };
 
 
+<<<<<<< HEAD:frontend/src/local-module/SignUpLogin.js
+
+=======
   const handleClick =async () => {
       (action==="Sign Up")?setAction("Log In"):setAction("Sign Up");
     }
+>>>>>>> main:frontend/src/local-module/SignUpLogin.jsx
 
   return (
     <>
@@ -90,7 +123,15 @@ function SignUpLogin() {
         </div>
         
         {action==="Sign Up"?<div className="sinput">
+<<<<<<< HEAD:frontend/src/local-module/SignUpLogin.jsx
+<<<<<<< HEAD:frontend/src/local-module/SignUpLogin.js
+          <input type="text" name="email" className="sinput_style" placeholder="email"  value={formData.email} onChange={handleChange}/>
+=======
           <input type="email" name="email" className="sinput_style" placeholder="username"  value={formData.email} onChange={handleChange}/>
+>>>>>>> main:frontend/src/local-module/SignUpLogin.jsx
+=======
+          <input type='email' required name="email" className="sinput_style" placeholder="email"  value={formData.email} onChange={handleChange}/>
+>>>>>>> 385ab1203b1717b667890b6006e90f274e900e7f:frontend/src/local-module/SignUpLogin.js
         </div>
         :<></>}
         {action==="Sign Up"?<div className="sinput">
@@ -109,7 +150,7 @@ function SignUpLogin() {
           <input type="password" name="password" className="sinput_style" placeholder="password" value={formData.password} onChange={handleChange}/>
           {action==="Sign Up"?<></>:<div className="lostpassword">
           {" "}
-          Lost Password?<span>{" "}clickhere</span>
+          Lost Password?<a href="/forget">clickhere</a>
         </div>}
           
         </div>
@@ -119,10 +160,17 @@ function SignUpLogin() {
         <span className="or">or</span>
         </h3>
         {action==="Sign Up"?<div className="google-cont">
+<<<<<<< HEAD:frontend/src/local-module/SignUpLogin.js
+           <button className="google-auth-button" onClick={handleGoogle}>
+            <img src={google} alt="Google Logo" className="google-logo" />
+             Sign up with Google
+             </button> 
+=======
            <button onClick={handleGoogle} className="google-auth-button">
             {/* <img src={google} alt="Google Logo" className="google-logo"/> */}
              Sign up with Google
              </button>
+>>>>>>> main:frontend/src/local-module/SignUpLogin.jsx
              </div>:<></>}
 
         <div className="haveAccount">{action==="Sign Up"?"Already":"don\'t"} have an account?<span onClick={handleClick} >{" "}{ action==="Sign Up"?"Log In":"Sign Up"}</span></div>

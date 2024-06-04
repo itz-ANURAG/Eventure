@@ -3,12 +3,11 @@ const mongoose = require('mongoose')
 const EventSchema = new mongoose.Schema({
     createrId : {
         type: String,
-        unique:true,
         required:true
     },
     eventName:{
         type:String,
-        unique:true,
+        // unique:true,w
         required:true
     },
     eventDate:{
@@ -26,6 +25,11 @@ const EventSchema = new mongoose.Schema({
     eventPrice:{
         type:Number,
         required:true
+    },
+    createDate:{
+        type:Date,
+        required:true,
+        default:Date.now()
     }
 });
 

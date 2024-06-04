@@ -1,29 +1,39 @@
 const express = require('express');
 const router = express.Router();
 const jwt = require('jsonwebtoken')
+const userD = require('../database/userData')
+const adminD = require('../database/adminModel');
+const admin = require('../database/adminModel');
 
 var data;
 
 const verifyUser = async (req, res, next) => {
-    console.log(req.cookies)
+    // console.log(req.cookies)
     try {
         const token = req.cookies.token;
         if (!token) {
-            return res.send({ success: false, massage: "error no token" });
+            return res.send({ success: false, massage: "Login First", path: '/' });
         }
         console.log(token)
         const decoded = await jwt.verify(token, process.env.KEY);
         console.log(decoded);
         if(!decoded){
             console.log("unauthorised");
-           return  res.send({success:fasle})
+            return res.send({ success: false, massage: "Login first" })
         }
-        console.log("succesfull")
-        data=decoded;
+        // console.log("succesfull")
+        const userData= await userD.findOne({username:decoded.username});
+        if(!userData){
+            const adminData= await adminD.findOne({username:decoded.username})
+            data=adminData;
+        }
+        else{
+        data=userData;
+    }
         next();
     }
-    catch(err){
-        console.log("error")
+    catch (err) {
+        // console.log("error")
         res.json(err);
     }
 }

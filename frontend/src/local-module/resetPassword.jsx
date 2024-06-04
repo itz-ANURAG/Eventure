@@ -1,7 +1,11 @@
 // importing files needed for the sign up log in page.
 // import React from "react";
 import "../stylesheets/signUpLogin.css";
+<<<<<<< HEAD
+import React, { useState} from "react";
+=======
 import React, { useState } from "react";
+>>>>>>> main
 import google from "../images/google.png";
 import axios from 'axios'
 // import navigate from 'navigate'
@@ -53,10 +57,10 @@ function Reset() {
                 <div className="scontainer">
                     <div className="sheader">
                         <div className="stext"></div>
-                        <div className="sunderline"></div>
+                        <div className="sunderline"> Enter Recovery Password</div>
                     </div>
                     <div className="sinput">
-                        <input type="text" name="password" className="sinput_style" placeholder="password" value={formData.password} onChange={handleChange} />
+                        <input type="password" name="password" className="sinput_style" placeholder="password" value={formData.password} onChange={handleChange} />
                     </div>
                     {/* embedding js in jsx for the desired layout. */}
                     <button onClick={handleSubmit} >submit</button>
