@@ -11,11 +11,9 @@ import { Link, useNavigate } from 'react-router-dom';
 function SignUpLogin() {
   // using useState hook for creating desired logIn signUp effect.
   const [action,setAction] = useState("Sign Up");
-
-
   const url='/users/register'
   const url1='/login'
-
+  
   const [formData, setFormData] = useState({
     email: '',
     username: '',
@@ -66,7 +64,7 @@ function SignUpLogin() {
       const response = await axios.post(url1, formData);
       console.log("created");
       console.log(response.data.path);
-      navigate(response.data.path, {state:{ data : response.data.data}})
+      navigate(response.data.path)
     } catch (error) {
       alert("something went wrong")
     }
@@ -90,7 +88,7 @@ function SignUpLogin() {
         </div>
         
         {action==="Sign Up"?<div className="sinput">
-          <input type="email" name="email" className="sinput_style" placeholder="username"  value={formData.email} onChange={handleChange}/>
+          <input type="email" name="email" className="sinput_style" placeholder="email"  value={formData.email} onChange={handleChange}/>
         </div>
         :<></>}
         {action==="Sign Up"?<div className="sinput">

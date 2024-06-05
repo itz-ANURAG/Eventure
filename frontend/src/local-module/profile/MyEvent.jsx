@@ -9,8 +9,6 @@ const MyEvent = () => {
     const fetchData = async () => {
       try {
         const verify = await axios.get('/myEventAdmin');
-        // console.log(verify);
-        //   console.log(verify.data)
           setVerifyData(verify.data.data); // Store verify data in state
       } catch (error) {
         alert("something went wrong");
