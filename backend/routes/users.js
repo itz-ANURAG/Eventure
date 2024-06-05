@@ -15,10 +15,10 @@ router.post('/register',async (req, res) => {
     email:req.body.email,
     fullname:req.body.fullName,
     password:hashPassword
-  })
+  }) 
   await userData.save();
   console.log("registerd successfully")
-  const token = jwt.sign({username:userData.username},"aryanKesahrwani@21022003",{expiresIn:'1h'});
+  const token = jwt.sign({username:userData.username,id:userData._id},process.env.KEY,{expiresIn:'1h'});
   res.cookie('token',token,{httpOnly:true,maxAge:3600000})
   console.log("user registered succesfully");
   console.log(userData);

@@ -4,7 +4,7 @@ import React from 'react'
 function Footer() {
   return (
     <> 
-     <footer className='bg-gradient-to-br from-red-950 to-black'>
+     <footer className='bg-gradient-to-br from-red-950 to-black p-10'>
         <p>
         Join us on an unforgettable journey through the wizarding realm, where spells are cast, friendships are forged, and the extraordinary becomes ordinary.
         {" "}

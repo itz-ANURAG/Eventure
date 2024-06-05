@@ -30,7 +30,6 @@ function SignUpLogin() {
       [name]: value,
     }));
   };
-
   axios.defaults.withCredentials=true;
   const navigate = useNavigate();
   const handleGoogle = async(event) => {
@@ -45,7 +44,7 @@ function SignUpLogin() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     console.log(formData);
-    if(action=="Sign Up"){
+    if(action==="Sign Up"){
     try {
       console.log("For SignIn")
       console.log(formData)
@@ -114,18 +113,23 @@ function SignUpLogin() {
         {/* embedding js in jsx for the desired layout. */}
         <button className={action==="Sign Up"?"signSubmit":"logSubmit"} onClick={handleSubmit} >submit</button>
         <h3 className="pseudoClass">
-        <span className="or">or</span>
+          <span className="or">or</span>
         </h3>
-        {action==="Sign Up"?<div className="google-cont">
-           <button onClick={handleGoogle} className="google-auth-button">
-            {/* <img src={google} alt="Google Logo" className="google-logo"/> */}
-             Sign up with Google
-             </button>
-             </div>:<></>}
+        
+        {action === "Sign Up" && (
+          <div className="google-cont">
+            <button className="google-auth-button" onClick={handleGoogle}>
+              Sign up with Google
+            </button>
+          </div>
+        )}
 
-        <div className="haveAccount">{action==="Sign Up"?"Already":"don\'t"} have an account?<span onClick={handleClick} >{" "}{ action==="Sign Up"?"Log In":"Sign Up"}</span></div>
+        <div className="haveAccount">
+          {action === "Sign Up" ? "Already" : "Don't"} have an account?
+          <span onClick={handleClick}>{" "}{action === "Sign Up" ? "Log In" : "Sign Up"}</span>
+        </div>
       </div>
-      </div>
+    </div>
     </>
   );
 }

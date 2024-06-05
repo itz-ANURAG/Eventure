@@ -3,12 +3,13 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 const RegisterForm = ({ event, userData, setOpen }) => {
+
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
         userName: '',
         userEmail: '',
         phoneNo: '',
-        userId: userData.id,
+        userId: userData._id,
         eventDate: event.eventDate,
         eventName: event.eventName,
         eventTime: event.eventTime,

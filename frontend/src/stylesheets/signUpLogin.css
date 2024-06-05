@@ -21,7 +21,7 @@
 
 .scontainer{
     background-color:  #ffffff;
-    /* min-height:70%; */
+    min-height:70%;
     max-width: 400px;
     display:flex;
     flex-direction: column;
@@ -29,7 +29,7 @@
     border-radius:10px;
     border:1px solid black;
     box-shadow: 2px 2px 15px   #ffffff;
-    padding:30px;
+    padding:10px;
 }
 
 /* style for the heading of registration part */

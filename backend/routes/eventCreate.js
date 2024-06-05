@@ -5,7 +5,7 @@ var bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const eventCreate = require('../database/eventCreationData')
 process.env.KEY
-/* GET users listing. */
+// GET users listing
 router.post('/', async (req, res) => {
     try {
         console.log("creating Event")

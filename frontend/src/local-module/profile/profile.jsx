@@ -66,23 +66,6 @@ function Profile() {
         setIsOpen(true);
     };
 
-    // const handleSubmitForm = async (formData) => {
-    //   console.log(formData)
-    //     try {
-    //         const response = await axios.post('/eventRegister', formData);
-    //         if (response.data.status) {
-    //           console.log(response)
-    //             alert("Registered successfully");
-    //         } else {
-    //             alert("Something went wrong");
-    //         }
-    //     } catch (error) {
-    //         console.log("error", error);
-    //         alert("Something went wrong");
-    //         navigate('/my-profile');
-    //     }
-    //     setIsOpen(false);
-    // };
 
     const handleIsOpen = (value) => {
         setIsOpen(value);

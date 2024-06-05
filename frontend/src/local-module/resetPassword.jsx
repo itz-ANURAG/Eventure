@@ -2,10 +2,10 @@
 // import React from "react";
 import "../stylesheets/signUpLogin.css";
 import React, { useState } from "react";
-import google from "../images/google.png";
+// import google from "../images/google.png";
 import axios from 'axios'
 // import navigate from 'navigate'
-import { Link, useNavigate , useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 function Reset() {
 
     let { token } = useParams();
@@ -35,10 +35,10 @@ function Reset() {
             alert("Password Reset Successfully")
             navigate('/Signin')
         }
-        else{
-        console.log("failure")
-        alert("Something Went Wrong");
-        navigate('/')
+        else {
+            console.log("failure")
+            alert("Something Went Wrong");
+            navigate('/')
         }
         // Add your form submission logic here
 
@@ -53,10 +53,10 @@ function Reset() {
                 <div className="scontainer">
                     <div className="sheader">
                         <div className="stext"></div>
-                        <div className="sunderline"></div>
+                        <div className="sunderline"> Enter Recovery Password</div>
                     </div>
                     <div className="sinput">
-                        <input type="text" name="password" className="sinput_style" placeholder="password" value={formData.password} onChange={handleChange} />
+                        <input type="password" name="password" className="sinput_style" placeholder="password" value={formData.password} onChange={handleChange} />
                     </div>
                     {/* embedding js in jsx for the desired layout. */}
                     <button onClick={handleSubmit} >submit</button>
