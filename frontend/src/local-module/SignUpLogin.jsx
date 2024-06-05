@@ -10,18 +10,11 @@ import { Link, useNavigate } from 'react-router-dom';
 
 function SignUpLogin() {
   // using useState hook for creating desired logIn signUp effect.
-  const [action,setAction] = useState("Sign Up");
-  const handleClick = () => {
-    (action==="Sign Up")?setAction("Log In"):setAction("Sign Up");
-    console.log(action);
-  }
+  const [action,setAction] = useState("Log In");
+ 
 
   const url='/users/register'
   const url1='/login'
-<<<<<<< HEAD:frontend/src/local-module/SignUpLogin.js
-
-=======
->>>>>>> main:frontend/src/local-module/SignUpLogin.jsx
 
   const [formData, setFormData] = useState({
     email: '',
@@ -49,21 +42,13 @@ function SignUpLogin() {
       // navigate('/api/googleAuth/callback')
 
   };
-<<<<<<< HEAD:frontend/src/local-module/SignUpLogin.js
-
-=======
->>>>>>> main:frontend/src/local-module/SignUpLogin.jsx
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     console.log(formData);
-    if(action=="Sign Up"){
+    if(action==="Sign Up"){
     try {
-<<<<<<< HEAD:frontend/src/local-module/SignUpLogin.js
-      console.log("from user side")
-=======
       console.log("For SignIn")
->>>>>>> main:frontend/src/local-module/SignUpLogin.jsx
       console.log(formData)
       const response = await axios.post(url, formData);
       console.log("created");
@@ -85,33 +70,14 @@ function SignUpLogin() {
       alert("something went wrong")
     }
   }
-<<<<<<< HEAD:frontend/src/local-module/SignUpLogin.js
-  else{
-    try {
-      console.log("from admin side")
-      console.log(formData)
-      const response = await axios.post(url1, formData);
-      console.log("created");
-      console.log(response.data.path);
-      navigate(response.data.path, {state:{ data : response.data.data}})
-    } catch (error) {
-      alert("something went wrong")
-    }
-  }
-=======
->>>>>>> main:frontend/src/local-module/SignUpLogin.jsx
     // Add your form submission logic here
 
   };
 
 
-<<<<<<< HEAD:frontend/src/local-module/SignUpLogin.js
-
-=======
   const handleClick =async () => {
       (action==="Sign Up")?setAction("Log In"):setAction("Sign Up");
     }
->>>>>>> main:frontend/src/local-module/SignUpLogin.jsx
 
   return (
     <>
@@ -122,60 +88,82 @@ function SignUpLogin() {
           <div className="sunderline"></div>
         </div>
         
-        {action==="Sign Up"?<div className="sinput">
-<<<<<<< HEAD:frontend/src/local-module/SignUpLogin.jsx
-<<<<<<< HEAD:frontend/src/local-module/SignUpLogin.js
-          <input type="text" name="email" className="sinput_style" placeholder="email"  value={formData.email} onChange={handleChange}/>
-=======
-          <input type="email" name="email" className="sinput_style" placeholder="username"  value={formData.email} onChange={handleChange}/>
->>>>>>> main:frontend/src/local-module/SignUpLogin.jsx
-=======
-          <input type='email' required name="email" className="sinput_style" placeholder="email"  value={formData.email} onChange={handleChange}/>
->>>>>>> 385ab1203b1717b667890b6006e90f274e900e7f:frontend/src/local-module/SignUpLogin.js
-        </div>
-        :<></>}
-        {action==="Sign Up"?<div className="sinput">
-          <input type="text" name="fullName" className="sinput_style" placeholder="Full Name"  value={formData.fullName} onChange={handleChange}/>
-        </div>
-        :<></>}
+        <form onSubmit={handleSubmit}>
+          {action === "Sign Up" && (
+            <>
+              <div className="sinput">
+                <input
+                  type="email"
+                  required
+                  name="email"
+                  className="sinput_style"
+                  placeholder="Email"
+                  value={formData.email}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="sinput">
+                <input
+                  type="text"
+                  name="fullName"
+                  className="sinput_style"
+                  placeholder="Full Name"
+                  value={formData.fullName}
+                  onChange={handleChange}
+                />
+              </div>
+            </>
+          )}
 
+          <div className="sinput">
+            <input
+              type="username"
+              name="username"
+              className="sinput_style"
+              placeholder="Username"
+              value={formData.username}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="sinput">
+            <input
+              type="password"
+              name="password"
+              className="sinput_style"
+              placeholder="Password"
+              value={formData.password}
+              onChange={handleChange}
+            />
+            {action !== "Sign Up" && (
+              <div className="lostpassword">
+                {" "}
+                Lost Password?<a href="/forget">click here</a>
+              </div>
+            )}
+          </div>
+          <button className={action === "Sign Up" ? "signSubmit" : "logSubmit"} type="submit">
+            Submit
+          </button>
+        </form>
 
-         {/* we can add few icons of email password and user but i removed because i was unable to get the desired look in it. */}
-        
-        
-        <div className="sinput">
-          <input type="username" name="username" className="sinput_style"placeholder="username" value={formData.username} onChange={handleChange}/>
-        </div>
-        <div className="sinput">
-          <input type="password" name="password" className="sinput_style" placeholder="password" value={formData.password} onChange={handleChange}/>
-          {action==="Sign Up"?<></>:<div className="lostpassword">
-          {" "}
-          Lost Password?<a href="/forget">clickhere</a>
-        </div>}
-          
-        </div>
-        {/* embedding js in jsx for the desired layout. */}
-        <button className={action==="Sign Up"?"signSubmit":"logSubmit"} onClick={handleSubmit} >submit</button>
         <h3 className="pseudoClass">
-        <span className="or">or</span>
+          <span className="or">or</span>
         </h3>
-        {action==="Sign Up"?<div className="google-cont">
-<<<<<<< HEAD:frontend/src/local-module/SignUpLogin.js
-           <button className="google-auth-button" onClick={handleGoogle}>
-            <img src={google} alt="Google Logo" className="google-logo" />
-             Sign up with Google
-             </button> 
-=======
-           <button onClick={handleGoogle} className="google-auth-button">
-            {/* <img src={google} alt="Google Logo" className="google-logo"/> */}
-             Sign up with Google
-             </button>
->>>>>>> main:frontend/src/local-module/SignUpLogin.jsx
-             </div>:<></>}
+        
+        {action === "Sign Up" && (
+          <div className="google-cont">
+            <button className="google-auth-button" onClick={handleGoogle}>
+              Sign up with Google
+            </button>
+          </div>
+        )}
 
-        <div className="haveAccount">{action==="Sign Up"?"Already":"don\'t"} have an account?<span onClick={handleClick} >{" "}{ action==="Sign Up"?"Log In":"Sign Up"}</span></div>
+        <div className="haveAccount">
+          {action === "Sign Up" ? "Already" : "Don't"} have an account?
+          <span onClick={handleClick}>{" "}{action === "Sign Up" ? "Log In" : "Sign Up"}</span>
+        </div>
       </div>
-      </div>
+    </div>
     </>
   );
 }

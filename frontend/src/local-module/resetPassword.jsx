@@ -1,15 +1,11 @@
 // importing files needed for the sign up log in page.
 // import React from "react";
 import "../stylesheets/signUpLogin.css";
-<<<<<<< HEAD
-import React, { useState} from "react";
-=======
 import React, { useState } from "react";
->>>>>>> main
-import google from "../images/google.png";
+// import google from "../images/google.png";
 import axios from 'axios'
 // import navigate from 'navigate'
-import { Link, useNavigate , useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 function Reset() {
 
     let { token } = useParams();
@@ -39,10 +35,10 @@ function Reset() {
             alert("Password Reset Successfully")
             navigate('/Signin')
         }
-        else{
-        console.log("failure")
-        alert("Something Went Wrong");
-        navigate('/')
+        else {
+            console.log("failure")
+            alert("Something Went Wrong");
+            navigate('/')
         }
         // Add your form submission logic here
 

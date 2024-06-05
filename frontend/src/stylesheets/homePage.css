@@ -19,14 +19,18 @@
   
   .fourthSection {
     width: 100%;
-    height: 500px;
+    min-height: 600px;
     display: flex;
-    padding: 1px;
     padding-bottom: 100px;
-    color:white
+    color:white;
+    padding:1px;
+    justify-content: center;
+    align-items: center;
   }
   .left4 {
     flex: 1;
+    max-width: 50%;
+    
   }
   form {
     height: 100%;
@@ -53,13 +57,12 @@
   form > h2 {
     font-size: 3rem;
   }
-  .right4 {
-    flex: 1;
-  
-    /* background-image: url("../images/contactUs.jpg"); */
-    background-repeat: no-repeat;
-    background-position: center;
+
+  .error {
+    color: red;
+    font-size: 0.8em;
   }
+
   form > button {
     width: 100%;
     height: 40px;
