@@ -3,8 +3,8 @@ var passport = require('passport');
 var router = express.Router();
 var bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
-const eventCreate = require('../database/eventCreationData')
-process.env.KEY
+require("dotenv").config();
+const eventCreate = require('../Models/eventCreationData')
 // GET users listing
 router.post('/', async (req, res) => {
     try {

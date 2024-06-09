@@ -4,15 +4,15 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const cors = require('cors');
-const dotenv=require('dotenv')
-dotenv.config({ path: './.env' });
+
+require("dotenv").config();
 
 
 
 const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
+const signUpRouter = require('./routes/signUp');
 const loginRouter = require('./routes/login');
-const verifyRouter = require('./routes/verify');
+const verifyRouter = require('./routes/auth');
 const eventCreate = require('./routes/eventCreate')
 const logout = require('./routes/logout')
 const googleAuth = require('./api/googleAuth')
@@ -30,18 +30,14 @@ const session = require('cookie-session');
 const expressSession = require('express-session');
 const mongoose = require('mongoose');
 const passport = require('passport')
+const dbConnect=require("./config/database");
+dbConnect();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 
-async function main() {
-  await mongoose.connect('mongodb://127.0.0.1:27017/Avishkar');
-  console.log("Connected to data base")
-  // use `await mongoose.connect('mongodb://user:password@127.0.0.1:27017/test');` if your database has auth enabled
-}
-main();
 
 
 app.use(expressSession({
@@ -63,10 +59,10 @@ passport.deserializeUser(function(user,done){
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors({
-  origin:'http://localhost:3000',
+  origin:process.env.REACT_APP_BASE_URL,
   credentials:true,
   allowedHeaders:'*',
   methods:"GET,POST,PUT,DELETE"
@@ -75,9 +71,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/login',loginRouter);
-app.use('/verify',verifyRouter);
+app.use('/user', signUpRouter);
+app.use('/user',loginRouter);
+app.use('/',verifyRouter);
 app.use('/createEvent',eventCreate)
 app.use('/logout',logout);
 app.use('/api',googleAuth);

@@ -1,13 +1,12 @@
 const mongoose = require('mongoose')
 
 const EventSchema = new mongoose.Schema({
-    createrId : {
-        type: String,
-        required:true
+    creater : {
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"user"
     },
     eventName:{
         type:String,
-        // unique:true,w
         required:true
     },
     eventDate:{
@@ -30,6 +29,10 @@ const EventSchema = new mongoose.Schema({
         type:Date,
         required:true,
         default:Date.now()
+    },
+    userEnrolled:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"user"   
     }
 });
 

@@ -9,7 +9,7 @@ const callbackURL = process.env.CALLBACK_URL;
 
 var GoogleStrategy = require( 'passport-google-oauth2' ).Strategy;
 
-const userdb = require('../database/userData');
+const userdb = require('../Models/userData');
 const { json } = require('body-parser');
 
 passport.use(new GoogleStrategy({
