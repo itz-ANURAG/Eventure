@@ -2,7 +2,9 @@ var express = require('express');
 var passport = require('passport');
 var router = express.Router();
 const jwt = require('jsonwebtoken')
-const eventCreate = require('../database/eventRegister')
+const eventCreate = require('../Models/eventRegister')
+require("dotenv").config();
+
 
 /* GET users listing. */
 router.get('/', async (req, res) => {

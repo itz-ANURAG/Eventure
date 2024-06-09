@@ -11,8 +11,8 @@ import { Link, useNavigate } from 'react-router-dom';
 function SignUpLogin() {
   // using useState hook for creating desired logIn signUp effect.
   const [action,setAction] = useState("Sign Up");
-  const url='/users/register'
-  const url1='/login'
+  const url='/user/signUp'
+  const url1='/user/login'
   
   const [formData, setFormData] = useState({
     email: '',
@@ -86,49 +86,83 @@ function SignUpLogin() {
           <div className="sunderline"></div>
         </div>
         
-        {action==="Sign Up"?<div className="sinput">
-          <input type="email" name="email" className="sinput_style" placeholder="email"  value={formData.email} onChange={handleChange}/>
-        </div>
-        :<></>}
-        {action==="Sign Up"?<div className="sinput">
-          <input type="text" name="fullName" className="sinput_style" placeholder="Full Name"  value={formData.fullName} onChange={handleChange}/>
-        </div>
-        :<></>}
+        <form onSubmit={handleSubmit}>
+      {action === "Sign Up" && (
+        <>
+          <div className="sinput">
+            <input
+              type="email"
+              name="email"
+              className="sinput_style"
+              placeholder="email"
+              value={formData.email}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="sinput">
+            <input
+              type="text"
+              name="fullName"
+              className="sinput_style"
+              placeholder="FullName"
+              value={formData.fullName}
+              onChange={handleChange}
+            />
+          </div>
+        </>
+      )}
 
+      <div className="sinput">
+        <input
+          type="text"
+          name="username"
+          className="sinput_style"
+          placeholder="username"
+          value={formData.username}
+          onChange={handleChange}
+        />
+      </div>
 
-         {/* we can add few icons of email password and user but i removed because i was unable to get the desired look in it. */}
-        
-        
-        <div className="sinput">
-          <input type="username" name="username" className="sinput_style"placeholder="username" value={formData.username} onChange={handleChange}/>
-        </div>
-        <div className="sinput">
-          <input type="password" name="password" className="sinput_style" placeholder="password" value={formData.password} onChange={handleChange}/>
-          {action==="Sign Up"?<></>:<div className="lostpassword">
-          {" "}
-          Lost Password?<span>{" "}clickhere</span>
-        </div>}
-          
-        </div>
-        {/* embedding js in jsx for the desired layout. */}
-        <button className={action==="Sign Up"?"signSubmit":"logSubmit"} onClick={handleSubmit} >submit</button>
-        <h3 className="pseudoClass">
-          <span className="or">or</span>
-        </h3>
-        
-        {action === "Sign Up" && (
-          <div className="google-cont">
-            <button className="google-auth-button" onClick={handleGoogle}>
-              Sign up with Google
-            </button>
+      <div className="sinput">
+        <input
+          type="password"
+          name="password"
+          className="sinput_style"
+          placeholder="password"
+          value={formData.password}
+          onChange={handleChange}
+        />
+        {action !== "Sign Up" && (
+          <div className="lostpassword">
+            Lost Password? <span>click here</span>
           </div>
         )}
-
-        <div className="haveAccount">
-          {action === "Sign Up" ? "Already" : "Don't"} have an account?
-          <span onClick={handleClick}>{" "}{action === "Sign Up" ? "Log In" : "Sign Up"}</span>
-        </div>
       </div>
+
+      <button type="submit" className={action === "Sign Up" ? "signSubmit" : "logSubmit"}>
+        Submit
+      </button>
+      
+      <h3 className="pseudoClass">
+        <span className="or">or</span>
+      </h3>
+      
+      {action === "Sign Up" && (
+        <div className="google-cont">
+          <button type="button" className="google-auth-button" onClick={handleGoogle}>
+            Sign up with Google
+          </button>
+        </div>
+      )}
+
+      <div className="haveAccount">
+        {action === "Sign Up" ? "Already" : "Don't"} have an account?
+        <span onClick={handleClick}>
+          {" "}{action === "Sign Up" ? "Log In" : "Sign Up"}
+        </span>
+      </div>
+    </form>
+    </div>
     </div>
     </>
   );

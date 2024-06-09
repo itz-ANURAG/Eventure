@@ -3,8 +3,10 @@ var passport = require('passport');
 var router = express.Router();
 var bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
-const eventRegister = require('../database/eventRegister')
+const eventRegister = require('../Models/eventRegister')
 const nodemailer = require('nodemailer');
+require("dotenv").config();
+
 /* GET users listing. */
 router.post('/', async (req, res) => {
     try {
@@ -46,12 +48,16 @@ router.post('/', async (req, res) => {
             console.log("registering");
             await newUser.save();
             console.log("model save")
+
+           
+    // <----------------------------------- Node Mailer Code ------------------------------------------>        
+/*
             try {
                 var transporter = nodemailer.createTransport({
                     service: 'gmail',
                     auth: {
                         user: "aryankesarwani21022003@gmail.com",
-                        pass: "jtuw acdk nutl qjts"
+                        pass: "dummy"
                     }
                 });
         
@@ -76,6 +82,8 @@ router.post('/', async (req, res) => {
             } catch (error) {
                 console.log(error)
             }
+
+*/            
             return res.send({status:true, message: "Registered Successfully" });
         }
     } catch (error) {
