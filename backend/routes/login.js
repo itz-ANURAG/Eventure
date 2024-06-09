@@ -11,25 +11,25 @@ const AdminModel = require('../Models/adminModel');
 router.post('/login',async (req, res) => {
     try{
          const {
-            email,
+            username,
             password
          }=req.body;
 
-         if(!email || !password){
-            return res.status(403).json({
+         if(!username || !password){
+            return res.status(200).json({
                 success:false,
                 message:"All fields are required try again",
             });
          }
          
     console.log("login page")
-    console.log(req.body)
-    const user = await UserModel.findOne({email});
+    // console.log(req.body)
+    const user = await UserModel.findOne({username});
     if(!user){
         try {
-            const admin = await AdminModel.findOne({email});
+            const admin = await AdminModel.findOne({username});
             if(!admin){
-                return res.status(401).json({
+                return res.status(200).json({
                     success:false,
                     message:"Not a Admin plz fill correct details"
                 })
@@ -44,8 +44,8 @@ router.post('/login',async (req, res) => {
                 {expiresIn:'2h'}
             );
               
-            admin=admin.toObject();
-            admin.password=undefined;
+            // admin=admin.toObject();
+            // admin.password=undefined;
 
            res.cookie('token',token,{httpOnly:true,maxAge:3600000})
            return res.status(200).json({
@@ -53,12 +53,12 @@ router.post('/login',async (req, res) => {
             message:"admin logged in successfully",
             token,
             isAdmin:true,
-            path:"my-profile",
+            path:"/my-profile",
             data:admin
            })
             }
             else{
-              return res.status(403).json({
+              return res.status(200).json({
                 success:false,
                 message:"Not a Admin plz password mismatch",
               })
@@ -74,22 +74,22 @@ router.post('/login',async (req, res) => {
     const validPassword = bcrypt.compare(password,user.password);
     if(!validPassword){
         console.log("wrong Password")
-        return res.status(401).json({
+        return res.status(200).json({
             success:false,
             message:"wrong user password plz enter valid password"
         })
     }
-    console.log(user)
+    // console.log(user)
     const token = jwt.sign({
         username:user.username,
         id:user._id,
         email:user.email,
-        role:"normal"
+        role:true
     },process.env.JWT_SECRET,{expiresIn:'1h'});
-
-     user=user.toObject();
-     user.role=normal;
-     user.password=undefined;
+    // console.log(token)
+    //  user=user.toObject();
+    //  user.role=normal;
+    //  user.password=undefined;
 
     res.cookie('token',token,{httpOnly:true,maxAge:3600000})
     // send({ data:user , token : token, path:'/my-profile',isAdmin:false});
@@ -98,13 +98,13 @@ router.post('/login',async (req, res) => {
         message:"user logged in successfully",
         token,
         user,
-        path:"my-profile",
+        path:"/my-profile",
         isAdmin:false,
     })
 }
 catch(error){
     console.log(error);
-    return res.status(500).json({
+    return res.status(200).json({
         success:false,
         message:"login failure plz try again"
     })

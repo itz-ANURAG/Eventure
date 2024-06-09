@@ -48,12 +48,16 @@ router.post('/', async (req, res) => {
             console.log("registering");
             await newUser.save();
             console.log("model save")
+
+           
+    // <----------------------------------- Node Mailer Code ------------------------------------------>        
+/*
             try {
                 var transporter = nodemailer.createTransport({
                     service: 'gmail',
                     auth: {
                         user: "aryankesarwani21022003@gmail.com",
-                        pass: "jtuw acdk nutl qjts"
+                        pass: "dummy"
                     }
                 });
         
@@ -78,6 +82,8 @@ router.post('/', async (req, res) => {
             } catch (error) {
                 console.log(error)
             }
+
+*/            
             return res.send({status:true, message: "Registered Successfully" });
         }
     } catch (error) {

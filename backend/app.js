@@ -22,6 +22,7 @@ const myEventAdmin = require('./routes/myEventAdmin')
 const eventData = require('./routes/eventdata')
 const eventRegister = require('./routes/eventRegisterUser')
 const myEventUser = require('./routes/myEventUser')
+// const verifyRouter = require('./routes/verify');
 
 
 const app = express();
@@ -74,6 +75,7 @@ app.use('/', indexRouter);
 app.use('/user', signUpRouter);
 app.use('/user',loginRouter);
 app.use('/',verifyRouter);
+// app.use('/verify',verifyRouter);
 app.use('/createEvent',eventCreate)
 app.use('/logout',logout);
 app.use('/api',googleAuth);
@@ -83,6 +85,8 @@ app.use('/myEventAdmin',myEventAdmin)
 app.use('/eventdata',eventData)
 app.use('/eventRegister',eventRegister)
 app.use('/myEventUser',myEventUser)
+app.use('/verify',verifyRouter);
+
 
 
 // catch 404 and forward to error handler

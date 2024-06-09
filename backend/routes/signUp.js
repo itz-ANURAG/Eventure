@@ -41,7 +41,7 @@ router.post("/signUp",async (req, res) => {
   // creating entry in db
   const user=new UserModel({
     username,
-    fullName,
+    fullname:fullName,
     email,
     password:hashedPassword, 
   }) 
