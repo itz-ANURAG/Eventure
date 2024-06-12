@@ -14,6 +14,7 @@ const signUpRouter = require('./routes/signUp');
 const loginRouter = require('./routes/login');
 const verifyRouter = require('./routes/auth');
 const eventCreate = require('./routes/eventCreate')
+const getAllEvents=require('./routes/getAllEvents')
 const logout = require('./routes/logout')
 const googleAuth = require('./api/googleAuth')
 const forget = require('./routes/forgetPassword')
@@ -77,6 +78,7 @@ app.use('/user',loginRouter);
 app.use('/',verifyRouter);
 // app.use('/verify',verifyRouter);
 app.use('/createEvent',eventCreate)
+app.use('/getAllEvents',getAllEvents)
 app.use('/logout',logout);
 app.use('/api',googleAuth);
 app.use('/forgetPassword',forget);

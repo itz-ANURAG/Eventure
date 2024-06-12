@@ -17,7 +17,7 @@ const EventSchema = new mongoose.Schema({
         type:String,
         required:true
     },
-    eventDiscription:{
+    eventDescription:{
         type:String,
         required:true
     },
@@ -27,8 +27,11 @@ const EventSchema = new mongoose.Schema({
     },
     createDate:{
         type:Date,
-        required:true,
+        // required:true,
         default:Date.now()
+    },
+    eventBanner:{
+        type:String,
     },
     userEnrolled:{
         type:mongoose.Schema.Types.ObjectId,
