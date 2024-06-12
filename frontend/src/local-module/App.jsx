@@ -5,7 +5,8 @@ import SignUpLogin from './SignUpLogin';
 import Profile from './profile/profile.jsx';
 import Team from "./Team.jsx"
 import {Routes,Route} from 'react-router-dom';
-import CreateEvent from './profile/CreateEvent.jsx';
+// import CreateEvent from './profile/CreateEvent.jsx';
+import CreateEventPage from './profile/CreateEventPage.jsx';
 import MyEvent from './profile/MyEvent.jsx';
 import ViewProfile from './profile/ViewProfile.jsx';
 import Refund from './profile/Refund.jsx';
@@ -29,7 +30,7 @@ export default function App() {
             <Route index element={<ViewProfile/>}/>
             <Route path='view-profile' element={<ViewProfile/>}></Route>
             <Route path='myEvents' element={<MyEvent/>}></Route>
-            <Route path='createEvent' element={<CreateEvent/>}></Route>
+            <Route path='createEventPage' element={<CreateEventPage/>}></Route>
             <Route path='refund-page' element={<Refund/>}></Route>
             <Route path=' ' element={<HomePage/>}/>
          </Route>

@@ -55,7 +55,7 @@ function SignUpLogin() {
     try {
       console.log("For SignIn")
       console.log(formData)
-      const response = await axios.post(process.env.SIGN_UP_URL, formData);
+      const response = await axios.post('/user/signUp', formData);
       console.log("created");
       console.log(response);
 
@@ -68,7 +68,7 @@ function SignUpLogin() {
     try {
       console.log("For Login")
       console.log(formData)
-      const response = await axios.post(process.env.LOG_IN_URL, formData);
+      const response = await axios.post('/user/login', formData);
       console.log("created");
       console.log(response.data.path);
       navigate(response.data.path)
@@ -88,10 +88,10 @@ function SignUpLogin() {
         return false;
       }
     }
-    if (!validatePassword(formData.password)) {
-      alert('Password must be at least 6 characters long and include a mix of upper and lower case letters, digits, and special characters.');
-      return false;
-    }
+    // if (!validatePassword(formData.password)) {
+    //   alert('Password must be at least 6 characters long and include a mix of upper and lower case letters, digits, and special characters.');
+    //   return false;
+    // }
     return true;
   };
 
@@ -100,10 +100,10 @@ function SignUpLogin() {
     return emailRegex.test(email);
   };
 
-  const validatePassword = (password) => {
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
-    return passwordRegex.test(password);
-  };
+  // const validatePassword = (password) => {
+  //   const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
+  //   return passwordRegex.test(password);
+  // };
  
 
 
