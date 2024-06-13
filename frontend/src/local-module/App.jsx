@@ -12,7 +12,11 @@ import ViewProfile from './profile/ViewProfile.jsx';
 import Refund from './profile/Refund.jsx';
 import QWCevent from "./Events/QWCevent.jsx";
 import EventsDescription from "./Events/EventsDescripition.jsx";
+
 import AllEvents from './AllEvents.jsx';
+
+import NotFound from "./NotFound"
+
 // import RegisterForm from "./Events/RegisterForm.jsx";
 
 
@@ -38,7 +42,7 @@ export default function App() {
          </Route>
          <Route path='events-page' element={<QWCevent/>}/>
          <Route path='event-des' element={<EventsDescription/>}/>  
-         {/* <Route path='*' element={}/> */}
+         <Route path='*' element={<NotFound/>}/>
        </Routes>   
   </>
   )
