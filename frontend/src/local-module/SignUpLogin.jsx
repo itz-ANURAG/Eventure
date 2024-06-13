@@ -15,7 +15,7 @@ function SignUpLogin() {
  
   const {token}=useSelector((state)=>state.auth);
   const {user}=useSelector((state)=>state.profile);
-  const dispatch=useDispatch();
+  // const dispatch=useDispatch();
   const [action,setAction] = useState("Sign Up");
   
   const [formData, setFormData] = useState({
@@ -55,20 +55,19 @@ function SignUpLogin() {
     try {
       console.log("For SignIn")
       console.log(formData)
-      const response = await axios.post(process.env.SIGN_UP_URL, formData);
+      const response = await axios.post("/user/signUp", formData);
       console.log("created");
       console.log(response);
-
       navigate(response.data.path)
     } catch (error) {
-      alert("something went wrong")
+      alert(error);
     }
   }
   else{
     try {
       console.log("For Login")
       console.log(formData)
-      const response = await axios.post(process.env.LOG_IN_URL, formData);
+      const response = await axios.post("/user/login", formData);
       console.log("created");
       console.log(response.data.path);
       navigate(response.data.path)
