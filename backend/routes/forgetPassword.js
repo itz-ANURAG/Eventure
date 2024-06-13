@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const userdb = require('../database/userData')
+const userdb = require('../Models/userData')
 var nodemailer = require('nodemailer');
 const jwt=require('jsonwebtoken')
-const dotenv=require('dotenv').config();
+require('dotenv').config();
 const _email= process.env.GOOGLE_MAIL;
 const _password= process.env.GOOGLE_PASSWORD;
 router.post('/', async (req, res) => {
@@ -12,18 +12,18 @@ router.post('/', async (req, res) => {
     try {
         const user = await userdb.findOne({ email: req.body.email })
         if (!user) {
-            res.json({ message: "Not registerde user", status: false });
+           return res.status(403).json({ message: "not a registered user", success: false });
         }
         console.log(user);
         console.log(req.body.email)
         const token=jwt.sign({
             id:user._id,
-        },process.env.KEY,{expiresIn:'1h'});
+        },process.env.JWT_SECRET,{expiresIn:'1h'});
         console.log("Token ", token);
         var transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
-                user: "aryankesarwani21022003@gmail.com",
+                user:process.env.GOOGLE_MAIL ,
                 pass: "jtuw acdk nutl qjts"
             }
         });
@@ -31,10 +31,10 @@ router.post('/', async (req, res) => {
         console.log("transporter",transporter)
 
         var mailOptions = {
-            from: "aryankesarwani21022003@gmail.com",
+            from: process.env.GOOGLE_MAIL,
             to: req.body.email,
             subject: 'Reset Password',
-            text: `http://localhost:3000/forget-password/${token}`
+            text: `${process.env.REACT_APP_BASE_URL}/forget-password/${token}`
         };
 
         console.log("mailOption",mailOptions)
@@ -42,14 +42,17 @@ router.post('/', async (req, res) => {
         transporter.sendMail(mailOptions, function (error, info) {
             if (error) {
                 console.log("error",error);
-                return res.json({status:false,massage:"Error"});
+                return res.status(500).json({success:false,massage:"Error in sending mail"});
             } else {
                 console.log("success");
-                return res.json({status:true,massage:"Succesfully reset"});
+                return res.status(200).json({success:true,massage:"password recovered Succesfully"});
             }
         });
     } catch (error) {
-        return res.json(error)
+        return res.status(500).json({
+            success:false,
+            message:"can`t recover password"
+        })
     }
 })
 

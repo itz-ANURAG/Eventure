@@ -1,198 +1,133 @@
-import React, { useState, useEffect } from 'react'
-import "../../stylesheets/profile.css";
-import { Link } from 'react-router-dom'
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Footer from "../Footer.jsx";
 import Navbar from "../Navbar.jsx";
 import ViewProfile from "./ViewProfile.jsx";
 import MyEvent from "./MyEvent.jsx";
-import CreateEvent from "../CreateEvent.jsx";
-
+// import CreateEvent from "./CreateEvent.jsx";
+import CreateEventPage from './CreateEventPage.jsx';
+import RegistrationForm from '../Events/RegisterForm.jsx';
 import Sidebar from "./sideBar.jsx";
-
-
-
-
 import Layout3 from '../../backgroundLayout/Layout3.jsx';
 
-function Profile  () {
+function Profile() {
+    const [selected, setSelected] = useState('view-profile');
+    const [eventData, setEventData] = useState([]);
+    const [userData, setUserData] = useState({});
+    const [isOpen, setIsOpen] = useState(false);
+    const [currentEvent, setCurrentEvent] = useState(null);
+    const navigate = useNavigate();
 
+    const handleChange1 = (value) => {
+        setSelected(value);
+    };
 
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const verify = await axios.get('/verify');
+                if (!verify.data.success) {
+                    alert("Login First");
+                    navigate('/Signin');
+                } else {
+                    setUserData(verify.data.data);
+                }
+            } catch (error) {
+                alert("something went wrong");
+            }
+        };
+        fetchData();
+    }, [navigate]);
 
-// Your code 
- const [selected,setSelected]=useState('view-profile');
- const handleChange1=(value)=>{
-      setSelected(`${value}`)
+    useEffect(() => {
+        const EventData = async () => {
+            try {
+                const response = await axios.get('/eventdata');
+                setEventData(response.data.data);
+            } catch (error) {
+                alert("something went wrong");
+            }
+        };
+        EventData();
+    }, []);
 
- }
-
-// <----------------------------------Aryan Code------------------------------------------------->
-
-
-
-axios.defaults.withCredentials = true;
-const navigate = useNavigate();
-const [eventData , setEventData ]= useState([]);
-const [ data , setdata ] = useState([]);
-const [ isOpen , setIsOpen ] = useState(false);
-const [ eData , seteData] = useState([]);
-// Routr protection start here
-
-useEffect(() => {
-  let isMounted = true; // Flag to track whether the component is mounted
-
-  const fetchData = async () => {
-    try {
-      const verify = await axios.get('/verify');
-      console.log(verify.data)
-      if (isMounted && !verify.data.success) {
-        alert("Login First");
-        navigate('/Signin');
-      }
-      setdata(verify.data.data)
-      console.log(verify.data.data);
-    } catch (error) {
-      alert("something went wrong");
-    }
-  };
-
-  fetchData(); // Call the fetchData function
-
-
-
-
-  // Cleanup function to set isMounted to false when the component unmounts
-  return () => {
-    isMounted = false;
-  };
-}, [navigate]); // Adding navigate as a dependency to useEffect
-
-
-
-// useEffect(() => {
-//   let isMounted = true; // Flag to track whether the component is mounted
-
-//   const EventData = async () => {
-//     try {
-//       const verify = await axios.get('/eventdata');
-//       // console.log("verify response ", verify.data.data);
-//       setEventData(verify.data.data);
-//     } catch (error) {
-//       alert("something went wrong");
-//     }
-//   };
-  
-//   EventData(); // Call the fetchData function
-//   // console.log("Event Data",eventData);
-//   // console.log("User Data",data)
-
-
-
-
-//   // Cleanup function to set isMounted to false when the component unmounts
-//   return () => {
-//     isMounted = false;
-//   };
-// }, [navigate]);
-
-// Routr protection end here
-
-
-const [toggle, SetToggle] = useState(false);
-
-const handleLogout = async (event) => {
-  event.preventDefault();
-  try {
-    console.log("trying to logout")
-    const response = await axios.get('/logout');
-    console.log("logout");
-    navigate('/')
-  } catch (error) {
-    alert("something went wrong")
-  }
-
-};
-
-
-const [formData, setFormData] = useState({
-  eventName: '',
-  eventDate: '',
-  eventTime: '',
-  eventId:'',
-  userId: '',
-  userName: '',
-  userEmail:'',
-  phoneNo:''
-});
-
-const handleRegister = (event) => {
-  //  setEventId(event._id);
-  setFormData({
-    userId:data._id,
-    eventDate:event.eventDate,
-    eventName:event.eventName,
-    eventTime:event.eventTime,
-    eventId:event._id
-  })
-   setIsOpen(true);
-}
-
-const handleChange = (event) => {
-  const { name, value } = event.target;
-  // Handle form field changes
-  setFormData((prevData) => ({
-    ...prevData,
-    [name]: value,
-  }));
-};
-
-const handleSubmitForm = () => {
-  console.log("formData",formData);
-  setIsOpen(false);
-}
-
-
-
-
-
-// <-----------------------------------------Aryan Code--------------------------------------------->
-
-
-  return (
-    <>
-    <Layout3>
-    <Navbar/>
-    <div className='content-container'>
-    <div className="dash-sidebar h-screen">
-
-      <Sidebar className="sidebar" choose={handleChange1} />
-    </div>
-    <div className='main-content'>
-
-   
-       
-
-        {
-          selected === 'view-profile'?
-         <ViewProfile className="view-profile" />
-         :
-          selected === 'myEvents'?
-           <MyEvent />
-          :
-           <CreateEvent /> 
+    const handleLogout = async (event) => {
+        event.preventDefault();
+        try {
+            await axios.get('/logout');
+            navigate('/');
+        } catch (error) {
+            alert("something went wrong");
         }
-      </div>
-    </div>
+    };
 
-    <Footer className="footer"/>
+    const handleRegister = (event) => {
+        setCurrentEvent(event);
+        setIsOpen(true);
+    };
 
-   
-    </Layout3>
 
-     </>
-  )
+    const handleIsOpen = (value) => {
+        setIsOpen(value);
+    };
+
+    return (
+        <>
+            {isOpen ? (
+                <RegistrationForm
+                    event={currentEvent}
+                    userData={userData}
+                    setOpen={handleIsOpen}
+                    // onSubmit={handleSubmitForm}
+                />
+            ) : (
+                <Layout3>
+                    <Navbar />
+                    <div className='flex h-screen'>
+                        {/* <div className="dash-sidebar h-screen"> */}
+                            <Sidebar className="sidebar" choose={handleChange1} />
+                        {/* </div> */}
+                        <div className="flex-1 p-6 overflow-auto">
+                            {/* {eventData == null ? (
+                                <h1>Loading......</h1>
+                            ) : (
+                                <div className="flex justify-center mt-6 text-white">
+                                    <table className="-collapse bg-gradient-to-br from-red-950 to-black rounded-3xl">
+                                        <thead>
+                                            <tr>
+                                                <th className="p-4">Sr No.</th>
+                                                <th className="p-4">Event Name</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {eventData.map((data, i) => (
+                                                <tr key={i}>
+                                                    <td className="p-4">{i + 1}</td>
+                                                    <td className="p-4">{data.eventName}</td>
+                                                    <td className="p-4">
+                                                        <button onClick={() => handleRegister(data)}>Register</button>
+                                                    </td>
+                                                </tr>
+                                            ))}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            )} */}
+                            {selected === 'view-profile' ? (
+                                <ViewProfile email={userData.email} username={userData.username} />
+                            ) : selected === 'myEvents' ? (
+                                <MyEvent />
+                            ) : (
+                                <CreateEventPage/>
+                            )}
+                        </div>
+                    </div>
+                    <Footer className="footer" />
+                </Layout3>
+            )}
+        </>
+    );
 }
 
-export default Profile
-
+export default Profile;

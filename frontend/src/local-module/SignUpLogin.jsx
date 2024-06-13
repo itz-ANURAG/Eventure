@@ -6,23 +6,23 @@ import {useState} from "react";
 import axios from 'axios'
 // import navigate from 'navigate'
 import { Link, useNavigate } from 'react-router-dom';
-
+import {useSelector,useDispatch} from "react-redux";
+import env from "react-dotenv";
 
 function SignUpLogin() {
   // using useState hook for creating desired logIn signUp effect.
-  const [action,setAction] = useState("Log In");
  
-
-  const url='/users/register'
-  const url1='/login'
-
+  const {token}=useSelector((state)=>state.auth);
+  const {user}=useSelector((state)=>state.profile);
+  // const dispatch=useDispatch();
+  const [action,setAction] = useState("Sign Up");
+  
   const [formData, setFormData] = useState({
     email: '',
     username: '',
     fullName: '',
     password: '',
   });
-  
   // writing rquired js for the handling onClick event.
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -45,12 +45,27 @@ function SignUpLogin() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    if (validateForm()) {
+      // Proceed with form submission
     console.log(formData);
     if(action==="Sign Up"){
     try {
       console.log("For SignIn")
       console.log(formData)
-      const response = await axios.post(url, formData);
+      const response = await axios.post(env.SIGN_UP_URL, formData);
+      console.log("created");
+      console.log(response);
+      navigate(response.data.path)
+    } catch (error) {
+      alert(error);
+    }
+  }
+  else{
+    try {
+      console.log("For Login")
+      console.log(formData)
+      // console.log(process.env.LOG_IN_URL)
+      const response = await axios.post(env.LOG_IN_URL, formData);
       console.log("created");
       console.log(response.data.path);
       navigate(response.data.path)
@@ -58,21 +73,37 @@ function SignUpLogin() {
       alert("something went wrong")
     }
   }
-  else{
-    try {
-      console.log("For Login")
-      console.log(formData)
-      const response = await axios.post(url1, formData);
-      console.log("created");
-      console.log(response.data.path);
-      navigate(response.data.path, {state:{ data : response.data.data}})
-    } catch (error) {
-      alert("something went wrong")
-    }
-  }
     // Add your form submission logic here
 
   };
+}
+
+  const validateForm = () => {
+    if (action === 'Sign Up') {
+      if (!validateEmail(formData.email)) {
+        alert('Please enter a valid email address.');
+        return false;
+      }
+    }
+    // if (!validatePassword(formData.password)) {
+    //   alert('Password must be at least 6 characters long and include a mix of upper and lower case letters, digits, and special characters.');
+    //   return false;
+    // }
+    return true;
+  };
+
+  const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  // const validatePassword = (password) => {
+  //   const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
+  //   return passwordRegex.test(password);
+  // };
+ 
+
+
 
 
   const handleClick =async () => {
@@ -89,80 +120,86 @@ function SignUpLogin() {
         </div>
         
         <form onSubmit={handleSubmit}>
-          {action === "Sign Up" && (
-            <>
-              <div className="sinput">
-                <input
-                  type="email"
-                  required
-                  name="email"
-                  className="sinput_style"
-                  placeholder="Email"
-                  value={formData.email}
-                  onChange={handleChange}
-                />
-              </div>
-              <div className="sinput">
-                <input
-                  type="text"
-                  name="fullName"
-                  className="sinput_style"
-                  placeholder="Full Name"
-                  value={formData.fullName}
-                  onChange={handleChange}
-                />
-              </div>
-            </>
-          )}
-
+      {action === "Sign Up" && (
+        <>
           <div className="sinput">
             <input
-              type="username"
-              name="username"
+              type="email"
+              name="email"
               className="sinput_style"
-              placeholder="Username"
-              value={formData.username}
+              placeholder="email"
+              value={formData.email}
               onChange={handleChange}
+              required
             />
           </div>
           <div className="sinput">
             <input
-              type="password"
-              name="password"
+              type="text"
+              name="fullName"
               className="sinput_style"
-              placeholder="Password"
-              value={formData.password}
+              placeholder="FullName"
+              value={formData.fullName}
               onChange={handleChange}
+              required
             />
-            {action !== "Sign Up" && (
-              <div className="lostpassword">
-                {" "}
-                Lost Password?<a href="/forget">click here</a>
-              </div>
-            )}
           </div>
-          <button className={action === "Sign Up" ? "signSubmit" : "logSubmit"} type="submit">
-            Submit
-          </button>
-        </form>
+        </>
+      )}
 
-        <h3 className="pseudoClass">
-          <span className="or">or</span>
-        </h3>
-        
-        {action === "Sign Up" && (
-          <div className="google-cont">
-            <button className="google-auth-button" onClick={handleGoogle}>
-              Sign up with Google
-            </button>
+      <div className="sinput">
+        <input
+          type="text"
+          name="username"
+          className="sinput_style"
+          placeholder="username"
+          value={formData.username}
+          onChange={handleChange}
+          required
+        />
+      </div>
+
+      <div className="sinput">
+        <input
+          type="password"
+          name="password"
+          className="sinput_style"
+          placeholder="password"
+          value={formData.password}
+          onChange={handleChange}
+          required
+        />
+        {action !== "Sign Up" && (
+          <div className="lostpassword">
+            Lost Password? <span>click here</span>
           </div>
         )}
-
-        <div className="haveAccount">
-          {action === "Sign Up" ? "Already" : "Don't"} have an account?
-          <span onClick={handleClick}>{" "}{action === "Sign Up" ? "Log In" : "Sign Up"}</span>
-        </div>
       </div>
+
+      <button type="submit" className={action === "Sign Up" ? "signSubmit" : "logSubmit"}>
+        Submit
+      </button>
+      
+      <h3 className="pseudoClass">
+        <span className="or">or</span>
+      </h3>
+      
+      {action === "Sign Up" && (
+        <div className="google-cont">
+          <button type="button" className="google-auth-button" onClick={handleGoogle}>
+            Sign up with Google
+          </button>
+        </div>
+      )}
+
+      <div className="haveAccount">
+        {action === "Sign Up" ? "Already" : "Don't"} have an account?
+        <span onClick={handleClick}>
+          {" "}{action === "Sign Up" ? "Log In" : "Sign Up"}
+        </span>
+      </div>
+    </form>
+    </div>
     </div>
     </>
   );

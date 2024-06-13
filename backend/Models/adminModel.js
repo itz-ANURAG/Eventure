@@ -14,7 +14,17 @@ const adminModel = new mongoose.Schema({
         type:String,
         required:true,
         unique:true
-    }
+    },
+    eventCreated:[{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"eventCreate",
+        default:{}
+    }],
+    eventRegistered:[{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"eventCreate",
+        default:{}
+    }],
 }) 
 
 

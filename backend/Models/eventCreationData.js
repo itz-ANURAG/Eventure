@@ -1,13 +1,12 @@
 const mongoose = require('mongoose')
 
 const EventSchema = new mongoose.Schema({
-    createrId : {
-        type: String,
-        required:true
+    creater : {
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"user"
     },
     eventName:{
         type:String,
-        // unique:true,w
         required:true
     },
     eventDate:{
@@ -18,7 +17,7 @@ const EventSchema = new mongoose.Schema({
         type:String,
         required:true
     },
-    eventDiscription:{
+    eventDescription:{
         type:String,
         required:true
     },
@@ -28,9 +27,13 @@ const EventSchema = new mongoose.Schema({
     },
     createDate:{
         type:Date,
-        required:true,
+        // required:true,
         default:Date.now()
-    }
+    },
+    userEnrolled:[{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"user"   
+    }]
 });
 
 const eventCreate = mongoose.model('eventCreate',EventSchema);

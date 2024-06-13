@@ -2,7 +2,8 @@ var express = require('express');
 var passport = require('passport');
 var router = express.Router();
 const jwt = require('jsonwebtoken')
-const eventCreate = require('../database/eventCreationData')
+require("dotenv").config();
+const eventCreate = require('../Models/eventCreationData')
 
 // To Send Whole Running Event to Client Side
 router.get('/', async (req, res) => {

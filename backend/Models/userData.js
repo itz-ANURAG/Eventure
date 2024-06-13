@@ -19,10 +19,22 @@ const UserSchema = new mongoose.Schema({
     fullname: {
         type: String,
     },
+    eventCreated:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"eventCreate"
+    },
+    eventRegistered:[{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"eventCreate",
+    }],
     googleId:{
         type:String,
-    } 
-});
+    },
+},
+{
+    strictPopulate: false
+} 
+);
 
 const User = mongoose.model('user', UserSchema);
 
