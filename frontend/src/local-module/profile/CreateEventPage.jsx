@@ -103,7 +103,6 @@ const CreateEventPage = () => {
                         value={formData.eventBanner} 
                         onChange={handleChange} 
                         className="w-full px-3 py-2 text-red-700 bg-gray-700 border border-red-500 rounded focus:outline-none focus:border-red-400" 
-                        required 
                     />
                 </div>
                 <button 
