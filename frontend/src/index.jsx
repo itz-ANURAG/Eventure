@@ -7,7 +7,10 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider} from "react-redux";
 import rootReducer from "./reducer/combineReducer";
 import {configureStore} from "@reduxjs/toolkit"
-import {Toaster} from "react-hot-toast";
+// import {Toaster} from "react-hot-toast";
+// import { ToastContainer } from 'react-toastify';
+
+import 'react-toastify/dist/ReactToastify.css';
 
 const store=configureStore(
   {
@@ -21,7 +24,6 @@ root.render(
     <Provider store={store}>
     <BrowserRouter>
      <App/>
-     <Toaster/>
     </BrowserRouter>
     </Provider>
   </React.StrictMode>
