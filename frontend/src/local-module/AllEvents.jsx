@@ -348,12 +348,16 @@ const AllEvents = () => {
                         <MenuItem value="eventPrice">Price</MenuItem>
                     </Select>
                     <TextField
-                        label="Max Price"
+                        placeholder='Max Price'
                         variant="outlined"
                         type="number"
                         value={filter}
                         onChange={(e) => setFilter(e.target.value)}
                         sx={{ backgroundColor: 'white', borderRadius: 1 }}
+                        InputProps={{
+                            disableUnderline: true,
+                            sx: { '& input::placeholder': { opacity: 1 } },
+                        }}
                     />
                 </Box>
                 <Grid container spacing={2}>
