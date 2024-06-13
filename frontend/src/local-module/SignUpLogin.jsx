@@ -52,7 +52,7 @@ function SignUpLogin() {
     try {
       console.log("For SignIn")
       console.log(formData)
-      const response = await axios.post(env.SIGN_UP_URL, formData);
+      const response = await axios.post("/user/signUp", formData);
       console.log("created");
       console.log(response);
       navigate(response.data.path)
@@ -65,7 +65,7 @@ function SignUpLogin() {
       console.log("For Login")
       console.log(formData)
       // console.log(process.env.LOG_IN_URL)
-      const response = await axios.post(env.LOG_IN_URL, formData);
+      const response = await axios.post("/user/login", formData);
       console.log("created");
       console.log(response.data.path);
       navigate(response.data.path)

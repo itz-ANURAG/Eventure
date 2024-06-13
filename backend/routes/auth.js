@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const jwt = require('jsonwebtoken')
 const userD = require('../Models/userData')
-const adminD = require('../Models/adminModel');
 require("dotenv").config();
 
 
@@ -14,7 +13,7 @@ const verifyUser = async (req, res, next) => {
         const token = req.cookies.token;
         if (!token) {
             // send({ success: false, massage: "Login First", path: '/' });
-            return res.status(204).json({
+            return res.status(404).json({
                 success:false,
                 message:"token is missing",
                 path:"/"
@@ -26,21 +25,12 @@ const verifyUser = async (req, res, next) => {
         // console.log(decoded);
         if(!decoded){
             console.log("unauthorised");
-            return res.status(500).json({ success: false, massage: "Login first" })
+            return res.status(403).json({ success: false, massage: "Login first" })
         }
         const userData= await userD.findOne({username:decoded.username});
-        // console.log(userData)
-        if(!userData){
-            console.log("checking admin")
-            const adminData= await adminD.findOne({username:decoded.username})
-            // updated token to checkwho is logging admin or normal user
-            // req.data.role="admin",
-            data=adminData;
-        }
-        else{
-            data=userData;
-            // console.log(data)
-    }}
+       data=userData;
+          
+    }
     catch(error){
         console.log(error);
        return res.status(401).json({

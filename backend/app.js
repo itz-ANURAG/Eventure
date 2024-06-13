@@ -4,12 +4,10 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const cors = require('cors');
-
 require("dotenv").config();
 
 
 
-const indexRouter = require('./routes/index');
 const signUpRouter = require('./routes/signUp');
 const loginRouter = require('./routes/login');
 const verifyRouter = require('./routes/auth');
@@ -19,11 +17,8 @@ const logout = require('./routes/logout')
 const googleAuth = require('./api/googleAuth')
 const forget = require('./routes/forgetPassword')
 const reset = require('./routes/resetPassword')
-const myEventAdmin = require('./routes/myEventAdmin')
-const eventData = require('./routes/eventdata')
 const eventRegister = require('./routes/eventRegisterUser')
 const myEventUser = require('./routes/myEventUser')
-// const verifyRouter = require('./routes/verify');
 
 
 const app = express();
@@ -72,19 +67,15 @@ app.use(cors({
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
 app.use('/user', signUpRouter);
 app.use('/user',loginRouter);
 app.use('/',verifyRouter);
-// app.use('/verify',verifyRouter);
 app.use('/createEvent',eventCreate)
 app.use('/getAllEvents',getAllEvents)
 app.use('/logout',logout);
 app.use('/api',googleAuth);
 app.use('/forgetPassword',forget);
 app.use('/resetPassword',reset);
-app.use('/myEventAdmin',myEventAdmin)
-app.use('/eventdata',eventData)
 app.use('/eventRegister',eventRegister)
 app.use('/myEventUser',myEventUser)
 app.use('/verify',verifyRouter);
