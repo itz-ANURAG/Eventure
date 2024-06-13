@@ -2,15 +2,10 @@
 import React from "react";
 import "../stylesheets/signUpLogin.css";
 import { useState, useEffect } from "react";
-import google from "../images/google.png";
+// import google from "../images/google.png";
 import axios from 'axios'
 // import navigate from 'navigate'
 import { Link, useNavigate } from 'react-router-dom';
-
-
-
-
-
 function SignUpLogin() {
   // using useState hook for creating desired logIn signUp effect.
 

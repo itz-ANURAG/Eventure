@@ -7,7 +7,7 @@ import Footer from "../Footer.jsx";
 import Navbar from "../Navbar.jsx";
 import ViewProfile from "./ViewProfile.jsx";
 import MyEvent from "./MyEvent.jsx";
-import CreateEvent from "./CreateEvent.jsx";
+import CreateEvent from "../CreateEvent.jsx";
 
 import Sidebar from "./sideBar.jsx";
 

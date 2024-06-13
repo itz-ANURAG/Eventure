@@ -17,8 +17,8 @@ passport.use(new GoogleStrategy({
     // clientSecret:clientSecret,
     // callbackURL:callbackURL,
     clientID:"838913142198-s87nmsckfn6c0uddvoi9qbol6hh738o4.apps.googleusercontent.com",
-clientSecret:"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",
-callbackURL:"http://localhost:5000/api/googleAuth/callback",
+    clientSecret:"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",
+    callbackURL:"http://localhost:5000/api/googleAuth/callback",
     scope:['profile','email'],
     passReqToCallback   : true
   },

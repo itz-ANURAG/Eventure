@@ -120,23 +120,3 @@ function Profile() {
 
 export default Profile
 
-
-// import React from 'react';
-// import { useLocation } from 'react-router-dom';
-
-// function Profile() {
-//   const location = useLocation();
-//   console.log(location.state.data)
-//   const { username, fullname, email } = location.state.data || {};
-
-//   return (
-//     <div>
-//       <div>{username}</div>
-//       <div>{fullname}</div>
-//       <div>{email}</div>
-//     </div>
-//   );
-// }
-
-// export default Profile;
-

@@ -9,8 +9,6 @@ const MyEvent = () => {
     const fetchData = async () => {
       try {
         const verify = await axios.get('/myEventAdmin');
-        // console.log(verify);
-        //   console.log(verify.data)
           setVerifyData(verify.data.data); // Store verify data in state
       } catch (error) {
         alert("something went wrong");
@@ -26,36 +24,6 @@ const MyEvent = () => {
   }, []); // Empty dependency array, so useEffect runs only once
 
   return (
-    // <div>
-    //   {verifyData==null ?
-    //     <><h1>Loading....</h1></>
-    //     :
-    //     <table>
-    //       <thead>
-    //         <tr>
-    //           <th>Sr No.</th>
-    //           <th>Event Name</th>
-    //           <th>Event Date</th>
-    //           <th>Price</th>
-    //         </tr>
-    //       </thead>
-    //       <tbody>
-    //         {
-    //           verifyData.map((row,i)=>(
-    //             <tr>
-    //               <td>
-    //                 {(i+1)}
-    //               </td>
-    //               <td>{row.eventName}</td>
-    //               <td>{row.eventDate}</td>
-    //               <td>{row.eventPrice}</td>
-    //             </tr>
-    //           ))
-    //         }
-    //       </tbody>
-    //     </table>
-    //   }
-    // </div>
     <div>
 {
   verifyData==null ?
