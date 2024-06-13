@@ -5,7 +5,8 @@ import Footer from "../Footer.jsx";
 import Navbar from "../Navbar.jsx";
 import ViewProfile from "./ViewProfile.jsx";
 import MyEvent from "./MyEvent.jsx";
-import CreateEvent from "./CreateEvent.jsx";
+// import CreateEvent from "./CreateEvent.jsx";
+import CreateEventPage from './CreateEventPage.jsx';
 import RegistrationForm from '../Events/RegisterForm.jsx';
 import Sidebar from "./sideBar.jsx";
 import Layout3 from '../../backgroundLayout/Layout3.jsx';
@@ -83,12 +84,12 @@ function Profile() {
             ) : (
                 <Layout3>
                     <Navbar />
-                    <div className='content-container'>
-                        <div className="dash-sidebar h-screen">
+                    <div className='flex h-screen'>
+                        {/* <div className="dash-sidebar h-screen"> */}
                             <Sidebar className="sidebar" choose={handleChange1} />
-                        </div>
-                        <div className='main-content'>
-                            {eventData == null ? (
+                        {/* </div> */}
+                        <div className="flex-1 p-6 overflow-auto">
+                            {/* {eventData == null ? (
                                 <h1>Loading......</h1>
                             ) : (
                                 <div className="flex justify-center mt-6 text-white">
@@ -112,13 +113,13 @@ function Profile() {
                                         </tbody>
                                     </table>
                                 </div>
-                            )}
+                            )} */}
                             {selected === 'view-profile' ? (
                                 <ViewProfile email={userData.email} username={userData.username} />
                             ) : selected === 'myEvents' ? (
                                 <MyEvent />
                             ) : (
-                                <CreateEvent />
+                                <CreateEventPage/>
                             )}
                         </div>
                     </div>

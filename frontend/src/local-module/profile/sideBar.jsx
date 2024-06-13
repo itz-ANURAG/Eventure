@@ -34,7 +34,7 @@ function Sidebar(props) {
             <button onClick={()=>props.choose('myEvents')}><Option value="My Events" image={myevents} alt="my event png"/></button>
 
               
-            <button onClick={()=>props.choose('createEvent')}><Option value="Add Events" image={addevents} alt=" addevent png"/></button>
+            <button onClick={()=>props.choose('createEventPage')}><Option value="Add Events" image={addevents} alt=" addevent png"/></button>
             
             
             <button onClick={()=>navigate('/refund-page')}><Option value="Refund" image={refund} alt="refund png"/></button>
