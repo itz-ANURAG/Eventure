@@ -23,14 +23,18 @@ const UserSchema = new mongoose.Schema({
         type:mongoose.Schema.Types.ObjectId,
         ref:"eventCreate"
     },
-    eventRegistered:{
+    eventRegistered:[{
         type:mongoose.Schema.Types.ObjectId,
-        ref:"eventCreate"
-    },
+        ref:"eventCreate",
+    }],
     googleId:{
         type:String,
-    } 
-});
+    },
+},
+{
+    strictPopulate: false
+} 
+);
 
 const User = mongoose.model('user', UserSchema);
 

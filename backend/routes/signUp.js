@@ -34,8 +34,7 @@ router.post("/signUp",async (req, res) => {
             message:"user is already registered",
           })
         }
-
-    //hashing password 
+    //hashing password
   let hashedPassword = await bcrypt.hash(password,10);
 
   // creating entry in db
