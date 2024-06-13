@@ -44,7 +44,6 @@ router.post('/', async (req, res) => {
                 userEmail: userEmail,
                 phoneNo: phoneNo
             });
-
             console.log("registering");
             await newUser.save();
             console.log("model save")
