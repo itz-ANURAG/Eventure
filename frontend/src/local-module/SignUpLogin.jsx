@@ -14,7 +14,7 @@ function SignUpLogin() {
  
   const {token}=useSelector((state)=>state.auth);
   const {user}=useSelector((state)=>state.profile);
-  const dispatch=useDispatch();
+  // const dispatch=useDispatch();
   const [action,setAction] = useState("Sign Up");
   
   const [formData, setFormData] = useState({
@@ -55,10 +55,9 @@ function SignUpLogin() {
       const response = await axios.post(env.SIGN_UP_URL, formData);
       console.log("created");
       console.log(response);
-
       navigate(response.data.path)
     } catch (error) {
-      alert("something went wrong")
+      alert(error);
     }
   }
   else{
@@ -86,10 +85,10 @@ function SignUpLogin() {
         return false;
       }
     }
-    if (!validatePassword(formData.password)) {
-      alert('Password must be at least 6 characters long and include a mix of upper and lower case letters, digits, and special characters.');
-      return false;
-    }
+    // if (!validatePassword(formData.password)) {
+    //   alert('Password must be at least 6 characters long and include a mix of upper and lower case letters, digits, and special characters.');
+    //   return false;
+    // }
     return true;
   };
 
@@ -98,10 +97,10 @@ function SignUpLogin() {
     return emailRegex.test(email);
   };
 
-  const validatePassword = (password) => {
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
-    return passwordRegex.test(password);
-  };
+  // const validatePassword = (password) => {
+  //   const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
+  //   return passwordRegex.test(password);
+  // };
  
 
 
