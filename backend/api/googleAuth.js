@@ -3,37 +3,35 @@ var router = express.Router();
 var passport = require('passport')
 const dotenv=require('dotenv').config()
 const jwt = require('jsonwebtoken')
-const clientID = process.env.CLIENT_ID;
-const clientSecret = process.env.CLIENT_SECRET;
-const callbackURL = process.env.CALLBACK_URL;
+const userdb=require('../Models/userData')
+const clientID = process.env.ClientID;
+const clientSecret = process.env.ClientSecret;
+const callbackURL = process.env.CallbackURL;
 
 var GoogleStrategy = require( 'passport-google-oauth2' ).Strategy;
-
-const userdb = require('../Models/userData');
 const { json } = require('body-parser');
 
 passport.use(new GoogleStrategy({
-    // clientID:clientID,
-    // clientSecret:clientSecret,
-    // callbackURL:callbackURL,
-    clientID:"838913142198-s87nmsckfn6c0uddvoi9qbol6hh738o4.apps.googleusercontent.com",
-clientSecret:"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",
-callbackURL:"http://localhost:5000/api/googleAuth/callback",
+    clientID:clientID,
+    clientSecret:clientSecret,
+    callbackURL:callbackURL,
     scope:['profile','email'],
     passReqToCallback   : true
   },
  async function(request, accessToken, refreshToken, profile, done) {
-     console.log(profile);
+    //  console.log(profile);
     let data = await userdb.findOne({googleId:profile.id});
-    var user;
+    let user
     if(!data){
         user=new userdb({
             googleId:profile.id,
             username:profile.displayName,
+            fullname:profile.displayName,
             email:profile.email
         })
         await user.save();
         // res.send(profile);
+        console.log("google saved")
         return done(null,user);
     }
     else {
@@ -50,15 +48,16 @@ passport.authenticate('google', { scope:
 );
 
 router.get('/google',(req,res)=>{
-    // console.log(req.user);
+    
+    // console.log("reached",req.user);
     const token= jwt.sign({
         username:req.user.username,
         googleId:req.user.googleId,
         email:req.user.email,
         id:req.user._id
-    },process.env.KEY,{expiresIn:'1h'});
+    },process.env.JWT_SECRET,{expiresIn:'1h'});
     res.cookie('token',token,{httpOnly:true,maxAge:3600000})
-    return res.redirect('http://localhost:3000/userProfile');
+    return res.redirect('http://localhost:3000/my-profile');
 })
 
 router.get('/googleAuth/callback',
