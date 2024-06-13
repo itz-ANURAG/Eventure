@@ -30,10 +30,10 @@ const EventSchema = new mongoose.Schema({
         required:true,
         default:Date.now()
     },
-    userEnrolled:{
+    userEnrolled:[{
         type:mongoose.Schema.Types.ObjectId,
         ref:"user"   
-    }
+    }]
 });
 
 const eventCreate = mongoose.model('eventCreate',EventSchema);

@@ -7,8 +7,7 @@ import axios from 'axios'
 // import navigate from 'navigate'
 import { Link, useNavigate } from 'react-router-dom';
 import {useSelector,useDispatch} from "react-redux";
-
-
+import env from "react-dotenv";
 
 function SignUpLogin() {
   // using useState hook for creating desired logIn signUp effect.
@@ -24,7 +23,6 @@ function SignUpLogin() {
     fullName: '',
     password: '',
   });
-  
   // writing rquired js for the handling onClick event.
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -49,13 +47,12 @@ function SignUpLogin() {
     event.preventDefault();
     if (validateForm()) {
       // Proceed with form submission
-    
     console.log(formData);
     if(action==="Sign Up"){
     try {
       console.log("For SignIn")
       console.log(formData)
-      const response = await axios.post(process.env.SIGN_UP_URL, formData);
+      const response = await axios.post(env.SIGN_UP_URL, formData);
       console.log("created");
       console.log(response);
 
@@ -68,7 +65,8 @@ function SignUpLogin() {
     try {
       console.log("For Login")
       console.log(formData)
-      const response = await axios.post(process.env.LOG_IN_URL, formData);
+      // console.log(process.env.LOG_IN_URL)
+      const response = await axios.post(env.LOG_IN_URL, formData);
       console.log("created");
       console.log(response.data.path);
       navigate(response.data.path)
