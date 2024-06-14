@@ -2,7 +2,6 @@ var express = require('express');
 var passport = require('passport');
 var router = express.Router();
 const jwt = require('jsonwebtoken')
-const eventCreate = require('../Models/eventRegister')
 const userModel=require('../Models/userData');
 const { path } = require('../app');
 require("dotenv").config();
@@ -17,16 +16,26 @@ router.get('/', async (req, res) => {
         console.log(isVerified)
         if(!isVerified){
             console.log("Not verified")
-            res.send({status:false});
+            return res.status(403).json({
+                success:false,
+               message:"user is not verified"
+            });
         }
         else{
             const user=await userModel.find({_id:isVerified.id}).populate({path:'eventRegistered',model:'eventCreate'})
             console.log("user" , user)
-            res.send({status:true,data:user});
+           return res.status(200).json({
+            success:true,
+            data:user,
+            message:"event fetched successfully" 
+        });
         }
     } catch (error) {
         console.log(error)
-        res.send({status:false})
+        return res.status(500).json({
+            success:false,
+         message:"unable to fetch event"
+        })
     }
 });
 
