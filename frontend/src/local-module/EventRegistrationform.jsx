@@ -27,6 +27,7 @@ const EventRegistrationForm = ({ open, handleClose, event }) => {
         e.preventDefault();
         try {
             // await axios.post('/registerEvent', { eventId: event._id, username, email, phone });
+            console.log(event);
             toast.success(`Registered for ${event.eventName}!`);
             handleClose();
         } catch (error) {

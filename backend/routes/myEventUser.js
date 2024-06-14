@@ -13,7 +13,7 @@ router.get('/', async (req, res) => {
     try {
         const token= req.cookies.token;
         console.log("token",token)
-        const isVerified = jwt.verify(token,process.env.JWT_SECRET)
+        const isVerified = jwt.verify(token,process.env.JWT_SECRET||'aryanKesahrwani@21022003')
         console.log(isVerified)
         if(!isVerified){
             console.log("Not verified")

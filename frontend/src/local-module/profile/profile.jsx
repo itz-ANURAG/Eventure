@@ -40,17 +40,17 @@ function Profile() {
         fetchData();
     }, [navigate]);
 
-    useEffect(() => {
-        const EventData = async () => {
-            try {
-                const response = await axios.get('/eventdata');
-                setEventData(response.data.data);
-            } catch (error) {
-                alert("something went wrong");
-            }
-        };
-        EventData();
-    }, []);
+    // useEffect(() => {
+    // //     const EventData = async () => {
+    // //         try {
+    // //             const response = await axios.get('/eventdata');
+    // //             setEventData(response.data.data);
+    // //         } catch (error) {
+    // //             alert("something went wrong");
+    // //         }
+    // //     };
+    // //     EventData();
+    // // }, []);
 
     const handleLogout = async (event) => {
         event.preventDefault();
