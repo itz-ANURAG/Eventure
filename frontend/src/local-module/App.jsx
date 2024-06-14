@@ -18,6 +18,7 @@ import AllEvents from './AllEvents.jsx';
 import NotFound from "./NotFound"
 import 'react-toastify/dist/ReactToastify.css';
 import { Toaster } from 'react-hot-toast';
+import {useSelector,useDispatch} from "react-redux";
 
 // import RegisterForm from "./Events/RegisterForm.jsx";
 
@@ -26,8 +27,9 @@ import { Toaster } from 'react-hot-toast';
 
 export default function App() {
   return (
-  <>
+  <>   
   
+       
        <Routes>
        
          <Route path='/' element={<HomePage/>}/>

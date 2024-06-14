@@ -4,9 +4,6 @@ const jwt = require('jsonwebtoken')
 const userD = require('../Models/userData')
 require("dotenv").config();
 
-
-var data;
-
 const verifyUser = async (req, res, next) => {
     // console.log(req.cookies)
     try {
@@ -29,7 +26,7 @@ const verifyUser = async (req, res, next) => {
         }
         const userData= await userD.findOne({username:decoded.username});
        data=userData;
-          
+       
     }
     catch(error){
         console.log(error);
@@ -38,7 +35,7 @@ const verifyUser = async (req, res, next) => {
             message:"token is invalid"
         })
     }
-        next();
+    next(); 
     }
     catch (err) {
         console.log(err);
@@ -50,7 +47,7 @@ const verifyUser = async (req, res, next) => {
 }
 
 router.get('/', verifyUser, (req, res) => {
-    // send({ success: true , data:data});
+    
     return res.status(200).json({
         success:true,
         message:"user verified succesfully",

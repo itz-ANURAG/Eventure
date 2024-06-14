@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Card, CardContent, CardMedia, Typography, Grid, TextField, Select, MenuItem, Box, Pagination, createTheme, ThemeProvider, Button } from '@mui/material';
 import EventRegistrationForm from './EventRegistrationform';
+// import Navbar from "./Navbar.jsx";
+import Footer from "./Footer.jsx";
 
 const AllEvents = () => {
     const [events, setEvents] = useState([]);
@@ -49,6 +51,8 @@ const AllEvents = () => {
     };
 
     return (
+        <>
+        {/* <Navbar /> */}
         <ThemeProvider theme={theme}>
             <Box sx={{ padding: 2, background: '#4b2e2e', minHeight: '100vh' }}>
                 <Box sx={{ marginBottom: 2, display: 'flex', justifyContent: 'space-between', gap: 2 }}>
@@ -151,6 +155,8 @@ const AllEvents = () => {
                 )}
             </Box>
         </ThemeProvider>
+        <Footer className="footer" />
+        </>
     );
 };
 

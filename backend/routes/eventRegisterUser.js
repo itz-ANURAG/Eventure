@@ -3,53 +3,97 @@ var passport = require('passport');
 var router = express.Router();
 var bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
-const eventRegister = require('../Models/eventRegister')
+const eventCreate = require('../Models/eventCreationData')
+const userModel=require("../Models/userData")
 const nodemailer = require('nodemailer');
 require("dotenv").config();
 
 /* GET users listing. */
-router.post('/', async (req, res) => {
+const verifyUser = async (req, res, next) => {
+    // console.log(req.cookies)
     try {
-        const {
-            eventName,
-            eventDate,
-            eventTime,
-            eventId,
-            userId,
-            userName,
-            userEmail,
-            phoneNo
-        } = req.body;
-
-        console.log(req.body);
-
-        const existingUser = await eventRegister.find({
-            $and: [
-                { userId: userId },
-                { eventId: eventId }
-            ]
+        const token = req.cookies.token;
+        if (!token) {
+            return res.status(404).json({
+                success:false,
+                message:"token is missing",
+                path:"/"
+            })
+        }
+        // console.log(token)
+        try{
+        const decoded =jwt.verify(token, process.env.JWT_SECRET);
+        // console.log(decoded);
+        if(!decoded){
+            console.log("unauthorised");
+            return res.status(403).json({ success: false, massage: "Login first" })
+        }
+        const userData= await userModel.findOne({username:decoded.username});
+       req.user=userData;
+       
+    }
+    catch(error){
+        console.log(error);
+       return res.status(401).json({
+            success:false,
+            message:"token is invalid"
+        })
+    }
+    next(); 
+    }
+    catch (err) {
+        console.log(err);
+       return res.status(500).json({
+            success:false,
+            message:"something went wrong while validating the token",
         });
-        
-        if (existingUser.length > 0) {
-            console.log("already registered");
-            return res.send({status:false, message: "Already registered for the event" });
-        } else {
-            const newUser = new eventRegister({
-                eventName: eventName,
-                eventDate: eventDate,
-                eventTime: eventTime,
-                eventId: eventId,
-                userId: userId,
-                userName: userName,
-                userEmail: userEmail,
-                phoneNo: phoneNo
-            });
-            console.log("registering");
-            await newUser.save();
-            console.log("model save")
+    }
+}
 
+router.post('/',verifyUser, async (req, res) => {
+    try {
+        const{
+            userName,
+            email,
+            phone,
+            event
+        } = req.body;
+        const eventId=event._id;
+
+        const eventDoc=await eventModel.findOneAndUpdate(
+            {_id:eventId},
+           {  $push: {userEnrolled:req.user._id} },
+           {new:true}
+        );
+        
+        const user=await userModel.findOneAndUpdate(
+                             {_id:req.user._},
+                             { $push: {eventRegistered: eventDoc._id } },
+                             {new:true}
+        ) 
            
-    // <----------------------------------- Node Mailer Code ------------------------------------------>        
+            console.log("registered for event successfully")
+            console.log(user);
+            console.log(eventDoc);
+            return res.status(200).json({
+                success:true,
+                message: "Registered for event Successfully", 
+                path:"my-profile"
+            });
+        
+    } catch (error) {
+        console.error("Error:", error);
+        return res.status(500).json({
+            success:false,
+            message: "Something went wrong" });
+      }
+
+});
+
+module.exports = router;
+
+
+ // <----------------------------------- Node Mailer Code ------------------------------------------>        
 /*
             try {
                 var transporter = nodemailer.createTransport({
@@ -81,15 +125,4 @@ router.post('/', async (req, res) => {
             } catch (error) {
                 console.log(error)
             }
-
 */            
-            return res.send({status:true, message: "Registered Successfully" });
-        }
-    } catch (error) {
-        console.error("Error:", error);
-        return res.json({ message: "Something went wrong" });
-    }
-
-});
-
-module.exports = router;

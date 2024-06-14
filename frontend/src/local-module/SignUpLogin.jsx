@@ -7,13 +7,16 @@ import axios from 'axios'
 // import navigate from 'navigate'
 import { Link, useNavigate } from 'react-router-dom';
 import {useSelector,useDispatch} from "react-redux";
+import {setToken} from "../slices/authSlice"
 import env from "react-dotenv";
 
 function SignUpLogin() {
   // using useState hook for creating desired logIn signUp effect.
  
-  const {token}=useSelector((state)=>state.auth);
+  
   const {user}=useSelector((state)=>state.profile);
+  const dispatch=useDispatch();
+  
   // const dispatch=useDispatch();
   const [action,setAction] = useState("Sign Up");
   
@@ -53,7 +56,9 @@ function SignUpLogin() {
       console.log(formData)
       const response = await axios.post("/user/signUp", formData);
       console.log("created");
+      localStorage.setItem("token",`${response.data.token}`);
       console.log(response);
+      dispatch(setToken(response.data.token));
       navigate(response.data.path)
     } catch (error) {
       alert(error);
@@ -66,6 +71,7 @@ function SignUpLogin() {
       // console.log(process.env.LOG_IN_URL)
       const response = await axios.post("/user/login", formData);
       console.log("created");
+      dispatch(setToken(response.data.token));
       console.log(response.data.path);
       navigate(response.data.path)
     } catch (error) {
@@ -84,10 +90,10 @@ function SignUpLogin() {
         return false;
       }
     }
-    // if (!validatePassword(formData.password)) {
-    //   alert('Password must be at least 6 characters long and include a mix of upper and lower case letters, digits, and special characters.');
-    //   return false;
-    // }
+    if (!validatePassword(formData.password)) {
+      alert('Password must be at least 6 characters long and include a mix of upper and lower case letters, digits, and special characters.');
+      return false;
+    }
     return true;
   };
 
@@ -96,10 +102,10 @@ function SignUpLogin() {
     return emailRegex.test(email);
   };
 
-  // const validatePassword = (password) => {
-  //   const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
-  //   return passwordRegex.test(password);
-  // };
+  const validatePassword = (password) => {
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
+    return passwordRegex.test(password);
+  };
  
 
 

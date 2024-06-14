@@ -34,13 +34,14 @@ router.get('/', async (req, res) => {
 
         const count = await Event.countDocuments(query);
 
-        res.json({
+        return res.status(200).json({
+            success:true,
             events,
             totalPages: Math.ceil(count / limit),
             currentPage: Number(page)
         });
     } catch (error) {
-        res.status(500).json({ message: 'Error fetching events', error });
+       return res.status(500).json({ message: 'Error fetching events', error });
     }
 });
 
