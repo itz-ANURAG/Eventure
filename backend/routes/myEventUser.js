@@ -12,16 +12,16 @@ require("dotenv").config();
 router.get('/', async (req, res) => {
     try {
         const token= req.cookies.token;
-        console.log("token",token)
+        // console.log("token",token)
         const isVerified = jwt.verify(token,process.env.JWT_SECRET)
-        console.log(isVerified)
+        // console.log(isVerified)
         if(!isVerified){
             console.log("Not verified")
             res.send({status:false});
         }
         else{
             const user=await userModel.find({_id:isVerified.id}).populate({path:'eventRegistered',model:'eventCreate'})
-            console.log("user" , user)
+            // console.log("user" , user)
             res.send({status:true,data:user});
         }
     } catch (error) {
