@@ -13,9 +13,23 @@ router.post('/', async (req, res) => {
         if (!token) {
             console.log("NO Token")
             res.send({ success: false, path: '/', message: "Login first" }) }
-            const isVerified = jwt.verify(token, 'aryanKesahrwani@21022003');
-            if(!isVerified) console.log("NOt verified")
-            else console.log(isVerified)
+            // const isVerified = jwt.verify(token, 'aryanKesahrwani@21022003');
+            // if(!isVerified) console.log("NOt verified")
+            // else console.log(isVerified)
+            let isVerified;
+                try {
+                    isVerified = jwt.verify(token, process.env.JWT_SECRET || 'aryanKesahrwani@21022003'); // Use environment variable for secret
+                } catch (error) {
+                    console.log("Invalid Token");
+                    return res.send({ success: false, path: '/', message: "Invalid token" });
+                }
+
+                if (!isVerified) {
+                    console.log("Not verified");
+                    return res.send({ success: false, path: '/', message: "Token verification failed" });
+                } else {
+                    console.log(isVerified);
+                }
 
             // Creating New Event
 
@@ -23,7 +37,7 @@ router.post('/', async (req, res) => {
             eventName: req.body.eventName,
             eventDate: req.body.eventDate,
             eventDescription: req.body.eventDescription,
-            createrId: isVerified.id,
+            creater: isVerified.id,
             eventPrice: req.body.eventPrice,
             eventTime: req.body.eventTime,
             eventBanner:req.body.eventBanner,

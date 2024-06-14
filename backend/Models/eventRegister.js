@@ -3,24 +3,24 @@ const mongoose = require('mongoose')
 const EventRegisterSchema = new mongoose.Schema({
     userId : {
         type: String,
-        required:true
+        // required:true
     },
     eventId : {
         type: String,
-        required:true
+        // required:true
     },
     eventName:{
         type:String,
         // unique:true,w
-        required:true
+        // required:true
     },
     eventDate:{
         type:Date,
-        required:true
+        // required:true
     },
     eventTime:{
         type:String,
-        required:true
+        // required:true
     },
     userName:{
         type:String,

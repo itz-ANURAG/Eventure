@@ -16,6 +16,8 @@ import EventsDescription from "./Events/EventsDescripition.jsx";
 import AllEvents from './AllEvents.jsx';
 
 import NotFound from "./NotFound"
+import 'react-toastify/dist/ReactToastify.css';
+import { Toaster } from 'react-hot-toast';
 
 // import RegisterForm from "./Events/RegisterForm.jsx";
 
@@ -43,7 +45,8 @@ export default function App() {
          <Route path='events-page' element={<QWCevent/>}/>
          <Route path='event-des' element={<EventsDescription/>}/>  
          <Route path='*' element={<NotFound/>}/>
-       </Routes>   
+       </Routes> 
+       <Toaster />
   </>
   )
 }
