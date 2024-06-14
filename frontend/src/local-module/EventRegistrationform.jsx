@@ -4,6 +4,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 import toast, { Toaster } from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
 const style = {
     position: 'absolute',
@@ -19,16 +20,35 @@ const style = {
 };
 
 const EventRegistrationForm = ({ open, handleClose, event }) => {
-    const [username, setUsername] = useState('');
-    const [email, setEmail] = useState('');
-    const [phone, setPhone] = useState('');
+    
+    const navigate = useNavigate();
+    const [formData,setFormData]=useState({
+        username:"",
+        email:"",
+        phone:"",
+    })
+ 
+     const  handleChange=(event)=>{
+        const { name, value } = event.target;
+        // Handle form field changes
+        setFormData((prevData) => ({
+          ...prevData,
+          [name]: value,
+        }));
+     }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            // await axios.post('/registerEvent', { eventId: event._id, username, email, phone });
             console.log(event);
-            toast.success(`Registered for ${event.eventName}!`);
+            const response = await axios.post('/eventRegister', {formData,event});
+            if (response.data.success) {
+                toast.success(`Registered for ${event.eventName}! Successfully`);
+                navigate(response.data.path);
+
+            } else {
+                alert('Failed to create event');
+            }
             handleClose();
         } catch (error) {
             console.error('Error registering for event', error);
@@ -58,25 +78,28 @@ const EventRegistrationForm = ({ open, handleClose, event }) => {
                             fullWidth
                             margin="normal"
                             label="Username"
-                            value={username}
-                            onChange={(e) => setUsername(e.target.value)}
+                            name="username"
+                            value={formData.username}
+                            onChange={handleChange}
                             required
                         />
                         <TextField
                             fullWidth
                             margin="normal"
                             label="Email"
+                            name="email"
                             type="email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
+                            value={formData.email}
+                            onChange={handleChange}
                             required
                         />
                         <TextField
                             fullWidth
                             margin="normal"
                             label="Phone Number"
-                            value={phone}
-                            onChange={(e) => setPhone(e.target.value)}
+                            name="phone"
+                            value={formData.phone}
+                            onChange={handleChange}
                             required
                         />
                         <Button type="submit" variant="contained" color="primary" sx={{ mt: 2 }}>

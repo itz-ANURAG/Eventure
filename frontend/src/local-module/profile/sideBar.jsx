@@ -6,11 +6,14 @@ import addevents from '../../photos/addevents.png';
 import refund from '../../photos/refund.png';
 import {useNavigate} from "react-router-dom";
 import axios  from 'axios';
+import {setToken} from "../../slices/authSlice"
+import {useSelector,useDispatch} from "react-redux";
 
 
 import logout from '../../photos/logout.png';
 // import { FaBeer } from "react-icons/fa";
 function Sidebar(props) {
+  const dispatch=useDispatch();
     const navigate=useNavigate();
     const handleLogout = async (event) => {
         event.preventDefault();
@@ -18,6 +21,8 @@ function Sidebar(props) {
           console.log("trying to logout")
           const response = await axios.get('/logout');
           console.log("logout");
+          localStorage.removeItem("token");
+          dispatch(setToken(null));
           navigate('/')
         } catch (error) {
           alert("something went wrong")

@@ -1,7 +1,7 @@
 window.env = {
   "ALLUSERSPROFILE": "C:\\ProgramData",
   "APPDATA": "C:\\Users\\91956\\AppData\\Roaming",
-  "CHROME_CRASHPAD_PIPE_NAME": "\\\\.\\pipe\\crashpad_15520_ANFRTGJUTKWYDJHQ",
+  "CHROME_CRASHPAD_PIPE_NAME": "\\\\.\\pipe\\crashpad_27100_QPPJESIMQXTKNXRA",
   "COLOR": "1",
   "COLORTERM": "truecolor",
   "CommonProgramFiles": "C:\\Program Files\\Common Files",
@@ -68,13 +68,14 @@ window.env = {
   "PUBLIC": "C:\\Users\\Public",
   "REACT_APP_BASE_URL": "http://localhost:3000",
   "RegionCode": "APJ",
+  "RegionCode": "APJ",
   "SESSIONNAME": "Console",
   "SIGN_UP_URL": "/user/signUp",
   "SystemDrive": "C:",
   "SystemRoot": "C:\\windows",
   "TEMP": "C:\\Users\\91956\\AppData\\Local\\Temp",
   "TERM_PROGRAM": "vscode",
-  "TERM_PROGRAM_VERSION": "1.90.1",
+  "TERM_PROGRAM_VERSION": "1.90.0",
   "TMP": "C:\\Users\\91956\\AppData\\Local\\Temp",
   "USERDOMAIN": "LAPTOP-O8ABHILI",
   "USERDOMAIN_ROAMINGPROFILE": "LAPTOP-O8ABHILI",
@@ -85,7 +86,7 @@ window.env = {
   "VSCODE_GIT_ASKPASS_NODE": "C:\\Users\\91956\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe",
   "VSCODE_GIT_IPC_HANDLE": "\\\\.\\pipe\\vscode-git-251a5cbf92-sock",
   "VSCODE_INJECTION": "1",
-  "VSCODE_NONCE": "7ec1ae35-f640-4f80-8ba6-1d96bc22570c",
+  "VSCODE_NONCE": "407e0234-7c28-488a-95a6-ccec76f81c13",
   "windir": "C:\\windows",
   "ZES_ENABLE_SYSMAN": "1"
 };
