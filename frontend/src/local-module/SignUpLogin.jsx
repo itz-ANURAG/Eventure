@@ -37,9 +37,8 @@ function SignUpLogin() {
   const handleGoogle = async(event) => {
     event.preventDefault();
     console.log("googleAuth invoked")
-      // const response = await axios.get('api/googleAuth/callback')
+//    Here We call open window because axios gave CORS error
       window.open('http://localhost:5000/api/googleAuth/callback',"_self")
-      // navigate('/api/googleAuth/callback')
 
   };
 
