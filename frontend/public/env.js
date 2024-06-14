@@ -1,7 +1,7 @@
 window.env = {
   "ALLUSERSPROFILE": "C:\\ProgramData",
   "APPDATA": "C:\\Users\\91956\\AppData\\Roaming",
-  "CHROME_CRASHPAD_PIPE_NAME": "\\\\.\\pipe\\crashpad_37968_NFBCAKPWYFXMLJBC",
+  "CHROME_CRASHPAD_PIPE_NAME": "\\\\.\\pipe\\crashpad_15520_ANFRTGJUTKWYDJHQ",
   "COLOR": "1",
   "COLORTERM": "truecolor",
   "CommonProgramFiles": "C:\\Program Files\\Common Files",
@@ -67,6 +67,7 @@ window.env = {
   "PSModulePath": "C:\\Users\\91956\\OneDrive\\Documents\\WindowsPowerShell\\Modules;C:\\Program Files\\WindowsPowerShell\\Modules;C:\\windows\\system32\\WindowsPowerShell\\v1.0\\Modules",
   "PUBLIC": "C:\\Users\\Public",
   "REACT_APP_BASE_URL": "http://localhost:3000",
+  "RegionCode": "APJ",
   "SESSIONNAME": "Console",
   "SIGN_UP_URL": "/user/signUp",
   "SystemDrive": "C:",
