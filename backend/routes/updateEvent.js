@@ -1,8 +1,9 @@
-const Event = require('../models/eventCreate');
-const router=express.router;
+const express=require("express");
+const Event = require('../Models/eventCreationData');
+const router=express.Router();
 
 // Controller to update a specific event
- router.put('/',async (req, res) => {
+ router.put('/event/:eventId',async (req, res) => {
     const { eventId } = req.params;
     const updateData = req.body;
 
@@ -16,3 +17,4 @@ const router=express.router;
         res.status(500).json({ message: 'Error updating event', error });
     }
 });
+module.exports = router;

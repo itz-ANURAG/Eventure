@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -5,15 +6,15 @@ import Footer from "../Footer.jsx";
 import Navbar from "../Navbar.jsx";
 import ViewProfile from "./ViewProfile.jsx";
 import MyEvent from "./MyEvent.jsx";
-// import CreateEvent from "./CreateEvent.jsx";
 import CreateEventPage from './CreateEventPage.jsx';
 import RegistrationForm from '../Events/RegisterForm.jsx';
 import Sidebar from "./sideBar.jsx";
 import Layout3 from '../../backgroundLayout/Layout3.jsx';
+import HostedEvent from './HostedEvent.jsx';
 
 function Profile() {
     const [selected, setSelected] = useState('view-profile');
-    const [eventData, setEventData] = useState([]);
+    // const [eventData, setEventData] = useState([]);
     const [userData, setUserData] = useState({});
     const [isOpen, setIsOpen] = useState(false);
     const [currentEvent, setCurrentEvent] = useState(null);
@@ -40,18 +41,6 @@ function Profile() {
         fetchData();
     }, [navigate]);
 
-    // useEffect(() => {
-    //     const EventData = async () => {
-    //         try {
-    //             const response = await axios.get('/eventdata');
-    //             setEventData(response.data.data);
-    //         } catch (error) {
-    //             alert("something went wrong");
-    //         }
-    //     };
-    //     EventData();
-    // }, []);
-
     const handleLogout = async (event) => {
         event.preventDefault();
         try {
@@ -67,7 +56,6 @@ function Profile() {
         setIsOpen(true);
     };
 
-
     const handleIsOpen = (value) => {
         setIsOpen(value);
     };
@@ -79,47 +67,21 @@ function Profile() {
                     event={currentEvent}
                     userData={userData}
                     setOpen={handleIsOpen}
-                    // onSubmit={handleSubmitForm}
                 />
             ) : (
                 <Layout3>
                     <Navbar />
                     <div className='flex h-screen'>
-                        {/* <div className="dash-sidebar h-screen"> */}
-                            <Sidebar className="sidebar" choose={handleChange1} />
-                        {/* </div> */}
+                        <Sidebar className="sidebar" choose={handleChange1} />
                         <div className="flex-1 p-6 overflow-auto">
-                            {/* {eventData == null ? (
-                                <h1>Loading......</h1>
-                            ) : (
-                                <div className="flex justify-center mt-6 text-white">
-                                    <table className="-collapse bg-gradient-to-br from-red-950 to-black rounded-3xl">
-                                        <thead>
-                                            <tr>
-                                                <th className="p-4">Sr No.</th>
-                                                <th className="p-4">Event Name</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {eventData.map((data, i) => (
-                                                <tr key={i}>
-                                                    <td className="p-4">{i + 1}</td>
-                                                    <td className="p-4">{data.eventName}</td>
-                                                    <td className="p-4">
-                                                        <button onClick={() => handleRegister(data)}>Register</button>
-                                                    </td>
-                                                </tr>
-                                            ))}
-                                        </tbody>
-                                    </table>
-                                </div>
-                            )} */}
                             {selected === 'view-profile' ? (
                                 <ViewProfile email={userData.email} username={userData.username} />
                             ) : selected === 'myEvents' ? (
                                 <MyEvent />
+                            ) : selected === 'createEventPage' ? (
+                                <CreateEventPage />
                             ) : (
-                                <CreateEventPage/>
+                                <HostedEvent />
                             )}
                         </div>
                     </div>

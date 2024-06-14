@@ -85,10 +85,10 @@ app.use('/myEventUser',myEventUser)
 app.use('/verify',verifyRouter);
 
 // Route to get events created by a particular user
-app.use('/user/:userId/events', getUserEvents);
+app.use('/api', getUserEvents);
 
 // Route to update a specific event
-app.use('/event/:eventId', updateEvent);
+app.use('/api', updateEvent);
 
 
 // catch 404 and forward to error handler

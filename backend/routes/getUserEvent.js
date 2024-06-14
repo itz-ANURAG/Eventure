@@ -1,9 +1,10 @@
 
-const User = require('../models/user');
-const router=express.router;
+const express=require('express');
+const User = require('../Models/userData');
+const router = express.Router();
 
 // Controller to get events created by a particular user
-router.get('/',async (req, res) => {
+router.get('/user/:userId/events',async (req, res) => {
     const { userId } = req.params;
 
     try {
@@ -16,3 +17,4 @@ router.get('/',async (req, res) => {
         res.status(500).json({ message: 'Error fetching events', error });
     }
 });
+module.exports = router;
