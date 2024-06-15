@@ -4,11 +4,11 @@ const userdb = require('../Models/userData')
 var nodemailer = require('nodemailer');
 const jwt=require('jsonwebtoken')
 require('dotenv').config();
-const _email= process.env.GOOGLE_MAIL;
-const _password= process.env.GOOGLE_PASSWORD;
+const Email= process.env.GOOGLE_MAIL;
+const Password= process.env.GOOGLE_PASSWORD;
 router.post('/', async (req, res) => {
-    console.log(_email);
-    console.log(_password);
+    console.log(Email);
+    console.log(Password);
     try {
         const user = await userdb.findOne({ email: req.body.email })
         if (!user) {
@@ -18,13 +18,13 @@ router.post('/', async (req, res) => {
         console.log(req.body.email)
         const token=jwt.sign({
             id:user._id,
-        },process.env.JWT_SECRET,{expiresIn:'1h'});
+        },process.env.JWT_SECRET,{expiresIn:'5min'});
         console.log("Token ", token);
         var transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
                 user:process.env.GOOGLE_MAIL ,
-                pass: "jtuw acdk nutl qjts"
+                pass:process.env.GOOGLE_PASSWORD
             }
         });
 
@@ -34,7 +34,7 @@ router.post('/', async (req, res) => {
             from: process.env.GOOGLE_MAIL,
             to: req.body.email,
             subject: 'Reset Password',
-            text: `${process.env.REACT_APP_BASE_URL}/forget-password/${token}`
+            text: `${process.env.REACT_APP_BASE_URL}/reset-password/${token}`
         };
 
         console.log("mailOption",mailOptions)

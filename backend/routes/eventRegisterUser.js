@@ -30,7 +30,6 @@ const verifyUser = async (req, res, next) => {
         }
         const userData= await userModel.findOne({username:decoded.username});
        req.user=userData;
-       
     }
     catch(error){
         console.log(error);
@@ -67,18 +66,47 @@ router.post('/',verifyUser, async (req, res) => {
         );
         
         const user=await userModel.findOneAndUpdate(
-                             {_id:req.user._id},
-                             { $push: {eventRegistered: eventDoc._id } },
-                             {new:true}
+            {_id:req.user._id},
+            { $push: {eventRegistered: eventDoc._id } },
+            {new:true}
         ) 
            
             console.log("registered for event successfully")
             console.log(user);
             console.log(eventDoc);
+            try {
+                var transporter = nodemailer.createTransport({
+                    service: 'gmail',
+                    auth: {
+                        user: process.env.GOOGlE_MAIL,
+                        pass: process.env.GOOGLE_PASSWORD
+                    }
+                });
+        
+                console.log("transporter",transporter)
+                var mailOptions = {
+                    from: "aryankesarwani21022003@gmail.com",
+                    to: user.email,
+                    subject: 'Registration Successfull',
+                    text: `You have registerd for event ${eventDoc.eventName} and your ticket id is ${user._id}`
+                };
+                console.log("mailOption",mailOptions)
+                transporter.sendMail(mailOptions, function (error, info) {
+                    if (error) {
+                        console.log("error",error);
+                        // return res.send({status:false,massage:"Error"});
+                    } else {
+                        console.log("success");
+                        // return res.send({status:true,massage:"Succesfully reset"});
+                    }
+                });
+            } catch (error) {
+                console.log(error)
+            }
             return res.status(200).json({
                 success:true,
                 message: "Registered for event Successfully", 
-                path:"my-profile"
+                path:"/my-profile"
             });
         
     } catch (error) {

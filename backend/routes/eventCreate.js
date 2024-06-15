@@ -48,6 +48,7 @@ router.post('/', async (req, res) => {
                 }
         const thumbnailImage=await uploadImageToCloudinary(thumbnail,process.env.FOLDER_NAME);
         console.log(thumbnailImage);
+
         const event = await eventCreate.create({
             eventName: req.body.eventName,
             eventDate: req.body.eventDate,
@@ -55,7 +56,6 @@ router.post('/', async (req, res) => {
             creater: isVerified.id,
             eventPrice: req.body.eventPrice,
             eventTime: req.body.eventTime,
-            eventBanner:req.body.eventBanner,
             userEnrolled:[isVerified.id],
             banner:thumbnailImage.secure_url 
         });
