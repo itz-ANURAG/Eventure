@@ -56,7 +56,7 @@ function SignUpLogin() {
       console.log(formData)
       const response = await axios.post("/user/signUp", formData);
       console.log("created");
-      localStorage.setItem("token",`${response.data.token}`);
+      // localStorage.setItem("token",`${response.data.token}`);
       console.log(response);
       dispatch(setToken(response.data.token));
       navigate(response.data.path)

@@ -69,6 +69,7 @@ window.env = {
   "PSModulePath": "C:\\Users\\HP\\OneDrive\\Documents\\WindowsPowerShell\\Modules;C:\\Program Files\\WindowsPowerShell\\Modules;C:\\WINDOWS\\system32\\WindowsPowerShell\\v1.0\\Modules",
   "PUBLIC": "C:\\Users\\Public",
   "REACT_APP_BASE_URL": "http://localhost:3000",
+  "RegionCode": "APJ",
   "SESSIONNAME": "Console",
   "SIGN_UP_URL": "/user/signUp",
   "SystemDrive": "C:",
