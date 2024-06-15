@@ -43,8 +43,7 @@ router.post("/signUp",async (req, res) => {
 
   const token = jwt.sign({username:user.username,id:user._id},process.env.JWT_SECRET,{expiresIn:'1h'});
   res.cookie('token',token,{httpOnly:true,maxAge:3600000})
-  console.log("user registered succesfully");
-  console.log(user);
+ 
 
   // res.send({ data:userData , path:'/my-profile', token:token});
   return res.status(200).json({

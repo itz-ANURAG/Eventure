@@ -23,11 +23,21 @@ router.get('/', async (req, res) => {
         }
         else{
             const user=await userModel.find({_id:isVerified.id}).populate({path:'eventRegistered',model:'eventCreate'})
+
             console.log("user" , user[0].eventRegistered)
             res.send({status:true,data:user[0].eventRegistered});
+          
+          
+//             console.log("user" , user)
+//            return res.status(200).json({
+//             success:true,
+//             data:user,
+//             message:"event fetched successfully" 
+//         });
+          
         }
     } catch (error) {
-        console.log(error)
+     console.log(error)
         return res.status(500).json({
             success:false,
          message:"unable to fetch event"
