@@ -30,6 +30,14 @@ const passport = require('passport')
 const dbConnect=require("./config/database");
 dbConnect();
 
+const fileupload=require("express-fileupload");
+app.use(fileupload({ useTempFiles: true }));
+
+
+const {cloudinaryConnect}=require("./config/cloudinary");
+cloudinaryConnect();
+
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
