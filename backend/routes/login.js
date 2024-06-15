@@ -13,19 +13,11 @@ router.post('/login',async (req, res) => {
             username,
             password
          }=req.body;
-
-         if(!username || !password){
-            return res.status(200).json({
-                success:false,
-                message:"All fields are required try again",
-            });
-         }
-         
     console.log("login page")
     // console.log(req.body)
     const user = await UserModel.findOne({username});
     if(!user){
-              return res.status(404).json({
+              return res.status(304).json({
                 success:false,
                 message:"U have not signed up previously to our website",
                 path:"Signin"

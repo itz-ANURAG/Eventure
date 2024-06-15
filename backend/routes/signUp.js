@@ -18,18 +18,12 @@ router.post("/signUp",async (req, res) => {
           password
         } = req.body;
 
-        console.log(req.body);
-        if(!username || !password ||!email || !fullName){
-          return res.status(403).json({
-            sucess:false,
-            message:"All fields are required",
-          })
-        } 
+        console.log(req.body); 
 
         // check for existing user
         const existingUser=await UserModel.findOne({email});
         if(existingUser){
-          return res.status(400).json({
+          return res.status(304).json({
             success:false,
             message:"user is already registered",
           })
@@ -63,7 +57,7 @@ router.post("/signUp",async (req, res) => {
 }
 catch(error){
   console.log(error);
-   return res.status(500).json({
+   return res.status(304).json({
     sucess:false,
     message:"something went wrong while signing in",
     error,

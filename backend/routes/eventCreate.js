@@ -41,7 +41,6 @@ router.post('/', async (req, res) => {
                 } else {
                     console.log(isVerified);
                 }
-
         const event = await eventCreate.create({
             eventName: req.body.eventName,
             eventDate: req.body.eventDate,
