@@ -42,7 +42,7 @@ function Sidebar(props) {
             <button onClick={()=>props.choose('createEventPage')}><Option value="Add Events" image={addevents} alt=" addevent png"/></button>
             
             
-            <button onClick={()=>navigate('/refund-page')}><Option value="Refund" image={refund} alt="refund png"/></button>
+            <button onClick={()=>props.choose('hostedEvents')}><Option value="Hosted Event" image={refund} alt="refund png"/></button>
             <button onClick={handleLogout}><Option value="Log Out" image={logout} alt=" logout png"/></button>
             </ul>
         </nav>

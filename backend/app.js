@@ -8,6 +8,8 @@ require("dotenv").config();
 
 
 
+
+
 const signUpRouter = require('./routes/signUp');
 const loginRouter = require('./routes/login');
 const verifyRouter = require('./routes/auth');
@@ -19,6 +21,8 @@ const forget = require('./routes/forgetPassword')
 const reset = require('./routes/resetPassword')
 const eventRegister = require('./routes/eventRegisterUser')
 const myEventUser = require('./routes/myEventUser')
+const getUserEvents=require('./routes/getUserEvent');
+const updateEvent=require('./routes/updateEvent');
 
 
 const app = express();
@@ -80,6 +84,11 @@ app.use('/eventRegister',eventRegister)
 app.use('/myEventUser',myEventUser)
 app.use('/verify',verifyRouter);
 
+// Route to get events created by a particular user
+app.use('/api', getUserEvents);
+
+// Route to update a specific event
+app.use('/api', updateEvent);
 
 
 // catch 404 and forward to error handler

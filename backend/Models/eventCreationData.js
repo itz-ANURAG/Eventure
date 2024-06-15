@@ -25,6 +25,9 @@ const EventSchema = new mongoose.Schema({
         type:Number,
         required:true
     },
+    eventBanner:{
+        type:String,
+    },
     createDate:{
         type:Date,
         // required:true,

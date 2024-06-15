@@ -9,7 +9,7 @@ import {Routes,Route} from 'react-router-dom';
 import CreateEventPage from './profile/CreateEventPage.jsx';
 import MyEvent from './profile/MyEvent.jsx';
 import ViewProfile from './profile/ViewProfile.jsx';
-import Refund from './profile/Refund.jsx';
+import Refund from './profile/HostedEvent.jsx';
 import QWCevent from "./Events/QWCevent.jsx";
 import EventsDescription from "./Events/EventsDescripition.jsx";
 
@@ -41,7 +41,7 @@ export default function App() {
             <Route path='view-profile' element={<ViewProfile/>}></Route>
             <Route path='myEvents' element={<MyEvent/>}></Route>
             <Route path='createEventPage' element={<CreateEventPage/>}></Route>
-            <Route path='refund-page' element={<Refund/>}></Route>
+            <Route path='hostedEvent' element={<Refund/>}></Route>
             <Route path=' ' element={<HomePage/>}/>
          </Route>
          <Route path='events-page' element={<QWCevent/>}/>

@@ -3,7 +3,7 @@ var passport = require('passport');
 var router = express.Router();
 var bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
-const eventCreate = require('../Models/eventCreationData')
+const eventModel = require('../Models/eventCreationData')
 const userModel=require("../Models/userData")
 const nodemailer = require('nodemailer');
 require("dotenv").config();
@@ -67,7 +67,7 @@ router.post('/',verifyUser, async (req, res) => {
         );
         
         const user=await userModel.findOneAndUpdate(
-                             {_id:req.user._},
+                             {_id:req.user._id},
                              { $push: {eventRegistered: eventDoc._id } },
                              {new:true}
         ) 
