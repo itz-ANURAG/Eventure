@@ -7,12 +7,14 @@ import aryan from '../photos/aryan.jpg'
 import '../stylesheets/team.css'
 import { FaInstagramSquare,FaLinkedin} from "react-icons/fa";
 import Layout4 from '../backgroundLayout/Layout4'
+import Navbar from './Navbar'
 
 
 function Team() {
     return (
         <>
         <Layout4>
+            <Navbar/>
             <section className=" dark:bg-gray-900 body">
                 <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
                     <div className="p-4 md:p-0 max-w-screen-sm text-center md:text-left md:pl-0 mb-8 lg:mb-16">

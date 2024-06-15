@@ -5,6 +5,7 @@ import { Card, CardContent, CardMedia, Typography, Grid, TextField, Select, Menu
 import EventRegistrationForm from './EventRegistrationform';
 // import Navbar from "./Navbar.jsx";
 import Footer from "./Footer.jsx";
+import Navbar from './Navbar.jsx';
 
 const AllEvents = () => {
     const [events, setEvents] = useState([]);
@@ -52,7 +53,7 @@ const AllEvents = () => {
 
     return (
         <>
-        {/* <Navbar /> */}
+         <Navbar />
         <ThemeProvider theme={theme}>
             <Box sx={{ padding: 2, background: '#4b2e2e', minHeight: '100vh' }}>
                 <Box sx={{ marginBottom: 2, display: 'flex', justifyContent: 'space-between', gap: 2 }}>

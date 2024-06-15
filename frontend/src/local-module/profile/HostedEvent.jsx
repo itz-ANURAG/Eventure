@@ -83,14 +83,14 @@ function HostedEvent() {
 
     return (
         <div className="hosted-event-container p-6">
-            <h2 className="text-2xl font-bold mb-4">Hosted Events</h2>
+            <h2 className="text-2xl text-gray-200 font-bold mb-4">Hosted Events</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {events.map((event) => (
                     <div key={event._id} className="event-card bg-white p-4 rounded shadow-md">
                         <h3 className="text-xl font-semibold">{event.eventName}</h3>
                         <p><strong>Date:</strong> {new Date(event.eventDate).toLocaleDateString()}</p>
                         <p><strong>Participants:</strong> {event.userEnrolled.length}</p>
-                        <p><strong>Revenue:</strong> ${event.revenue}</p>
+                        <p><strong>Revenue:</strong> ${event.eventPrice*event.userEnrolled.length}</p>
                         <p><strong>Ticket Sales:</strong> {event.ticketSales}</p>
                         <button
                             className="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
