@@ -37,6 +37,8 @@ const MyEvent = () => {
           <th className="p-4  ">Sr No.</th>
           <th className="p-4  ">Event Name</th>
           <th className="p-4  ">Event Date</th>
+          <th className="p-4  ">Event Time</th>
+          <th className="p-4  ">Registration Date</th>
           <th className="p-4  ">Price</th>
         </tr>
       </thead>
@@ -46,6 +48,8 @@ const MyEvent = () => {
           <td className="p-4  ">{i+1}</td>
           <td className="p-4  ">{row.eventName}</td>
           <td className="p-4  ">{row.eventDate}</td>
+          <td className="p-4  ">{row.eventTime}</td>
+          <td className="p-4  ">{row.createDate}</td>
           <td className="p-4  ">{row.eventPrice}</td>
         </tr>
         ))

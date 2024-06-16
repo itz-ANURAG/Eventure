@@ -115,7 +115,7 @@ const AllEvents = () => {
                                 <CardMedia
                                     component="img"
                                     sx={{ height: 200, width: '100%', objectFit: 'cover' }} 
-                                    image={event.eventBanner || 'https://via.placeholder.com/150'}
+                                    image={event.banner || 'https://via.placeholder.com/150'}
                                     alt={event.eventName}
                                 />
                                 <CardContent>

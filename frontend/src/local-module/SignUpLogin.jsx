@@ -56,7 +56,7 @@ function SignUpLogin() {
       console.log(formData)
       const response = await axios.post("/user/signUp", formData);
       console.log("created");
-      localStorage.setItem("token",`${response.data.token}`);
+      // localStorage.setItem("token",`${response.data.token}`);
       console.log(response);
       dispatch(setToken(response.data.token));
       navigate(response.data.path)
@@ -176,7 +176,7 @@ function SignUpLogin() {
         />
         {action !== "Sign Up" && (
           <div className="lostpassword">
-            Lost Password? <span>click here</span>
+            Lost Password? <a href="/forget-password">click here</a>
           </div>
         )}
       </div>
@@ -188,15 +188,11 @@ function SignUpLogin() {
       <h3 className="pseudoClass">
         <span className="or">or</span>
       </h3>
-      
-      {action === "Sign Up" && (
         <div className="google-cont">
           <button type="button" className="google-auth-button" onClick={handleGoogle}>
             Sign up with Google
           </button>
         </div>
-      )}
-
       <div className="haveAccount">
         {action === "Sign Up" ? "Already" : "Don't"} have an account?
         <span onClick={handleClick}>

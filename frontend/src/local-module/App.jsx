@@ -12,6 +12,8 @@ import ViewProfile from './profile/ViewProfile.jsx';
 import Refund from './profile/HostedEvent.jsx';
 import QWCevent from "./Events/QWCevent.jsx";
 import EventsDescription from "./Events/EventsDescripition.jsx";
+import Reset from './resetPassword.jsx'
+import Forget from './forget.jsx'
 
 import AllEvents from './AllEvents.jsx';
 
@@ -48,6 +50,9 @@ const  App=()=>{
          <Route path='team' element={<Team/>}/>
          <Route path='getAllEvents' element={<AllEvents/>}/>
          <Route path='Signin' element={<SignUpLogin/>}/>
+         <Route path='/forget-password' element={<Forget/>}/>
+         <Route path='/reset-password/:token' element={<Reset/>}/>
+
          <Route path='my-profile' element={<Profile/>}>
             <Route index element={<ViewProfile/>}/>
             <Route path='view-profile' element={<ViewProfile/>}></Route>

@@ -36,7 +36,11 @@ const EventSchema = new mongoose.Schema({
     userEnrolled:[{
         type:mongoose.Schema.Types.ObjectId,
         ref:"user"   
-    }]
+    }],
+    banner:{
+        type:String,
+        required:true
+    }
 });
 
 const eventCreate = mongoose.model('eventCreate',EventSchema);
