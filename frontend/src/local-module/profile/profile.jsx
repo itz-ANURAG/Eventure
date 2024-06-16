@@ -35,6 +35,7 @@ function Profile() {
                     navigate('/Signin');
                 } else {
                     setUserData(verify.data.data);
+                    console.log(verify.data.data);
                 }
             } catch (error) {
                 alert("something went wrong");

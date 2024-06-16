@@ -29,6 +29,13 @@ const CreateEventPage = () => {
         }));
     }
     };
+    const getCurrentDate = () => {
+        const today = new Date();
+        const yyyy = today.getFullYear();
+        const mm = String(today.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+        const dd = String(today.getDate()).padStart(2, '0');
+        return `${yyyy}-${mm}-${dd}`;
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -60,7 +67,7 @@ const CreateEventPage = () => {
                     <input 
                         type="text" 
                         name="eventName" 
-                        value={formData.eventName} 
+                        value={formData.eventName}
                         onChange={handleChange} 
                         className="w-full px-3 py-2 text-red-700 bg-gray-700 border border-red-500 rounded focus:outline-none focus:border-red-400" 
                         required 
@@ -72,7 +79,8 @@ const CreateEventPage = () => {
                         type="date" 
                         name="eventDate" 
                         value={formData.eventDate} 
-                        onChange={handleChange} 
+                        onChange={handleChange}
+                        min={getCurrentDate()}  
                         className="w-full px-3 py-2 text-red-700 bg-gray-700 border border-red-500 rounded focus:outline-none focus:border-red-400" 
                         required 
                     />
