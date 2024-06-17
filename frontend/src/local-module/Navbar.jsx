@@ -5,7 +5,7 @@ import logo from '../HarryPotter/logo.png';
 import {NavLink,Link,useNavigate} from "react-router-dom" ;
 import {useSelector} from "react-redux";
 
-export default function Navbar() {
+export default function Navbar({userId}) {
   const navigate=useNavigate();
   const {token}=useSelector((state)=>state.auth);
   return (
@@ -20,7 +20,7 @@ export default function Navbar() {
               <ul className='Middle' >
                 <li className='hover:scale-110 transition duration-300'><NavLink to='/' className='h hover:underline cursor-pointer hover:scale-110  text-white font-extrabold text-5xl'href="">Home</NavLink></li>
                 <li className='hover:scale-110 transition duration-300'><NavLink to='/team' className='h hover:underline cursor-pointer hover:scale-110  text-white font-extrabold'href="">Team</NavLink></li>
-                <li className='hover:scale-110 transition duration-300'><NavLink to='/getAllEvents' className='h hover:underline cursor-pointer hover:scale-110  text-white font-extrabold'href="">All Events</NavLink></li>
+                <li className='hover:scale-110 transition duration-300'><NavLink to='/getAllEvents' className='h hover:underline cursor-pointer hover:scale-110  text-white font-extrabold' state={{userId}} >All Events</NavLink></li>
                 <li className='hover:scale-110 transition duration-300'><span className='h hover:underline cursor-pointer hover:scale-110  text-white font-extrabold'href="">Contact Us</span></li>
               </ul>
             
