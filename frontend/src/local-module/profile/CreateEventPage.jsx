@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import toast from 'react-hot-toast'
 
 const CreateEventPage = () => {
     const [formData, setFormData] = useState({
@@ -41,12 +42,13 @@ const CreateEventPage = () => {
                 'Content-Type': 'multipart/form-data'
               }});
             if (response.data.success) {
-                alert(response.data.message);
+                toast.success(response.data.message);
                 navigate(response.data.path);
             } else {
-                alert('Failed to create event');
+                toast.error('Failed to create event');
             }
         } catch (error) {
+            toast.error('Failed to create event');
             console.error('There was an error creating the event:', error);
         }
     };

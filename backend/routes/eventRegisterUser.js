@@ -14,7 +14,7 @@ const verifyUser = async (req, res, next) => {
     try {
         const token = req.cookies.token;
         if (!token) {
-            return res.status(404).json({
+            return res.status(304).json({
                 success:false,
                 message:"token is missing",
                 path:"/"
@@ -26,14 +26,14 @@ const verifyUser = async (req, res, next) => {
         // console.log(decoded);
         if(!decoded){
             console.log("unauthorised");
-            return res.status(403).json({ success: false, massage: "Login first" })
+            return res.status(304).json({ success: false, massage: "Login first" })
         }
         const userData= await userModel.findOne({username:decoded.username});
        req.user=userData;
     }
     catch(error){
         console.log(error);
-       return res.status(401).json({
+       return res.status(304).json({
             success:false,
             message:"token is invalid"
         })
@@ -42,7 +42,7 @@ const verifyUser = async (req, res, next) => {
     }
     catch (err) {
         console.log(err);
-       return res.status(500).json({
+       return res.status(304).json({
             success:false,
             message:"something went wrong while validating the token",
         });
@@ -83,14 +83,14 @@ router.post('/',verifyUser, async (req, res) => {
                     }
                 });
         
-                console.log("transporter",transporter)
+                // console.log("transporter",transporter)
                 var mailOptions = {
                     from: "aryankesarwani21022003@gmail.com",
                     to: user.email,
                     subject: 'Registration Successfull',
                     text: `You have registerd for event ${eventDoc.eventName} and your ticket id is ${user._id}`
                 };
-                console.log("mailOption",mailOptions)
+                // console.log("mailOption",mailOptions)
                 transporter.sendMail(mailOptions, function (error, info) {
                     if (error) {
                         console.log("error",error);

@@ -32,7 +32,9 @@ function Profile() {
                     alert("Login First");
                     navigate('/Signin');
                 } else {
+
                     setUserData(verify.data.data);
+                    console.log(verify.data.data);
                 }
             } catch (error) {
                 alert("something went wrong");
@@ -70,14 +72,14 @@ function Profile() {
                 />
             ) : (
                 <Layout3>
-                    <Navbar />
+                    <Navbar userId={userData._id} />
                     <div className='flex h-screen'>
                         <Sidebar className="sidebar" choose={handleChange1} />
                         <div className="flex-1 p-6 overflow-auto">
                             {selected === 'view-profile' ? (
                                 <ViewProfile email={userData.email} username={userData.username} />
                             ) : selected === 'myEvents' ? (
-                                <MyEvent />
+                                <MyEvent userId={userData._id} />
                             ) : selected === 'createEventPage' ? (
                                 <CreateEventPage />
                             ) : (

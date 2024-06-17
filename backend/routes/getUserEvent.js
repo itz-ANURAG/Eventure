@@ -10,7 +10,7 @@ router.get('/user/:userId/events',async (req, res) => {
     try {
         const user = await User.findById(userId).populate('eventCreated');
         if (!user) {
-            return res.status(404).json({ message: 'User not found' });
+            return res.status(304).json({ message: 'User not found' });
         }
         res.status(200).json(user.eventCreated);
     } catch (error) {
