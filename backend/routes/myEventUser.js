@@ -27,7 +27,7 @@ router.get('/', async (req, res) => {
             console.log("user" , user)
            return res.status(200).json({
             success:true,
-            data:user,
+            data:user[0].eventRegistered,
             message:"event fetched successfully" 
         });
 

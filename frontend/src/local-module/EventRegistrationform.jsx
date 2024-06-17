@@ -3,9 +3,11 @@ import { Box, Button, Modal, TextField, Typography, IconButton } from '@mui/mate
 import CloseIcon from '@mui/icons-material/Close';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
-import toast, { Toaster } from 'react-hot-toast';
+import {toast} from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
-
+import {useSelector,useDispatch} from "react-redux";
+import {setLoading} from "../slices/authSlice"
+import Spinner from "./Spinner"
 const style = {
     position: 'absolute',
     top: '50%',
@@ -20,6 +22,9 @@ const style = {
 };
 
 const EventRegistrationForm = ({ open, handleClose, event }) => {
+
+    const dispatch=useDispatch();
+  const {loading} =useSelector((state)=>(state.auth.loading))
     
     const navigate = useNavigate();
     const [formData,setFormData]=useState({
@@ -39,6 +44,7 @@ const EventRegistrationForm = ({ open, handleClose, event }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        dispatch(setLoading(true))
         try {
             console.log(event);
             const response = await axios.post('/eventRegister', {formData,event});
@@ -47,13 +53,17 @@ const EventRegistrationForm = ({ open, handleClose, event }) => {
                 navigate(response.data.path);
 
             } else {
-                alert('Failed to create event');
+                toast.error('Failed to create event internal server error');
+                navigate(response.data.path)
             }
             handleClose();
         } catch (error) {
             console.error('Error registering for event', error);
-            toast.error('Registration failed!');
+            toast.error('Registration failed ,plz Login first');
+            navigate("/")
+
         }
+        dispatch(setLoading(false))
     };
 
     return (
@@ -64,6 +74,7 @@ const EventRegistrationForm = ({ open, handleClose, event }) => {
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
             >
+                { loading?<Spinner/>:(
                 <Box sx={style}>
                     <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                         <Typography id="modal-modal-title" variant="h6" component="h2">
@@ -107,8 +118,9 @@ const EventRegistrationForm = ({ open, handleClose, event }) => {
                         </Button>
                     </form>
                 </Box>
+                )
+               }
             </Modal>
-            <Toaster />
         </div>
     );
 };

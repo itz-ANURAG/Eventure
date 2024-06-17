@@ -4,7 +4,8 @@ import '../../stylesheets/ViewProfile.css'
 import userImage from '../../photos/harry-potter.gif'
 function ViewProfile({
   username,
-  email
+  email,
+  fullName
 }) {
   return (
     <>
@@ -18,7 +19,7 @@ function ViewProfile({
     <div className="user-info-container  border-4 border-black bg-gradient-to-t from-red-300 to-black">
       <div className='imageOfUser'><img className='user-image justify-center' src={userImage} alt="user"/></div>
       <div className='user-name text-center whiltespace-wrap p-3 text-black'>{username}</div>
-      <div className='user-description text-black'>Hogwarts University</div>
+      <div className='user-description text-black'>{fullName}</div>
       <div className='email text-black'>Email ID:{email}</div>
     </div>
     </div>

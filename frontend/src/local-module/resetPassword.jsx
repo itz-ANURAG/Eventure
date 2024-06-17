@@ -4,7 +4,7 @@ import "../stylesheets/signUpLogin.css";
 import React, { useState } from "react";
 // import google from "../images/google.png";
 import axios from 'axios'
-// import navigate from 'navigate'
+import {toast} from "react-hot-toast"
 import { Link, useNavigate, useParams } from 'react-router-dom';
 function Reset() {
 
@@ -29,19 +29,18 @@ function Reset() {
     const handleSubmit = async (event) => {
         event.preventDefault();
         console.log(formData);
+        try{
         const reset = await axios.post('/resetPassword', formData)
         if (reset.status) {
+            toast.success("password reset successful")
             console.log("Success");
-            alert("Password Reset Successfully")
             navigate('/Signin')
         }
-        else {
+    }catch(error){
+            toast.error("internal server error")
             console.log("failure")
-            alert("Something Went Wrong");
             navigate('/')
-        }
-        // Add your form submission logic here
-
+       }
     };
 
 

@@ -31,14 +31,15 @@ function SignUpLogin() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     console.log(formData);
+    try{
     const reset = await axios.post('/forgetPassword',formData)
-    if(reset.status){
     console.log("Success");
-    alert("Check Your Email for Reset Link");
+    toast.success("email reset link sent")
     navigate('/Signin')
-  }
-    else console.log("failure")
-    // Add your form submission logic here
+    }catch(error){
+      toast.error("internal server error");
+     console.log("failure")
+       }   // Add your form submission logic here
 
   };
 

@@ -7,15 +7,15 @@ import axios from 'axios'
 // import navigate from 'navigate'
 import { Link, useNavigate } from 'react-router-dom';
 import {useSelector,useDispatch} from "react-redux";
-import {setToken} from "../slices/authSlice"
-import env from "react-dotenv";
+import {setToken,setLoading} from "../slices/authSlice"
+import {toast} from "react-hot-toast"
+import Spinner from "./Spinner"
 
 function SignUpLogin() {
   // using useState hook for creating desired logIn signUp effect.
- 
   
-  const {user}=useSelector((state)=>state.profile);
   const dispatch=useDispatch();
+  const {loading} =useSelector((state)=>(state.auth.loading))
   
   // const dispatch=useDispatch();
   const [action,setAction] = useState("Sign Up");
@@ -42,25 +42,26 @@ function SignUpLogin() {
     console.log("googleAuth invoked")
 //    Here We call open window because axios gave CORS error
       window.open('http://localhost:5000/api/googleAuth/callback',"_self")
-
+      toast.success("signed in successfully")
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (validateForm()) {
-      // Proceed with form submission
     console.log(formData);
+    dispatch(setLoading(true))
     if(action==="Sign Up"){
     try {
       console.log("For SignIn")
       console.log(formData)
       const response = await axios.post("/user/signUp", formData);
-      console.log("created");
       // localStorage.setItem("token",`${response.data.token}`);
       console.log(response);
       dispatch(setToken(response.data.token));
+      toast.success("signed in successfuly")
       navigate(response.data.path)
     } catch (error) {
+      toast.error("internal server error")
       alert(error);
     }
   }
@@ -71,15 +72,16 @@ function SignUpLogin() {
       // console.log(process.env.LOG_IN_URL)
       const response = await axios.post("/user/login", formData);
       console.log("created");
+      toast.success("logged in successfuly")
       dispatch(setToken(response.data.token));
       console.log(response.data.path);
       navigate(response.data.path)
     } catch (error) {
+      toast.error("internal server error")
       alert("something went wrong")
     }
   }
-    // Add your form submission logic here
-
+   dispatch(setLoading(false))
   };
 }
 
@@ -116,7 +118,8 @@ function SignUpLogin() {
     }
 
   return (
-    <>
+    <>{
+      loading?<Spinner/>:(
        <div className="sbox">
       <div className="scontainer">
         <div className="sheader">
@@ -206,6 +209,8 @@ function SignUpLogin() {
     </form>
     </div>
     </div>
+      )
+  }
     </>
   );
 }

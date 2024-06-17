@@ -21,23 +21,25 @@ export default function Navbar() {
                 <li className='hover:scale-110 transition duration-300'><NavLink to='/' className='h hover:underline cursor-pointer hover:scale-110  text-white font-extrabold text-5xl'href="">Home</NavLink></li>
                 <li className='hover:scale-110 transition duration-300'><NavLink to='/team' className='h hover:underline cursor-pointer hover:scale-110  text-white font-extrabold'href="">Team</NavLink></li>
                 <li className='hover:scale-110 transition duration-300'><NavLink to='/getAllEvents' className='h hover:underline cursor-pointer hover:scale-110  text-white font-extrabold'href="">All Events</NavLink></li>
-                <li className='hover:scale-110 transition duration-300'><span className='h hover:underline cursor-pointer hover:scale-110  text-white font-extrabold'href="">Contact Us</span></li>
+                {/* <li className='hover:scale-110 transition duration-300'><span className='h hover:underline cursor-pointer hover:scale-110  text-white font-extrabold'href="">Contact Us</span></li> */}
               </ul>
             
         </div>
         <div className='right'>
-           <div className='combined'>
+           { !token &&<div className='combined'>
                 <button onClick={()=>navigate('/Signin')} className='b1
-                hover:opacity-45 transition px-4 duration-300 rounded-2xl hover:scale-105'>SIGN IN
+                hover:opacity-45 transition px-4 duration-300 rounded-2xl hover:scale-105'>Register
                 </button>
 
-          </div>
+          </div>}
            
-            <button onClick={()=>navigate('my-profile')} className='profile p-3 hover:opacity-70 hover:scale-110 transition duration-200 pt-4'>
+           { token && <button onClick={()=>navigate('my-profile')} className='profile p-3 hover:opacity-70 hover:scale-110 transition duration-200 pt-4'>
             <img className='harry ' src={harrypotter} alt="logo not found "/>
             <div className='Ptext pt-1'>Profile</div>
             </button>
+            }
         </div>
+           
       </div>
     </>
   )

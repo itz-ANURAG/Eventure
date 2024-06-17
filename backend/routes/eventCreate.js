@@ -69,7 +69,7 @@ router.post('/', async (req, res) => {
         console.log("model saved and event created");
         return res.status(200).json({
              success: true,
-             path: '/my-profile', 
+             path: '/getAllEvents', 
              event,
              message: "Event created Succesfully"
              });

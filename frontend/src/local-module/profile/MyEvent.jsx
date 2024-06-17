@@ -1,12 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import {useSelector,useDispatch} from "react-redux";
+import {setLoading} from "../../slices/authSlice"
+import Spinner from "../Spinner"
 const MyEvent = () => {
   const [verifyData, setVerifyData] = useState(null); // State to store verify data
+ 
+  const dispatch=useDispatch();
+  const {loading} =useSelector((state)=>(state.auth.loading))
+
 
   useEffect(() => {
     let isMounted = true; // Flag to track whether the component is mounted
 
     const fetchData = async () => {
+      dispatch(setLoading(true))
       try {
         const verify = await axios.get('/myEventUser');
         console.log(verify.data.data)
@@ -17,16 +25,18 @@ const MyEvent = () => {
     };
 
     fetchData(); // Call the fetchData function
-
+    dispatch(setLoading(false))
     // Cleanup function to set isMounted to false when the component unmounts
     return () => {
       isMounted = false;
     };
+  
   }, []); // Empty dependency array, so useEffect runs only once
 
   return (
     <div>
-{
+      {loading?<Spinner/>:<>
+  {
   verifyData==null ?
       <><h1 className='text-white'>Wow So Empty</h1></>
       :
@@ -54,6 +64,7 @@ const MyEvent = () => {
     </table>
   </div>
   }
+</>}
   </div>
   );
 };
