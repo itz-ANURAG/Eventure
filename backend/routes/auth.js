@@ -9,8 +9,7 @@ const verifyUser = async (req, res, next) => {
     try {
         const token = req.cookies.token;
         if (!token) {
-            // send({ success: false, massage: "Login First", path: '/' });
-            return res.status(404).json({
+            return res.status(304).json({
                 success:false,
                 message:"token is missing",
                 path:"/"
@@ -22,7 +21,7 @@ const verifyUser = async (req, res, next) => {
         // console.log(decoded);
         if(!decoded){
             console.log("unauthorised");
-            return res.status(401).json({ success: false, massage: "Login first" })
+            return res.status(304).json({ success: false, massage: "Login first" })
         }
         const userData= await userD.findOne({username:decoded.username});
        data=userData;
@@ -30,7 +29,7 @@ const verifyUser = async (req, res, next) => {
     }
     catch(error){
         console.log(error);
-       return res.status(401).json({
+       return res.status(304).json({
             success:false,
             message:"token is invalid"
         })
@@ -39,7 +38,7 @@ const verifyUser = async (req, res, next) => {
     }
     catch (err) {
         console.log(err);
-       return res.status(500).json({
+       return res.status(304).json({
             success:false,
             message:"something went wrong while validating the token",
         });

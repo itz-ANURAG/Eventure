@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 const MyEvent = () => {
   const [verifyData, setVerifyData] = useState(null); // State to store verify data
-
   useEffect(() => {
     let isMounted = true; // Flag to track whether the component is mounted
 

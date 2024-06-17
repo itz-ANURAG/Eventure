@@ -10,7 +10,7 @@ const EventSchema = new mongoose.Schema({
         required:true
     },
     eventDate:{
-        type:Date,
+        type:String,
         required:true
     },
     eventTime:{
@@ -29,9 +29,7 @@ const EventSchema = new mongoose.Schema({
         type:String,
     },
     createDate:{
-        type:Date,
-        // required:true,
-        default:Date.now()
+        type:String,
     },
     userEnrolled:[{
         type:mongoose.Schema.Types.ObjectId,

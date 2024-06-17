@@ -5,9 +5,13 @@ import { Card, CardContent, CardMedia, Typography, Grid, TextField, Select, Menu
 import EventRegistrationForm from './EventRegistrationform';
 // import Navbar from "./Navbar.jsx";
 import Footer from "./Footer.jsx";
-import Navbar from './Navbar.jsx';
+import { useLocation ,useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast'
 
-const AllEvents = () => {
+const AllEvents = ({userId}) => {
+    const location = useLocation();
+    const navigate =useNavigate();
+    const { userId } = location.state || {};
     const [events, setEvents] = useState([]);
     const [search, setSearch] = useState('');
     const [sort, setSort] = useState('');
@@ -16,7 +20,6 @@ const AllEvents = () => {
     const [totalPages, setTotalPages] = useState(1);
     const [open, setOpen] = useState(false);
     const [selectedEvent, setSelectedEvent] = useState(null);
-
     useEffect(() => {
         const fetchEvents = async () => {
             try {
@@ -133,7 +136,20 @@ const AllEvents = () => {
                                     </Typography>
                                 </CardContent>
                                 <Box sx={{ display: 'flex', justifyContent: 'flex-end', p: 2 }}>
-                                    <Button variant="contained" sx={{ backgroundColor: 'white', color: 'black', fontFamily: 'MedievalSharp' }} onClick={() => handleOpen(event)}>Register Now</Button>
+                                    { userId==event.creater  ? <div className=' text-2xl'>Created by you</div>
+                                    :
+                                     event.userEnrolled.includes(userId) ? <div className=' text-2xl'>Registered</div>
+                                    :
+                                    <Button variant="contained" sx={{ backgroundColor: 'white', color: 'black', fontFamily: 'MedievalSharp' }} onClick={(e) =>{
+                                        e.preventDefault()
+                                        if(userId==null){
+                                            alert("Login First to Register")
+                                            navigate('/Signin')
+                                        }
+                                        else handleOpen(event)}
+                                    }
+                                        >Register Now</Button>
+                                    }
                                 </Box>
                             </Card>
                         </Grid>
