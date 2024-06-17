@@ -1,13 +1,28 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import '../stylesheets/navbar.css';
 import harrypotter from '../HarryPotter/harry-potter.gif';
 import logo from '../HarryPotter/logo.png';
-import {NavLink,Link,useNavigate} from "react-router-dom" ;
-import {useSelector} from "react-redux";
+import {NavLink,Link,useNavigate,useLocation} from "react-router-dom" ;
+import {useSelector,useDispatch} from "react-redux";
+import { setToken } from '../slices/authSlice';
+import { useState } from 'react';
+
 
 export default function Navbar({userId}) {
   const navigate=useNavigate();
+  const location=useLocation();
+  const dispatch = useDispatch();
   const {token}=useSelector((state)=>state.auth);
+  const [initialLoad, setInitialLoad] = useState(true);
+  console.log(token);
+  useEffect(() => {
+    const storedToken = localStorage.getItem('token');
+    if (storedToken) {
+        dispatch(setToken(storedToken));
+    }
+    setInitialLoad(false);
+}, [dispatch]);
+  const isAllEventsPage = location.pathname === '/getAllEvents';
   return (
     <>
 

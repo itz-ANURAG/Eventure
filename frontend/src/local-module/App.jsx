@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useEffect,useState} from 'react';
 import HomePage from './home/HomePage.jsx';
 import SignUpLogin from './SignUpLogin';
 import Profile from './profile/profile.jsx';
@@ -20,17 +20,30 @@ import AllEvents from './AllEvents.jsx';
 import NotFound from "./NotFound"
 import 'react-toastify/dist/ReactToastify.css';
 import { Toaster } from 'react-hot-toast';
+import {useSelector,useDispatch} from "react-redux";
+import { setToken,clearToken} from '../slices/authSlice.js';
 
 // import RegisterForm from "./Events/RegisterForm.jsx";
 
 
-
-
-export default function App() {
+const  App=()=>{
+  const dispatch = useDispatch();
+  const token = useSelector((state) => state.auth.token);
+  const [initialLoad, setInitialLoad] = useState(true);
+  useEffect(()=>{
+    // dispatch(clearToken());
+    // const token = localStorage.getItem('token');
+    //     if (token) {
+    //         dispatch(setToken(token));
+    //     }
+    const storedToken = localStorage.getItem('token');
+    if (storedToken) {
+        dispatch(setToken(storedToken));
+    }
+    setInitialLoad(false);
+  },[dispatch]);
   return (
-  <>   
-  
-       
+  <>    
        <Routes>
        
          <Route path='/' element={<HomePage/>}/>
@@ -56,4 +69,4 @@ export default function App() {
   </>
   )
 }
-
+export default App;

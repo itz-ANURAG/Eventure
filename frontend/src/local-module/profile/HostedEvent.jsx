@@ -90,7 +90,7 @@ function HostedEvent() {
                         <h3 className="text-xl font-semibold">{event.eventName}</h3>
                         <p><strong>Date:</strong> {new Date(event.eventDate).toLocaleDateString()}</p>
                         <p><strong>Participants:</strong> {event.userEnrolled.length}</p>
-                        <p><strong>Revenue:</strong> ${event.revenue}</p>
+                        <p><strong>Revenue:</strong> ${event.eventPrice*event.userEnrolled.length}</p>
                         <p><strong>Ticket Sales:</strong> {event.ticketSales}</p>
                         <button
                             className="mt-4 px-4 py-2 bg-blue-500 text-white rounded"

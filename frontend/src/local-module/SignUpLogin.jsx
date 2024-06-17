@@ -13,7 +13,10 @@ import {toast} from "react-hot-toast"
 
 function SignUpLogin() {
   // using useState hook for creating desired logIn signUp effect.
+ 
   
+  const {user}=useSelector((state)=>state.profile);
+  console.log(user);
   const dispatch=useDispatch();
   const {loading} =useSelector((state)=>(state.auth.loading))
   

@@ -91,3 +91,12 @@
   font-family: MedievalSharp;
   font-size: larger;
 }
+.all-events-navbar {
+  background-color: #fff;
+  color: #000;
+  height: 3rem; /* Adjust height as needed */
+  padding: 0.5rem; /* Adjust padding as needed */
+}
+.all-events-nav-link {
+  color: #000; /* Color for all events page */
+}

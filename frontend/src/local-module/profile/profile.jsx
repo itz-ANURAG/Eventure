@@ -11,6 +11,8 @@ import RegistrationForm from '../Events/RegisterForm.jsx';
 import Sidebar from "./sideBar.jsx";
 import Layout3 from '../../backgroundLayout/Layout3.jsx';
 import HostedEvent from './HostedEvent.jsx';
+import { useDispatch } from 'react-redux';
+import { clearToken } from '../../slices/authSlice.js'
 import {toast} from "react-hot-toast"
 
 function Profile() {
@@ -44,12 +46,14 @@ function Profile() {
         };
         fetchData();
     }, [navigate]);
-
+    
+    const dispatch=useDispatch();
     const handleLogout = async (event) => {
         event.preventDefault();
         try {
             await axios.get('/logout');
             navigate('/');
+            dispatch(clearToken);
         } catch (error) {
             alert("something went wrong");
         }

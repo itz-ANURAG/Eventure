@@ -9,7 +9,7 @@ import {toast} from 'react-hot-toast'
 import {useSelector,useDispatch} from "react-redux";
 import {setLoading} from "../slices/authSlice"
 import Spinner from "./Spinner"
-
+import Navbar from './Navbar.jsx';
 const AllEvents = () => {
     const dispatch=useDispatch();
   const {loading} =useSelector((state)=>(state.auth.loading))
@@ -62,7 +62,7 @@ const AllEvents = () => {
 
     return (
         <>
-        {/* <Navbar /> */}
+         <Navbar />
         <ThemeProvider theme={theme}>
             <Box sx={{ padding: 2, background: '#4b2e2e', minHeight: '100vh' }}>
                 <Box sx={{ marginBottom: 2, display: 'flex', justifyContent: 'space-between', gap: 2 }}>
