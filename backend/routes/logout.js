@@ -4,7 +4,8 @@ const router = express.Router();
 
 
 router.get('/', (req, res) => {
-    try{console.log("logging out");
+    try{
+    console.log("logging out");
     res.clearCookie('token')
      return res.status(200).json({ 
         success: true,

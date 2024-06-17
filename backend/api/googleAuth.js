@@ -57,7 +57,13 @@ router.get('/google',(req,res)=>{
         id:req.user._id
     },process.env.JWT_SECRET,{expiresIn:'1h'});
     res.cookie('token',token,{httpOnly:true,maxAge:3600000})
-    return res.redirect('http://localhost:3000/my-profile');
+    res.redirect(`http://localhost:3000/google-callback?token=${token}`);
+    // return res.status(200).json({
+    //     success:true,
+    //     message:"signed in successfully",
+    //     token,
+    //     path:"my-profile"
+    // })
 })
 
 router.get('/googleAuth/callback',

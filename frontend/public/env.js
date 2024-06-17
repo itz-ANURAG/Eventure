@@ -3,7 +3,7 @@ window.env = {
   "APPDATA": "C:\\Users\\HP\\AppData\\Roaming",
   "ChocolateyInstall": "C:\\ProgramData\\chocolatey",
   "ChocolateyLastPathUpdate": "133233693644309650",
-  "CHROME_CRASHPAD_PIPE_NAME": "\\\\.\\pipe\\crashpad_39628_NTTWKBKEIZKOSCSP",
+  "CHROME_CRASHPAD_PIPE_NAME": "\\\\.\\pipe\\crashpad_24692_EPLJGZROKJFSPDIO",
   "COLOR": "0",
   "COLORTERM": "truecolor",
   "CommonProgramFiles": "C:\\Program Files\\Common Files",

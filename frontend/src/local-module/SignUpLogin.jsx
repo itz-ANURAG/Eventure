@@ -42,7 +42,9 @@ function SignUpLogin() {
     console.log("googleAuth invoked")
 //    Here We call open window because axios gave CORS error
       window.open('http://localhost:5000/api/googleAuth/callback',"_self")
-      toast.success("signed in successfully")
+      
+     // toast.success("signed in successfully")
+
   };
 
   const handleSubmit = async (event) => {

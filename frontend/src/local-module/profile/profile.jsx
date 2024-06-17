@@ -43,15 +43,15 @@ function Profile() {
         fetchData();
     }, [navigate]);
 
-    const handleLogout = async (event) => {
-        event.preventDefault();
-        try {
-            await axios.get('/logout');
-            navigate('/');
-        } catch (error) {
-            alert("something went wrong");
-        }
-    };
+    // const handleLogout = async (event) => {
+    //     event.preventDefault();
+    //     try {
+    //         await axios.get('/logout');
+    //         navigate('/');
+    //     } catch (error) {
+    //         alert("something went wrong");
+    //     }
+    // };
 
     const handleRegister = (event) => {
         setCurrentEvent(event);

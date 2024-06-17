@@ -14,7 +14,7 @@ import QWCevent from "./Events/QWCevent.jsx";
 import EventsDescription from "./Events/EventsDescripition.jsx";
 
 import AllEvents from './AllEvents.jsx';
-
+import GoogleCallback from "./GoogleCallback.jsx"
 import NotFound from "./NotFound"
 import 'react-toastify/dist/ReactToastify.css';
 import { Toaster } from 'react-hot-toast';
@@ -32,6 +32,7 @@ export default function App() {
        <Routes>
        
          <Route path='/' element={<HomePage/>}/>
+         <Route path="/google-callback" element={<GoogleCallback />} />
          <Route path='team' element={<Team/>}/>
          <Route path='getAllEvents' element={<AllEvents/>}/>
          <Route path='Signin' element={<SignUpLogin/>}/>
