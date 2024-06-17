@@ -4,6 +4,8 @@ import axios from 'axios';
 import { Card, CardContent, CardMedia, Typography, Grid, TextField, Select, MenuItem, Box, Pagination, createTheme, ThemeProvider, Button } from '@mui/material';
 import EventRegistrationForm from './EventRegistrationform';
 import Footer from "./Footer.jsx";
+import { useLocation ,useNavigate } from 'react-router-dom';
+import {toast} from 'react-hot-toast'
 import {useSelector,useDispatch} from "react-redux";
 import {setLoading} from "../slices/authSlice"
 import Spinner from "./Spinner"
@@ -11,6 +13,9 @@ import Spinner from "./Spinner"
 const AllEvents = () => {
     const dispatch=useDispatch();
   const {loading} =useSelector((state)=>(state.auth.loading))
+    const location = useLocation();
+    const navigate =useNavigate();
+    const { userId } = location.state || {};
     const [events, setEvents] = useState([]);
     const [search, setSearch] = useState('');
     const [sort, setSort] = useState('');
@@ -19,7 +24,6 @@ const AllEvents = () => {
     const [totalPages, setTotalPages] = useState(1);
     const [open, setOpen] = useState(false);
     const [selectedEvent, setSelectedEvent] = useState(null);
-
     useEffect(() => {
         dispatch(setLoading(true))
         const fetchEvents = async () => {
@@ -139,7 +143,20 @@ const AllEvents = () => {
                                     </Typography>
                                 </CardContent>
                                 <Box sx={{ display: 'flex', justifyContent: 'flex-end', p: 2 }}>
-                                    <Button variant="contained" sx={{ backgroundColor: 'white', color: 'black', fontFamily: 'MedievalSharp' }} onClick={() => handleOpen(event)}>Register Now</Button>
+                                    { userId==event.creater  ? <div className=' text-2xl'>Created by you</div>
+                                    :
+                                     event.userEnrolled.includes(userId) ? <div className=' text-2xl'>Registered</div>
+                                    :
+                                    <Button variant="contained" sx={{ backgroundColor: 'white', color: 'black', fontFamily: 'MedievalSharp' }} onClick={(e) =>{
+                                        e.preventDefault()
+                                        if(userId==null){
+                                            alert("Login First to Register")
+                                            navigate('/Signin')
+                                        }
+                                        else handleOpen(event)}
+                                    }
+                                        >Register Now</Button>
+                                    }
                                 </Box>
                             </Card>
                         </Grid>

@@ -33,7 +33,9 @@ function Profile() {
                   toast.error("internal server error")
                   navigate("/")
                 } else {
+
                     setUserData(verify.data.data);
+                    console.log(verify.data.data);
                 }
             } catch (error) {
                 toast.error("plz Login/Signup first")
@@ -72,14 +74,14 @@ function Profile() {
                 />
             ) : (
                 <Layout3>
-                    <Navbar />
+                    <Navbar userId={userData._id} />
                     <div className='flex h-screen'>
                         <Sidebar className="sidebar" choose={handleChange1} />
                         <div className="flex-1 p-6 overflow-auto">
                             {selected === 'view-profile' ? (
                                 <ViewProfile email={userData.email} username={userData.username} fullName={userData.fullName} />
                             ) : selected === 'myEvents' ? (
-                                <MyEvent />
+                                <MyEvent userId={userData._id} />
                             ) : selected === 'createEventPage' ? (
                                 <CreateEventPage />
                             ) : (

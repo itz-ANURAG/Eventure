@@ -5,7 +5,7 @@ import logo from '../HarryPotter/logo.png';
 import {NavLink,Link,useNavigate} from "react-router-dom" ;
 import {useSelector} from "react-redux";
 
-export default function Navbar() {
+export default function Navbar({userId}) {
   const navigate=useNavigate();
   const {token}=useSelector((state)=>state.auth);
   return (

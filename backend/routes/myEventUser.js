@@ -11,9 +11,9 @@ require("dotenv").config();
 router.get('/', async (req, res) => {
     try {
         const token= req.cookies.token;
-        console.log("token",token)
+        // console.log("token",token)
         const isVerified = jwt.verify(token,process.env.JWT_SECRET||'aryanKesahrwani@21022003')
-        console.log(isVerified)
+        // console.log(isVerified)
         if(!isVerified){
             console.log("Not verified")
             return res.status(403).json({
@@ -32,8 +32,9 @@ router.get('/', async (req, res) => {
         });
 
     }
- } catch (error) {
-        console.log(error)
+ 
+    } catch (error) {
+     console.log(error)
         return res.status(500).json({
             success:false,
          message:"unable to fetch event"
