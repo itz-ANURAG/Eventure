@@ -62,7 +62,7 @@ router.post('/', async (req, res) => {
 
         const user=await userModel.findOneAndUpdate(
                                            {_id:isVerified.id},
-                                            { $push: {eventCreated: event._id,eventRegistered: event._id } },
+                                            { $push: {eventCreated: event._id } },
                                             { new: true } 
                                           );
 

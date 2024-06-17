@@ -15,6 +15,7 @@ function SignUpLogin() {
  
   
   const {user}=useSelector((state)=>state.profile);
+  console.log(user);
   const dispatch=useDispatch();
   
   // const dispatch=useDispatch();
