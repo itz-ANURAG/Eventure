@@ -17,6 +17,7 @@ router.post('/login',async (req, res) => {
     // console.log(req.body)
     const user = await UserModel.findOne({username});
     if(!user){
+        console.log("hello")
               return res.status(304).json({
                 success:false,
                 message:"U have not signed up previously to our website",

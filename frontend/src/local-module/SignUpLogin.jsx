@@ -77,6 +77,7 @@ function SignUpLogin() {
       console.log(formData)
       // console.log(process.env.LOG_IN_URL)
       const response = await axios.post("/user/login", formData);
+      console.log(response)
       if(response.data.success){
       toast.success("logged in successfuly")
       dispatch(setToken(response.data.token));
@@ -87,6 +88,7 @@ function SignUpLogin() {
         toast.error(response.data.message)
       }
     } catch (error) {
+      console.log(error)
       toast.error("internal server error")
       alert("something went wrong")
     }
