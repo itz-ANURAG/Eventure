@@ -7,8 +7,9 @@ import EventRegistrationForm from './EventRegistrationform';
 import Footer from "./Footer.jsx";
 import { useLocation ,useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast'
+import Navbar from './Navbar.jsx';
 
-const AllEvents = ({userId}) => {
+const AllEvents = () => {
     const location = useLocation();
     const navigate =useNavigate();
     const { userId } = location.state || {};

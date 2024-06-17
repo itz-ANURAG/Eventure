@@ -69,7 +69,7 @@ export default function Navbar({userId}) {
                 <div className='combined flex items-center'>
                     {initialLoad ? (
                         <div className="placeholder-button">Loading...</div>
-                    ) : !token ? (
+                    ) : !userId ? (
                         <button onClick={() => navigate('/Signin')} className='b1 hover:opacity-45 transition px-4 duration-300 rounded-2xl hover:scale-105'>
                             SIGN IN
                         </button>
