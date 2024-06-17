@@ -22,9 +22,10 @@ function Sidebar(props) {
           console.log("trying to logout")
           const response = await axios.get('/logout');
           console.log("logout");
+          console.log(response.data.success)
           // localStorage.removeItem("token");
           dispatch(setToken(null));
-          toast.sucess("logged out")
+          toast.success("logged out")
           navigate('/')
         } catch (error) {
          toast.error("internal server error")

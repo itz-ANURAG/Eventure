@@ -23,8 +23,8 @@ router.post('/login',async (req, res) => {
                 path:"Signin"
               });
         }
-    
-    const validPassword = bcrypt.compare(password,user.password);
+    const validPassword =await bcrypt.compare(password,user.password);
+    console.log(validPassword)
     if(!validPassword){
         console.log("wrong Password")
         return res.status(200).json({

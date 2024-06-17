@@ -46,18 +46,16 @@ function Profile() {
         };
         fetchData();
     }, [navigate]);
-    
-    const dispatch=useDispatch();
-    const handleLogout = async (event) => {
-        event.preventDefault();
-        try {
-            await axios.get('/logout');
-            navigate('/');
-            dispatch(clearToken);
-        } catch (error) {
-            alert("something went wrong");
-        }
-    };
+
+    // const handleLogout = async (event) => {
+    //     event.preventDefault();
+    //     try {
+    //         await axios.get('/logout');
+    //         navigate('/');
+    //     } catch (error) {
+    //         alert("something went wrong");
+    //     }
+    // };
 
     const handleRegister = (event) => {
         setCurrentEvent(event);

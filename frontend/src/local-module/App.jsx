@@ -16,12 +16,13 @@ import Reset from './resetPassword.jsx'
 import Forget from './forget.jsx'
 
 import AllEvents from './AllEvents.jsx';
-
+import GoogleCallback from "./GoogleCallback.jsx"
 import NotFound from "./NotFound"
 import 'react-toastify/dist/ReactToastify.css';
 import { Toaster } from 'react-hot-toast';
 import {useSelector,useDispatch} from "react-redux";
 import { setToken,clearToken} from '../slices/authSlice.js';
+import Spinner from './Spinner.jsx';
 
 // import RegisterForm from "./Events/RegisterForm.jsx";
 
@@ -47,6 +48,7 @@ const  App=()=>{
        <Routes>
        
          <Route path='/' element={<HomePage/>}/>
+         <Route path="/google-callback/:token" element={<GoogleCallback />} />
          <Route path='team' element={<Team/>}/>
          <Route path='getAllEvents' element={<AllEvents/>}/>
          <Route path='Signin' element={<SignUpLogin/>}/>

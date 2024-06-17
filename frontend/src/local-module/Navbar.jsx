@@ -35,7 +35,7 @@ export default function Navbar({userId}) {
               <ul className='Middle' >
                 <li className='hover:scale-110 transition duration-300'><NavLink to='/' className='h hover:underline cursor-pointer hover:scale-110  text-white font-extrabold text-5xl'href="">Home</NavLink></li>
                 <li className='hover:scale-110 transition duration-300'><NavLink to='/team' className='h hover:underline cursor-pointer hover:scale-110  text-white font-extrabold'href="">Team</NavLink></li>
-                <li className='hover:scale-110 transition duration-300'><NavLink to='/getAllEvents' className='h hover:underline cursor-pointer hover:scale-110  text-white font-extrabold'href="">All Events</NavLink></li>
+                <li className='hover:scale-110 transition duration-300'><NavLink to='/getAllEvents' className='h hover:underline cursor-pointer hover:scale-110  text-white font-extrabold'state={{userId}}>All Events</NavLink></li>
                 {/* <li className='hover:scale-110 transition duration-300'><span className='h hover:underline cursor-pointer hover:scale-110  text-white font-extrabold'href="">Contact Us</span></li> */}
               </ul>
             
@@ -48,7 +48,7 @@ export default function Navbar({userId}) {
 
           </div>}
            
-           { token && <button onClick={()=>navigate('my-profile')} className='profile p-3 hover:opacity-70 hover:scale-110 transition duration-200 pt-4'>
+           { token && <button onClick={()=>navigate('/my-profile')} className='profile p-3 hover:opacity-70 hover:scale-110 transition duration-200 pt-4'>
             <img className='harry ' src={harrypotter} alt="logo not found "/>
             <div className='Ptext pt-1'>Profile</div>
             </button>

@@ -57,22 +57,22 @@ router.post('/', async (req, res) => {
             eventPrice: req.body.eventPrice,
             eventTime: req.body.eventTime,
             banner: thumbnailImage.secure_url,
-            createDate:new Date(Date.now()).toISOString().slice(0,10)
+            createDate: new Date(Date.now()).toISOString().slice(0, 10)
         });
 
-        const user=await userModel.findOneAndUpdate(
-                                           {_id:isVerified.id},
-                                            { $push: {eventCreated: event._id } },
-                                            { new: true } 
-                                          );
+        const user = await userModel.findOneAndUpdate(
+            { _id: isVerified.id },
+            { $push: { eventCreated: event._id } },
+            { new: true }
+        );
 
         console.log("model saved and event created");
         return res.status(200).json({
-             success: true,
-             path: '/getAllEvents', 
-             event,
-             message: "Event created Succesfully"
-             });
+            success: true,
+            path: '/my-profile',
+            event,
+            message: "Event created Succesfully"
+        });
 
     } catch (error) {
         console.log("error in creation", error)
@@ -82,7 +82,6 @@ router.post('/', async (req, res) => {
             message: "unable to create event"
         })
     }
-
 });
 
 module.exports = router;

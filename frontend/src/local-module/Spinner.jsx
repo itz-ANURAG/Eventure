@@ -5,6 +5,7 @@ function Spinner() {
   return (
     <div>
       <span class="loader"></span>
+      <h1>Loading</h1>
     </div>
   )
 }

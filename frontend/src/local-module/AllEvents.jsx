@@ -37,7 +37,6 @@ const AllEvents = () => {
                 console.error('Error fetching events', error);
             }
         };
-
         fetchEvents();
         dispatch(setLoading(false))
     }, [search, sort, filter, page]);

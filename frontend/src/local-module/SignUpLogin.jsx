@@ -9,6 +9,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import {useSelector,useDispatch} from "react-redux";
 import {setToken,setLoading} from "../slices/authSlice"
 import {toast} from "react-hot-toast"
+import Spinner from "./Spinner";
 
 
 function SignUpLogin() {
@@ -45,7 +46,9 @@ function SignUpLogin() {
     console.log("googleAuth invoked")
 //    Here We call open window because axios gave CORS error
       window.open('http://localhost:5000/api/googleAuth/callback',"_self")
-      toast.success("signed in successfully")
+      
+     // toast.success("signed in successfully")
+
   };
 
   const handleSubmit = async (event) => {
@@ -74,11 +77,15 @@ function SignUpLogin() {
       console.log(formData)
       // console.log(process.env.LOG_IN_URL)
       const response = await axios.post("/user/login", formData);
-      console.log("created");
+      if(response.data.success){
       toast.success("logged in successfuly")
       dispatch(setToken(response.data.token));
       console.log(response.data.path);
       navigate(response.data.path)
+      }
+      else{
+        toast.error(response.data.message)
+      }
     } catch (error) {
       toast.error("internal server error")
       alert("something went wrong")

@@ -18,7 +18,11 @@ router.post('/',async (req, res) => {
     }
     try {
         const hashedPassword =await bcrypt.hash(password,10)
-        const user = await UserModel.findByIdAndUpdate({_id:decode.id,password :hashedPassword},{new:true});
+        const user = await UserModel.findOneAndUpdate(
+            { _id: decode.id}, // Query to find the user by username
+            { password: hashedPassword }, // Update to set the hashed password
+            { new: true } // Option to return the updated document
+          );
         if(!user){
             return res.status(403).json({success:false , massage:"User not found enter valid email"})
         }

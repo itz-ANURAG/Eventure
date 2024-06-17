@@ -31,10 +31,15 @@ function Reset() {
         console.log(formData);
         try{
         const reset = await axios.post('/resetPassword', formData)
-        if (reset.status) {
+        console.log(reset)
+        if (reset.data.success) {
             toast.success("password reset successful")
             console.log("Success");
             navigate('/Signin')
+        }
+        else{
+          toast.error("Internal server Error")
+          navigate('/Signin')
         }
     }catch(error){
             toast.error("internal server error")
