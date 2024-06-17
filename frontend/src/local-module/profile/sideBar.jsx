@@ -8,6 +8,7 @@ import {useNavigate} from "react-router-dom";
 import axios  from 'axios';
 import {setToken} from "../../slices/authSlice"
 import {useSelector,useDispatch} from "react-redux";
+import {toast} from "react-hot-toast"
 
 
 import logout from '../../photos/logout.png';
@@ -23,11 +24,12 @@ function Sidebar(props) {
           console.log("logout");
           // localStorage.removeItem("token");
           dispatch(setToken(null));
+          toast.sucess("logged out")
           navigate('/')
         } catch (error) {
-          alert("something went wrong")
+         toast.error("internal server error")
         }
-        // Add your form submission logic here
+     
       
       };
   return (

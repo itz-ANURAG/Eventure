@@ -21,7 +21,9 @@ const verifyUser = async (req, res, next) => {
         // console.log(decoded);
         if(!decoded){
             console.log("unauthorised");
+
             return res.status(304).json({ success: false, massage: "Login first" })
+
         }
         const userData= await userD.findOne({username:decoded.username});
        data=userData;

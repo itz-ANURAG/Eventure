@@ -17,7 +17,7 @@ const verifyUser = async (req, res, next) => {
             return res.status(304).json({
                 success:false,
                 message:"token is missing",
-                path:"/"
+                path:"/login"
             })
         }
         // console.log(token)
@@ -26,7 +26,8 @@ const verifyUser = async (req, res, next) => {
         // console.log(decoded);
         if(!decoded){
             console.log("unauthorised");
-            return res.status(304).json({ success: false, massage: "Login first" })
+            return res.status(402).json({ success: false, massage: "Login first",path:"/login" })
+
         }
         const userData= await userModel.findOne({username:decoded.username});
        req.user=userData;

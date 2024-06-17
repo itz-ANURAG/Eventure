@@ -3,13 +3,16 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Card, CardContent, CardMedia, Typography, Grid, TextField, Select, MenuItem, Box, Pagination, createTheme, ThemeProvider, Button } from '@mui/material';
 import EventRegistrationForm from './EventRegistrationform';
-// import Navbar from "./Navbar.jsx";
 import Footer from "./Footer.jsx";
 import { useLocation ,useNavigate } from 'react-router-dom';
-import toast from 'react-hot-toast'
+import {toast} from 'react-hot-toast'
+import {useSelector,useDispatch} from "react-redux";
+import {setLoading} from "../slices/authSlice"
+import Spinner from "./Spinner"
 import Navbar from './Navbar.jsx';
-
 const AllEvents = () => {
+    const dispatch=useDispatch();
+  const {loading} =useSelector((state)=>(state.auth.loading))
     const location = useLocation();
     const navigate =useNavigate();
     const { userId } = location.state || {};
@@ -22,6 +25,7 @@ const AllEvents = () => {
     const [open, setOpen] = useState(false);
     const [selectedEvent, setSelectedEvent] = useState(null);
     useEffect(() => {
+        dispatch(setLoading(true))
         const fetchEvents = async () => {
             try {
                 const response = await axios.get('getAllEvents', {
@@ -35,6 +39,7 @@ const AllEvents = () => {
         };
 
         fetchEvents();
+        dispatch(setLoading(false))
     }, [search, sort, filter, page]);
 
     const theme = createTheme({
@@ -97,6 +102,7 @@ const AllEvents = () => {
                         }}
                     />
                 </Box>
+                { loading?<Spinner/>:(
                 <Grid container spacing={2}>
                     {events.map((event) => (
                         <Grid item xs={12} sm={6} md={4} key={event._id}>
@@ -156,6 +162,7 @@ const AllEvents = () => {
                         </Grid>
                     ))}
                 </Grid>
+                 )}
                 <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: 2 }}>
                     <Pagination
                         count={totalPages}

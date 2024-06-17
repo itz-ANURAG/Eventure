@@ -13,6 +13,7 @@ import Layout3 from '../../backgroundLayout/Layout3.jsx';
 import HostedEvent from './HostedEvent.jsx';
 import { useDispatch } from 'react-redux';
 import { clearToken } from '../../slices/authSlice.js'
+import {toast} from "react-hot-toast"
 
 function Profile() {
     const [selected, setSelected] = useState('view-profile');
@@ -31,15 +32,16 @@ function Profile() {
             try {
                 const verify = await axios.get('/verify');
                 if (!verify.data.success) {
-                    alert("Login First");
-                    navigate('/Signin');
+                  toast.error("internal server error")
+                  navigate("/")
                 } else {
 
                     setUserData(verify.data.data);
                     console.log(verify.data.data);
                 }
             } catch (error) {
-                alert("something went wrong");
+                toast.error("plz Login/Signup first")
+                navigate("/")
             }
         };
         fetchData();
@@ -81,7 +83,7 @@ function Profile() {
                         <Sidebar className="sidebar" choose={handleChange1} />
                         <div className="flex-1 p-6 overflow-auto">
                             {selected === 'view-profile' ? (
-                                <ViewProfile email={userData.email} username={userData.username} />
+                                <ViewProfile email={userData.email} username={userData.username} fullName={userData.fullName} />
                             ) : selected === 'myEvents' ? (
                                 <MyEvent userId={userData._id} />
                             ) : selected === 'createEventPage' ? (

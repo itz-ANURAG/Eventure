@@ -83,7 +83,7 @@ function HostedEvent() {
 
     return (
         <div className="hosted-event-container p-6">
-            <h2 className="text-2xl text-gray-200 font-bold mb-4">Hosted Events</h2>
+            <h2 className="text-2xl text-white font-bold mb-4">Hosted Events</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {events.map((event) => (
                     <div key={event._id} className="event-card bg-white p-4 rounded shadow-md">

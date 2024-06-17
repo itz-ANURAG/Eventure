@@ -1,9 +1,17 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import toast from 'react-hot-toast'
+import {toast} from "react-hot-toast"
+import {useSelector,useDispatch} from "react-redux";
+import {setLoading} from "../../slices/authSlice"
+import Spinner from ".././Spinner"
+
 
 const CreateEventPage = () => {
+
+    const dispatch=useDispatch();
+  const {loading} =useSelector((state)=>(state.auth.loading))
+
     const [formData, setFormData] = useState({
         eventName: '',
         eventDate: '',
@@ -40,6 +48,7 @@ const CreateEventPage = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        dispatch(setLoading(true))
         const formDataToSend = new FormData();
         for (const key in formData) {
             formDataToSend.append(key, formData[key]);
@@ -49,19 +58,21 @@ const CreateEventPage = () => {
                 'Content-Type': 'multipart/form-data'
               }});
             if (response.data.success) {
-                toast.success(response.data.message);
+                toast.success("event created successfully")
                 navigate(response.data.path);
             } else {
                 toast.error('Failed to create event');
             }
         } catch (error) {
-            toast.error('Failed to create event');
-            console.error('There was an error creating the event:', error);
+            console.log(error)
+            toast.error("internal server error");
         }
+        dispatch(setLoading(false))
     };
 
     return (
         <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-red-950">
+            { loading?<Spinner/>:<>
             <h2 className="text-4xl font-bold text-red-500 mb-6">Create Event</h2>
             <form onSubmit={handleSubmit} encType="multipart/form-data"  className="w-full max-w-lg p-8 bg-gray-800 rounded-lg shadow-lg">
                 <div className="mb-4">
@@ -136,6 +147,7 @@ const CreateEventPage = () => {
                     Create Event
                 </button>
             </form>
+            </> }
         </div>
     );
 };

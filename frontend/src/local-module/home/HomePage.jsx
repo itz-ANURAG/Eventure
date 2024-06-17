@@ -12,6 +12,7 @@ import { Link } from "react-router-dom";
 import { useTypewriter, Cursor } from "react-simple-typewriter";
 import Layout from "../../backgroundLayout/Layout.jsx";
 import { useState } from "react";
+import {toast} from "react-hot-toast"
 
 export default function HomePage() {
 
@@ -67,7 +68,7 @@ export default function HomePage() {
     // Send the formData to the backend (e.g., using axios)
     console.log('Form submitted', contactFormData);
 
-    alert('Message sent successfully!');
+    toast.success("we will contact u soon");
     setContactFormData({ name: '', email: '', phone: '' });
   };
 
