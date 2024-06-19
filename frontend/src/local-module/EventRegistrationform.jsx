@@ -50,8 +50,9 @@ const EventRegistrationForm = ({ open, handleClose, event }) => {
         dispatch(setLoading(true))
         try {
 
-            const {key}=await axios.get("http://localhost:5000/getKey")
-            const {receipt:{order}}=await axios.post("http://localhost:5000/createorder",{price})
+            const {key}=await axios.get("/getKey")
+            console.log(key)
+            const {receipt:{order}}=await axios.post("/createorder",{price})
            
          const options={
             key,
@@ -61,7 +62,7 @@ const EventRegistrationForm = ({ open, handleClose, event }) => {
             description:"RAZORPAY GATEWAY",
             image:"https://downloadscdn6.freepik.com/1142/51/50994.jpg?filename=3d-render-little-boy-with-eyeglasses-blue-shirt.jpg&token=exp=1718800072~hmac=035061d8a1a68f0880e99d560b206ca9",
             order_id:order.id,
-            callback_url:"http://localhost:5000/paymentverification",
+            callback_url:"/paymentverification",
             prefill:{
                 name:`${formData.username}`,
                 email:`${formData.email}`,
@@ -143,7 +144,7 @@ const EventRegistrationForm = ({ open, handleClose, event }) => {
                             onChange={handleChange}
                             required
                         />
-                        <Button type="submit" variant="contained" color="blue" sx={{ mt: 2 }}>
+                        <Button type="submit" variant="contained" color="primary" sx={{ mt: 2 }}>
                             Checkout
                         </Button>
                     </form>

@@ -31,9 +31,8 @@ const eventRegister = require('./routes/eventRegisterUser')
 const myEventUser = require('./routes/myEventUser')
 const getUserEvents=require('./routes/getUserEvent');
 const updateEvent=require('./routes/updateEvent');
-const {checkout,paymentVerification}=require("./routes/payment")
-
-
+const paymentVerification=require("./routes/payment");
+const checkout=require("./routes/order");
 
 const bodyParser = require('body-parser');
 const session = require('cookie-session');
