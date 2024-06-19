@@ -151,6 +151,7 @@ const EventRegistrationForm = ({ open, handleClose, event }) => {
                             required
                         />
                         <Button type="submit" variant="contained" color="primary" sx={{ mt: 2 }}>
+                        <Button type="submit" variant="contained" color="primary" sx={{ mt: 2 }}>
                             Checkout
                         </Button>
                     </form>
