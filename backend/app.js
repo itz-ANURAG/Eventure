@@ -6,12 +6,6 @@ const logger = require('morgan');
 const cors = require('cors');
 require("dotenv").config();
 const app = express();
-const razorpay=require("razorpay");
-
-exports.instance=new razorpay({
-  key_id:process.env.RAZORPAY_API_KEY_ID,
-  key_secret:process.env.RAZORPAY_API_KEY_SECRET,
-});
 
 app.get("/getKey",(req,res)=>
   res.status(200).json({key:process.env.RAZORPAY_API_KEY_ID})
@@ -31,9 +25,8 @@ const eventRegister = require('./routes/eventRegisterUser')
 const myEventUser = require('./routes/myEventUser')
 const getUserEvents=require('./routes/getUserEvent');
 const updateEvent=require('./routes/updateEvent');
-const {checkout,paymentVerification}=require("./routes/payment")
-
-
+const paymentVerification=require("./routes/payment");
+const checkout=require("./routes/order");
 
 const bodyParser = require('body-parser');
 const session = require('cookie-session');
