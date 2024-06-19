@@ -14,7 +14,7 @@ export default function Navbar({userId}) {
   const dispatch = useDispatch();
   const {token}=useSelector((state)=>state.auth);
   const [initialLoad, setInitialLoad] = useState(true);
-  console.log(token);
+  // console.log(token);
   useEffect(() => {
     const storedToken = localStorage.getItem('token');
     if (storedToken) {

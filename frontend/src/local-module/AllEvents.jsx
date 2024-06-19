@@ -149,7 +149,7 @@ const AllEvents = () => {
                                     <Button variant="contained" sx={{ backgroundColor: 'white', color: 'black', fontFamily: 'MedievalSharp' }} onClick={(e) =>{
                                         e.preventDefault()
                                         if(userId==null){
-                                            alert("Login First to Register")
+                                            toast.error("Login First to Register")
                                             navigate('/Signin')
                                         }
                                         else handleOpen(event)}

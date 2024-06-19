@@ -40,12 +40,42 @@ const EventRegistrationForm = ({ open, handleClose, event }) => {
           ...prevData,
           [name]: value,
         }));
-     }
+     }    
+
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        const price=event.eventPrice ;
         dispatch(setLoading(true))
         try {
+
+            const {key}=await axios.get("http://localhost:5000/getKey")
+            const {receipt:{order}}=await axios.post("http://localhost:5000/createorder",{price})
+           
+         const options={
+            key,
+            amount:order.amount,
+            currency:"INR",
+            name:"ANURAG GUPTA",
+            description:"RAZORPAY GATEWAY",
+            image:"https://downloadscdn6.freepik.com/1142/51/50994.jpg?filename=3d-render-little-boy-with-eyeglasses-blue-shirt.jpg&token=exp=1718800072~hmac=035061d8a1a68f0880e99d560b206ca9",
+            order_id:order.id,
+            callback_url:"http://localhost:5000/paymentverification",
+            prefill:{
+                name:`${formData.username}`,
+                email:`${formData.email}`,
+                contact:`${formData.phone}`,
+            },
+            notes:{
+                 "address":"razorpay corporate office"
+            },
+            theme:{
+                "color":"#121212"
+            }
+         };
+         const razor=new window.Razorpay(options);
+            razor.open();
             console.log(event);
             const response = await axios.post('/eventRegister', {formData,event});
             if (response.data.success) {
@@ -113,8 +143,8 @@ const EventRegistrationForm = ({ open, handleClose, event }) => {
                             onChange={handleChange}
                             required
                         />
-                        <Button type="submit" variant="contained" color="primary" sx={{ mt: 2 }}>
-                            Submit
+                        <Button type="submit" variant="contained" color="blue" sx={{ mt: 2 }}>
+                            Checkout
                         </Button>
                     </form>
                 </Box>
