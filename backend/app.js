@@ -5,9 +5,17 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const cors = require('cors');
 require("dotenv").config();
+const app = express();
+const razorpay=require("razorpay");
 
+exports.instance=new razorpay({
+  key_id:process.env.RAZORPAY_API_KEY_ID,
+  key_secret:process.env.RAZORPAY_API_KEY_SECRET,
+});
 
-
+app.get("/getKey",(req,res)=>
+  res.status(200).json({key:process.env.RAZORPAY_API_KEY_ID})
+);
 
 
 const signUpRouter = require('./routes/signUp');
@@ -23,9 +31,10 @@ const eventRegister = require('./routes/eventRegisterUser')
 const myEventUser = require('./routes/myEventUser')
 const getUserEvents=require('./routes/getUserEvent');
 const updateEvent=require('./routes/updateEvent');
+const {checkout,paymentVerification}=require("./routes/payment")
 
 
-const app = express();
+
 const bodyParser = require('body-parser');
 const session = require('cookie-session');
 const expressSession = require('express-session');
@@ -80,6 +89,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/user', signUpRouter);
+app.use("/createorder",checkout);
+app.use("/paymentverification",paymentVerification);
 app.use('/user',loginRouter);
 app.use('/',verifyRouter);
 app.use('/createEvent',eventCreate)
