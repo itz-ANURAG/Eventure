@@ -17,7 +17,7 @@ function SignUpLogin() {
  
   
   const {user}=useSelector((state)=>state.profile);
-  console.log(user);
+  // console.log(user);
   const dispatch=useDispatch();
   const {loading} =useSelector((state)=>(state.auth.loading))
   
@@ -54,15 +54,15 @@ function SignUpLogin() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (validateForm()) {
-    console.log(formData);
+    // console.log(formData);
     dispatch(setLoading(true))
     if(action==="Sign Up"){
     try {
       console.log("For SignIn")
-      console.log(formData)
+      // console.log(formData)
       const response = await axios.post("/user/signUp", formData);
       // localStorage.setItem("token",`${response.data.token}`);
-      console.log(response);
+      // console.log(response);
       dispatch(setToken(response.data.token));
       toast.success("signed in successfuly")
       navigate(response.data.path)
@@ -74,14 +74,14 @@ function SignUpLogin() {
   else{
     try {
       console.log("For Login")
-      console.log(formData)
+      // console.log(formData)
       // console.log(process.env.LOG_IN_URL)
       const response = await axios.post("/user/login", formData);
-      console.log(response)
+      // console.log(response)
       if(response.data.success){
       toast.success("logged in successfuly")
       dispatch(setToken(response.data.token));
-      console.log(response.data.path);
+      // console.log(response.data.path);
       navigate(response.data.path)
       }
       else{

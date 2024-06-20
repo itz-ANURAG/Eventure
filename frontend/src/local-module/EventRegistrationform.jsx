@@ -40,30 +40,67 @@ const EventRegistrationForm = ({ open, handleClose, event }) => {
           ...prevData,
           [name]: value,
         }));
-     }
+     }    
 
-    const handleSubmit = async (e) => {
+
+
+     const handleSubmit = async (e) => {
         e.preventDefault();
-        dispatch(setLoading(true))
+        const price = event.eventPrice;
+        dispatch(setLoading(true));
         try {
-            console.log(event);
-            const response = await axios.post('/eventRegister', {formData,event});
-            if (response.data.success) {
-                toast.success(`Registered for ${event.eventName}! Successfully`);
-                navigate(response.data.path);
-
-            } else {
-                toast.error('Failed to create event internal server error');
-                navigate(response.data.path)
-            }
-            handleClose();
+            const { data: { key } } = await axios.get("/getKey");
+            const { data: { order } } = await axios.post("/createorder", { price });
+    
+            const options = {
+                key,
+                amount: order.amount,
+                currency: "INR",
+                name: "ANURAG GUPTA",
+                description: "RAZORPAY GATEWAY",
+                image: "https://downloadscdn6.freepik.com/1142/51/50994.jpg?filename=3d-render-little-boy-with-eyeglasses-blue-shirt.jpg&token=exp=1718800072~hmac=035061d8a1a68f0880e99d560b206ca9",
+                order_id: order.id,
+                handler: async (response) => {
+                    try {
+                        const result = await axios.post("/paymentverification", response); // Ensure the correct URL
+                        if (result.data.success) {
+                            const eventRegisterResponse = await axios.post('/eventRegister', { formData, event });
+                            if (eventRegisterResponse.data.success) {
+                                toast.success(`Registered for ${event.eventName}! Successfully`);
+                                navigate(eventRegisterResponse.data.path);
+                            } else {
+                                toast.error('Failed to create event internal server error');
+                                navigate(eventRegisterResponse.data.path);
+                            }
+                        } else {
+                            toast.error('Payment verification failed');
+                        }
+                    } catch (error) {
+                        console.error('Error during payment verification', error);
+                        toast.error('Payment verification failed');
+                    }
+                    handleClose();
+                },
+                prefill: {
+                    name: `${formData.username}`,
+                    email: `${formData.email}`,
+                    contact: `${formData.phone}`,
+                },
+                notes: {
+                    "address": "razorpay corporate office"
+                },
+                theme: {
+                    "color": "#121212"
+                }
+            };
+            const razor = new window.Razorpay(options);
+            razor.open();
         } catch (error) {
             console.error('Error registering for event', error);
-            toast.error('Registration failed ,plz Login first');
-            navigate("/")
-
+            toast.error('Registration failed, please login first');
+            navigate("/");
         }
-        dispatch(setLoading(false))
+        dispatch(setLoading(false));
     };
 
     return (
@@ -114,7 +151,8 @@ const EventRegistrationForm = ({ open, handleClose, event }) => {
                             required
                         />
                         <Button type="submit" variant="contained" color="primary" sx={{ mt: 2 }}>
-                            Submit
+                        <Button type="submit" variant="contained" color="primary" sx={{ mt: 2 }}>
+                            Checkout
                         </Button>
                     </form>
                 </Box>
