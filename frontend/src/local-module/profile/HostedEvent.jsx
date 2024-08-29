@@ -1,8 +1,14 @@
-
+// importing necessary modules
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import {useSelector,useDispatch} from "react-redux";
+import {setLoading} from "../../slices/authSlice"
+import Spinner from ".././Spinner"
 
 function HostedEvent() {
+
+    const dispatch=useDispatch();
+    const loading=useSelector((state)=>(state.auth.loading))
     const [events, setEvents] = useState([]);
     const [userId, setUserId] = useState(null);
     const [currentEvent, setCurrentEvent] = useState(null);
@@ -28,11 +34,11 @@ function HostedEvent() {
                 console.error('Error verifying user:', error);
             }
         };
-
         fetchUserId();
     }, []);
 
     useEffect(() => {
+        dispatch(setLoading(true))
         if (userId) {
             const fetchEvents = async () => {
                 try {
@@ -44,6 +50,7 @@ function HostedEvent() {
             };
             fetchEvents();
         }
+        dispatch(setLoading(false))
     }, [userId]);
 
     const handleUpdateEventClick = (event) => {
@@ -69,7 +76,8 @@ function HostedEvent() {
     };
 
     const handleFormSubmit = async (e) => {
-        e.preventDefault();
+        e.preventDefault();//preventing the default effect
+        dispatch(setLoading(true))
         try {
             const response = await axios.put(`/api/event/${currentEvent._id}`, formData);
             alert('Event updated successfully');
@@ -79,10 +87,13 @@ function HostedEvent() {
             console.error('Error updating event:', error);
             alert('Failed to update event');
         }
+        dispatch(setLoading(false))
     };
 
     return (
         <div className="hosted-event-container p-6">
+             { loading?<Spinner/>:<> 
+             {/* showing spinner when there is heavy traffic */}
             <h2 className="text-2xl text-white font-bold mb-4">Hosted Events</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {events.map((event) => (
@@ -101,7 +112,8 @@ function HostedEvent() {
                     </div>
                 ))}
             </div>
-
+              </>}
+              {/* open form to update event */}
             {isFormOpen && (
                 <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
                     <div className="bg-white p-6 rounded shadow-md">
@@ -180,8 +192,11 @@ function HostedEvent() {
                     </div>
                 </div>
             )}
+        
         </div>
+        
     );
 }
 
+// exporting the component to be used somewhere else 
 export default HostedEvent;

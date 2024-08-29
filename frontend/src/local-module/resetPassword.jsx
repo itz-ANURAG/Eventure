@@ -1,19 +1,17 @@
 // importing files needed for the sign up log in page.
-// import React from "react";
 import "../stylesheets/signUpLogin.css";
 import React, { useState } from "react";
-// import google from "../images/google.png";
 import axios from 'axios'
 import {toast} from "react-hot-toast"
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import {useNavigate, useParams } from 'react-router-dom';
+
 function Reset() {
-
     let { token } = useParams();
-
     const [formData, setFormData] = useState({
         password: '',
         token: token
     });
+
     // writing rquired js for the handling onClick event.
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -23,6 +21,8 @@ function Reset() {
             [name]: value,
         }));
     };
+    
+    // to prevent cors error and facilitate authentication at backend
     axios.defaults.withCredentials = true;
     const navigate = useNavigate();
 
@@ -30,6 +30,7 @@ function Reset() {
         event.preventDefault();
         console.log(formData);
         try{
+          // axios request to reset password successfully
         const reset = await axios.post('/resetPassword', formData)
         console.log(reset)
         if (reset.data.success) {
@@ -48,11 +49,9 @@ function Reset() {
        }
     };
 
-
-
-
     return (
         <>
+        {/* required jsx for reset password */}
         <div className="flex justify-center items-center h-screen bg-slate-400">
           <div className="bg-white p-6 rounded shadow-md w-full max-w-md">
             <ul>
@@ -82,5 +81,6 @@ function Reset() {
       </>
     );
 }
+
 // exporting our function to embedd it in app.js. 
 export default Reset;

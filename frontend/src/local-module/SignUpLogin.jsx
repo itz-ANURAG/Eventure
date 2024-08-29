@@ -2,10 +2,8 @@
 import React from "react";
 import "../stylesheets/signUpLogin.css";
 import {useState} from "react";
-// import google from "../images/google.png";
 import axios from 'axios'
-// import navigate from 'navigate'
-import { Link, useNavigate } from 'react-router-dom';
+import {useNavigate } from 'react-router-dom';
 import {useSelector,useDispatch} from "react-redux";
 import {setToken,setLoading} from "../slices/authSlice"
 import {toast} from "react-hot-toast"
@@ -13,23 +11,18 @@ import Spinner from "./Spinner";
 
 
 function SignUpLogin() {
-  // using useState hook for creating desired logIn signUp effect.
- 
-  
-  const {user}=useSelector((state)=>state.profile);
-  // console.log(user);
+  // using useState hook for creating desired logIn signUp effect
+  const user=useSelector((state)=>state.profile);
   const dispatch=useDispatch();
-  const {loading} =useSelector((state)=>(state.auth.loading))
-  
-  // const dispatch=useDispatch();
+  const loading =useSelector((state)=>(state.auth.loading))
   const [action,setAction] = useState("Sign Up");
-  
   const [formData, setFormData] = useState({
     email: '',
     username: '',
     fullName: '',
     password: '',
   });
+
   // writing rquired js for the handling onClick event.
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -39,6 +32,7 @@ function SignUpLogin() {
       [name]: value,
     }));
   };
+
   axios.defaults.withCredentials=true;
   const navigate = useNavigate();
   const handleGoogle = async(event) => {
@@ -46,23 +40,17 @@ function SignUpLogin() {
     console.log("googleAuth invoked")
 //    Here We call open window because axios gave CORS error
       window.open('http://localhost:5000/api/googleAuth/callback',"_self")
-      
-     // toast.success("signed in successfully")
-
+     toast.success("signed in successfully")
   };
 
   const handleSubmit = async (event) => {
-    event.preventDefault();
+    event.preventDefault();//to prevent the default action of form handling
     if (validateForm()) {
-    // console.log(formData);
     dispatch(setLoading(true))
     if(action==="Sign Up"){
     try {
       console.log("For SignIn")
-      // console.log(formData)
       const response = await axios.post("/user/signUp", formData);
-      // localStorage.setItem("token",`${response.data.token}`);
-      // console.log(response);
       dispatch(setToken(response.data.token));
       toast.success("signed in successfuly")
       navigate(response.data.path)
@@ -74,14 +62,10 @@ function SignUpLogin() {
   else{
     try {
       console.log("For Login")
-      // console.log(formData)
-      // console.log(process.env.LOG_IN_URL)
       const response = await axios.post("/user/login", formData);
-      // console.log(response)
       if(response.data.success){
       toast.success("logged in successfuly")
       dispatch(setToken(response.data.token));
-      // console.log(response.data.path);
       navigate(response.data.path)
       }
       else{
@@ -104,10 +88,6 @@ function SignUpLogin() {
         return false;
       }
     }
-    // if (!validatePassword(formData.password)) {
-    //   alert('Password must be at least 6 characters long and include a mix of upper and lower case letters, digits, and special characters.');
-    //   return false;
-    // }
     return true;
   };
 
@@ -116,21 +96,13 @@ function SignUpLogin() {
     return emailRegex.test(email);
   };
 
-  // const validatePassword = (password) => {
-  //   const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
-  //   return passwordRegex.test(password);
-  // };
- 
-
-
-
-
   const handleClick =async () => {
       (action==="Sign Up")?setAction("Log In"):setAction("Sign Up");
     }
 
   return (
     <>{
+      // to create spinner effect while fetching data from backend
       loading?<Spinner/>:(
        <div className="sbox">
       <div className="scontainer">
@@ -140,6 +112,7 @@ function SignUpLogin() {
         </div>
         
         <form onSubmit={handleSubmit}>
+          {/* to decide exactly which jsx to show signup or login */}
       {action === "Sign Up" && (
         <>
           <div className="sinput">
@@ -222,5 +195,6 @@ function SignUpLogin() {
     </>
   );
 }
+
 // exporting our function to embedd it in app.js. 
 export default SignUpLogin;

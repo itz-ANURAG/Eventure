@@ -1,3 +1,4 @@
+// importing files
 import React from 'react'
 
 const SingleCard = ({
@@ -5,6 +6,7 @@ const SingleCard = ({
   CardDescription,
   CardTitle,
 }) => {
+
   return (
     <>
       <div className="mb-5 overflow-hidden rounded-lg  bg-gradient-to-br from-red-950 to-black shadow-1 hover:scale-105 transition duration-200 flex flex-col  items-center ">
@@ -25,6 +27,5 @@ const SingleCard = ({
     </>
   );
 };
-
 
 export default SingleCard

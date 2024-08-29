@@ -1,3 +1,4 @@
+// importing importqatnt files
 import React from 'react'
 import '../../stylesheets/sidebar.css'
 import profile from '../../photos/view-profile.png';
@@ -7,15 +8,14 @@ import refund from '../../photos/refund.png';
 import {useNavigate} from "react-router-dom";
 import axios  from 'axios';
 import {setToken} from "../../slices/authSlice"
-import {useSelector,useDispatch} from "react-redux";
+import {useDispatch} from "react-redux";
 import {toast} from "react-hot-toast"
-
-
 import logout from '../../photos/logout.png';
-// import { FaBeer } from "react-icons/fa";
+
 function Sidebar(props) {
   const dispatch=useDispatch();
     const navigate=useNavigate();
+
     const handleLogout = async (event) => {
         event.preventDefault();
         try {
@@ -23,16 +23,14 @@ function Sidebar(props) {
           const response = await axios.get('/logout');
           console.log("logout");
           console.log(response.data.success)
-          // localStorage.removeItem("token");
           dispatch(setToken(null));
           toast.success("logged out")
           navigate('/')
         } catch (error) {
          toast.error("internal server error")
         }
-     
-      
       };
+
   return (
     <>
     <div className='sidebarcontainer w-64 h-full pt-10  bg-gradient-to-br from-red-950 to to-black'>
@@ -40,11 +38,7 @@ function Sidebar(props) {
             <ul className='nav h-screen space-y-2 list-none'>
             <button onClick={()=>props.choose('view-profile')}><Option value="Profile" image={profile} alt="profile png"/></button>
             <button onClick={()=>props.choose('myEvents')}><Option value="My Events" image={myevents} alt="my event png"/></button>
-
-              
             <button onClick={()=>props.choose('createEventPage')}><Option value="Add Events" image={addevents} alt=" addevent png"/></button>
-            
-            
             <button onClick={()=>props.choose('hostedEvents')}><Option value="Hosted Event" image={refund} alt="refund png"/></button>
             <button onClick={handleLogout}><Option value="Log Out" image={logout} alt=" logout png"/></button>
             </ul>
@@ -54,7 +48,7 @@ function Sidebar(props) {
   )
 }
 
-export default Sidebar
+export default Sidebar;
 
 const Option=({
     value,image

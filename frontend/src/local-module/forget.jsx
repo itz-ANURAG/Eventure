@@ -3,13 +3,9 @@ import React from "react";
 import "../stylesheets/signUpLogin.css";
 import {useState} from "react";
 import axios from 'axios'
-// import navigate from 'navigate'
-import { Link, useNavigate } from 'react-router-dom';
-
+import {useNavigate } from 'react-router-dom';
 
 function SignUpLogin() {
-  const url='/users/register'
-
 
   const [formData, setFormData] = useState({
     email: '',
@@ -24,12 +20,17 @@ function SignUpLogin() {
       [name]: value,
     }));
   };
+
+  // to handle cors issues
   axios.defaults.withCredentials=true;
   const navigate = useNavigate();
+
+  // to show error if valid email is not entered
   const validateEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     console.log(formData);
@@ -53,11 +54,7 @@ function SignUpLogin() {
     }
     else alert("Enter a Valid Email")
   }
-    // Add your form submission logic here
-    
-    
-    
-    
+ 
     return (
     <>
       <div className="flex justify-center items-center h-screen bg-slate-400">
@@ -89,5 +86,6 @@ function SignUpLogin() {
     </>
   );
 }
+
 // exporting our function to embedd it in app.js. 
 export default SignUpLogin;

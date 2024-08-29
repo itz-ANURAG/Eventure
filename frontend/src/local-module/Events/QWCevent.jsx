@@ -3,6 +3,7 @@ import SingleCardQwc from './SingleCardQwc.jsx'
 import Layout2 from '../../backgroundLayout/Layout2.jsx'
 import RegisterForm from './RegisterForm.jsx';
 import { useState } from 'react';
+
 function QWCevent() {
   const [isopen, setIsopen] = useState(false);
   const handleDecide=(value)=>{

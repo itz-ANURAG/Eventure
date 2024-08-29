@@ -23,7 +23,6 @@ router.get('/', async (req, res) => {
         }
         else{
             const user=await userModel.find({_id:isVerified.id}).populate({path:'eventRegistered',model:'eventCreate'})
-
             // console.log("user" , user)
            return res.status(200).json({
             success:true,

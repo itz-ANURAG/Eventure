@@ -1,3 +1,4 @@
+// importing necessary components
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -6,12 +7,13 @@ import {useSelector,useDispatch} from "react-redux";
 import {setLoading} from "../../slices/authSlice"
 import Spinner from ".././Spinner"
 
+export default function CreateEventPage (){
 
-const CreateEventPage = () => {
-
-    const dispatch=useDispatch();
-  const {loading} =useSelector((state)=>(state.auth.loading))
-
+    // reducer function to be called here to create loading whenever ther eis backend call taking time 
+  const dispatch=useDispatch();
+  const loading=useSelector((state)=>(state.auth.loading))
+ 
+//   declaring form states
     const [formData, setFormData] = useState({
         eventName: '',
         eventDate: '',
@@ -23,6 +25,7 @@ const CreateEventPage = () => {
 
     const navigate = useNavigate();
 
+    // handling form data and suppling to backend
     const handleChange = (event) => {
         const { name, value } = event.target;
         if(name==="image"){
@@ -70,6 +73,7 @@ const CreateEventPage = () => {
         dispatch(setLoading(false))
     };
 
+    // main jsx logic
     return (
         <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-red-950">
             { loading?<Spinner/>:<>
@@ -151,5 +155,3 @@ const CreateEventPage = () => {
         </div>
     );
 };
-
-export default CreateEventPage;

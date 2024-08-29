@@ -2,11 +2,14 @@
 import React from 'react'
 import '../../stylesheets/ViewProfile.css'
 import userImage from '../../photos/harry-potter.gif'
+import Spinner from ".././Spinner"
+
 function ViewProfile({
   username,
   email,
   fullName
 }) {
+ 
   return (
     <>
     {
@@ -26,7 +29,7 @@ function ViewProfile({
     </div>
     </div>
     :
-    <><h1>Loading Details</h1></>
+    <><h1><Spinner/></h1></>
     }
     </> 
   )

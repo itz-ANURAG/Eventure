@@ -1,4 +1,4 @@
-
+// importing necessary components
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Card, CardContent, CardMedia, Typography, Grid, TextField, Select, MenuItem, Box, Pagination, createTheme, ThemeProvider, Button } from '@mui/material';
@@ -10,9 +10,11 @@ import {useSelector,useDispatch} from "react-redux";
 import {setLoading} from "../slices/authSlice"
 import Spinner from "./Spinner"
 import Navbar from './Navbar.jsx';
+
 const AllEvents = () => {
+
     const dispatch=useDispatch();
-  const {loading} =useSelector((state)=>(state.auth.loading))
+  const loading =useSelector((state)=>(state.auth.loading))
     const location = useLocation();
     const navigate =useNavigate();
     const { userId } = location.state || {};
@@ -24,6 +26,7 @@ const AllEvents = () => {
     const [totalPages, setTotalPages] = useState(1);
     const [open, setOpen] = useState(false);
     const [selectedEvent, setSelectedEvent] = useState(null);
+    
     useEffect(() => {
         dispatch(setLoading(true))
         const fetchEvents = async () => {
@@ -62,6 +65,7 @@ const AllEvents = () => {
     return (
         <>
          <Navbar />
+         {loading?<Spinner/>:<>
         <ThemeProvider theme={theme}>
             <Box sx={{ padding: 2, background: '#4b2e2e', minHeight: '100vh' }}>
                 <Box sx={{ marginBottom: 2, display: 'flex', justifyContent: 'space-between', gap: 2 }}>
@@ -179,6 +183,7 @@ const AllEvents = () => {
                 )}
             </Box>
         </ThemeProvider>
+         </>}
         <Footer className="footer" />
         </>
     );

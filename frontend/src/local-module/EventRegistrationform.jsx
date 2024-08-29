@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import {useSelector,useDispatch} from "react-redux";
 import {setLoading} from "../slices/authSlice"
 import Spinner from "./Spinner"
+
 const style = {
     position: 'absolute',
     top: '50%',
@@ -24,7 +25,7 @@ const style = {
 const EventRegistrationForm = ({ open, handleClose, event }) => {
 
     const dispatch=useDispatch();
-  const {loading} =useSelector((state)=>(state.auth.loading))
+  const loading =useSelector((state)=>(state.auth.loading))
     
     const navigate = useNavigate();
     const [formData,setFormData]=useState({
@@ -42,8 +43,7 @@ const EventRegistrationForm = ({ open, handleClose, event }) => {
         }));
      }    
 
-
-
+    //  to handle razorpay test mode payment
      const handleSubmit = async (e) => {
         e.preventDefault();
         const price = event.eventPrice;
@@ -150,7 +150,7 @@ const EventRegistrationForm = ({ open, handleClose, event }) => {
                             onChange={handleChange}
                             required
                         />
-                        <Button type="submit" variant="contained" color="primary" sx={{ mt: 2 }}>
+                        {/* <Button type="submit" variant="contained" color="primary" sx={{ mt: 2 }}> */}
                         <Button type="submit" variant="contained" color="primary" sx={{ mt: 2 }}>
                             Checkout
                         </Button>

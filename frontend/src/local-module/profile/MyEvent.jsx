@@ -4,15 +4,12 @@ import {useSelector,useDispatch} from "react-redux";
 import {setLoading} from "../../slices/authSlice"
 import Spinner from "../Spinner"
 const MyEvent = () => {
-  const [verifyData, setVerifyData] = useState(null); // State to store verify data
- 
+  const [verifyData, setVerifyData] = useState(null); // State to store verify data 
   const dispatch=useDispatch();
-  const {loading} =useSelector((state)=>(state.auth.loading))
-
+  const loading =useSelector((state)=>(state.auth.loading))
 
   useEffect(() => {
     let isMounted = true; // Flag to track whether the component is mounted
-
     const fetchData = async () => {
       dispatch(setLoading(true))
       try {
@@ -23,7 +20,6 @@ const MyEvent = () => {
         alert("something went wrong");
       }
     };
-
     fetchData(); // Call the fetchData function
     dispatch(setLoading(false))
     // Cleanup function to set isMounted to false when the component unmounts

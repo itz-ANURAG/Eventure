@@ -1,5 +1,4 @@
 // to import files and images in our landing pages from different component and folders.
-
 import "../../stylesheets/homePage.css";
 import React from "react";
 import Footer from "../Footer.jsx";
@@ -15,13 +14,11 @@ import { useState } from "react";
 import {toast} from "react-hot-toast"
 
 export default function HomePage() {
-
   // this is the logic of autowrite function
   const [text] = useTypewriter({
     words: [`Explore Hogwarts `,`Unravel mysteries`, `, & let the magic ignite.`],
     loop: {},
   });
-
 
   // some states and function for the contact us form
   const [contactFormData, setContactFormData] = useState({
@@ -60,27 +57,22 @@ export default function HomePage() {
   
   const handleSubmit = (e) => {
     e.preventDefault();
-
     if (errors.email || errors.phone) {
       alert('Please fix the errors in the form.');
       return;
     }
     // Send the formData to the backend (e.g., using axios)
     console.log('Form submitted', contactFormData);
-
     toast.success("we will contact u soon");
     setContactFormData({ name: '', email: '', phone: '' });
   };
-
 
   return (
     <>
       <Layout>
       <Navbar />
-
       {/* jsx code for the first section which serves the purpose of our website intro.  */}
       {/* navbar added */}
-      
       <section className="firstSection">
         <div className="typewrite text-white">
         "Enter the wizarding realm, where magic thrives and adventures await."{""}
@@ -136,7 +128,6 @@ export default function HomePage() {
       <div className="left4" id="ContactUs">
         <form onSubmit={handleSubmit}>
           <h2>Contact Us</h2>
-
           <label htmlFor="name">Name:</label>
           <input
             className="bg-gradient-to-br from-red-950 to-black"
@@ -148,7 +139,6 @@ export default function HomePage() {
             onChange={handleChange}
             required
           />
-
           <label htmlFor="email">Email:</label>
           <input
             className="bg-gradient-to-br from-red-950 to-black"
@@ -161,8 +151,6 @@ export default function HomePage() {
             required
           />
            {errors.email && <p className="error">{errors.email}</p>}
-
-
           <label htmlFor="phone">Phone No:</label>
           <input
             className="bg-gradient-to-br from-red-950 to-black"
@@ -175,12 +163,10 @@ export default function HomePage() {
             required
           />
            {errors.phone && <p className="error">{errors.phone}</p>}
-
           <button className="bg-gradient-to-br from-red-950 to-black" type="submit">
             Submit
           </button>
         </form>
-
       </div>
     </section>
 

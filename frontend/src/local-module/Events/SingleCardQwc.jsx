@@ -1,12 +1,14 @@
 import React  from 'react'
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
+import {toast} from "react-hot-toast"
+
 const SingleCardQwc = ({
   title,
   description,
   location,
   time,
-  decide
+ 
 }) => {
   
   const navigate = useNavigate();
@@ -16,7 +18,8 @@ const SingleCardQwc = ({
       const responce = await axios.get("http://localhost:5000/verify");
       // console.log(responce)
       if(responce.success){
-        decide(true);
+        toast.success("Its just testing UI not actual event hosted on the page")
+        navigate('/')
       }
       else {
         alert("Login First to Register an Event")

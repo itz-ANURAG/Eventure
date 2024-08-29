@@ -1,13 +1,9 @@
 import React from 'react'
 import "../stylesheets/spinner.css"
 
-function Spinner() {
-  return (
-    <div>
-      <span class="loader"></span>
-      <h1>Loading</h1>
-    </div>
-  )
-}
+// spinner component
+const Spinner = () => <div className="loader"></div>;
 
-export default Spinner
+export default Spinner;
+
+
