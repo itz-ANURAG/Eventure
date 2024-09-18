@@ -1,70 +1,126 @@
-# Getting Started with Create React App
+const { Octokit } = require("@octokit/rest");
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+// Replace these values with your own information
+const GITHUB_TOKEN =process.env.REACT_APP_GITHUB_TOKEN ;
+const REPO_OWNER = 'itz-ANURAG'; 
+const REPO_NAME = 'Eventure'; 
 
-## Available Scripts
+// Initialize Octokit with authentication
+const octokit = new Octokit({
+  auth: GITHUB_TOKEN,
+});
 
-In the project directory, you can run:
+// Define the README content
+const README_CONTENT = `
+# Eventure - Your Personal Event Manager 🎉
 
-### `npm start`
+**Eventure** is a robust event management platform that allows users to seamlessly view, register, and manage events. It also integrates a secure payment system to facilitate event registrations. The project implements full-stack web development technologies, focusing on user-friendly design and functionality.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 🌟 Features
+- **User Authentication:** Secure user login using JSON Web Tokens (JWT).
+- **Event Browsing:** Users can view upcoming events and register for them.
+- **Event Management:** Users can create new events, upload images, and manage their event schedule.
+- **Payment Integration:** A seamless payment system for processing payments for event registrations.
+- **Responsive Design:** Optimized for both desktop and mobile views.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 🚀 Tech Stack
+- **Frontend:** HTML, CSS, JavaScript, React.js
+- **Backend:** Node.js, Express.js
+- **Database:** MongoDB (Atlas Cloud)
+- **Authentication:** JSON Web Tokens (JWT)
+- **Tools:** Visual Studio Code, Git
 
-### `npm test`
+## 📁 Project Structure
+\`\`\`
+Eventure/
+│
+├── client/                # React.js Frontend
+│   ├── public/            # Public files (index.html, images, etc.)
+│   ├── src/               # React components, pages, services, etc.
+│
+├── server/                # Node.js Backend
+│   ├── models/            # Mongoose models for MongoDB
+│   ├── routes/            # API endpoints
+│   ├── controllers/       # Logic for handling API requests
+│   ├── middleware/        # Authentication middleware
+│
+├── .gitignore
+├── README.md
+└── package.json
+\`\`\`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 🛠️ Setup Instructions
+1. **Clone the repository:**
+    \`\`\`bash
+    git clone https://github.com/itz-ANURAG/Eventure.git
+    \`\`\`
 
-### `npm run build`
+2. **Install dependencies for both client and server:**
+    \`\`\`bash
+    cd Eventure/client
+    npm install
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+    cd ../server
+    npm install
+    \`\`\`
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+3. **Set up environment variables:**  
+   - Create a \`.env\` file in the \`server/\` directory.
+   - Add your MongoDB connection string, JWT secret, and payment API keys.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+4. **Run the application:**
+    \`\`\`bash
+    # For the frontend (React app)
+    cd Eventure/client
+    npm start
 
-### `npm run eject`
+    # For the backend (Node.js server)
+    cd ../server
+    npm run dev
+    \`\`\`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+5. **Access the application:**  
+   Navigate to \`http://localhost:3000\` in your browser to use the application.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 🤝 Contributors
+A special thanks to all the contributors who made this project possible:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- **Anurag Gupta** - [@itz-ANURAG](https://github.com/itz-ANURAG)
+- **Chirag Murarka** - [@ChiragMurarka](https://github.com/ChiragMurarka)
+- **Aryan Kesharwani** - [@Aryan14021974](https://github.com/Aryan14021974)
+- **Abhishek Kumar Yadav** - [@Abhi-11-sirius](https://github.com/Abhi-11-sirius)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## 📜 License
+This project is licensed under the [MIT License](LICENSE).
 
-## Learn More
+## 📧 Contact
+If you have any questions or suggestions, feel free to reach out to us.
+`;
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+// Update README file on GitHub
+async function updateReadme() {
+  try {
+    // Get the README file from the repository
+    const { data: { sha } } = await octokit.repos.getContent({
+      owner: itz-ANURAG,
+      repo: Eventure,
+      path: 'frontend/README.md',
+    });
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+    // Update the README file
+    await octokit.repos.createOrUpdateFileContents({
+      owner:itz-ANURAG,
+      repo: Eventure,
+      path: 'fronten/README.md',
+      message: 'Updated README file',
+      content: Buffer.from(README_CONTENT).toString('base64'),
+      sha: sha,
+    });
 
-### Code Splitting
+    console.log('README.md file updated successfully!');
+  } catch (error) {
+    console.error('Error updating README:', error);
+  }
+}
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+updateReadme();
